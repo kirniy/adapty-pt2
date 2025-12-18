@@ -1,28 +1,30 @@
 import React from 'react';
 import Image from 'next/image';
-import { cn } from '@/lib/utils';
 import { Section } from '@/components/ui/Section';
 
 const INTEGRATIONS = [
-    'amplitude', 'mixpanel', 'slack', 'appsflyer', 'adjust',
-    'branch', 'braze', 'facebook', 'firebase', 'segment',
-    'pushwoosh', 'onesignal', 'airship', 'clevertap',
-    'customerio', 'mparticle', 'singular', 'split',
-    'tiktok', 'webhook', 'appmetrica', 'posthog'
+    'amplitude', 'mixpanel', 'appsflyer', 'adjust',
+    'branch', 'braze', 'facebook', 'firebase-ga',
+    'pushwoosh', 'onesignal', 'airbridge', 'singular',
+    'splitmetrics', 'webhook', 'appmetrica', 'posthog',
+    'stripe', 'tenjin', 'apple-ads'
 ];
 
 export const IntegrationsMarquee = () => {
     return (
-        <Section className="py-24 overflow-hidden bg-bg-secondary border-y border-border-subtle">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold mb-4">Sync data with your favorite tools</h2>
-                <p className="text-text-secondary">Seamlessly integrate with the platforms you already use.</p>
+        <Section className="py-16 overflow-hidden bg-bg-primary">
+            <div className="text-center mb-10">
+                <p className="text-text-secondary text-sm uppercase tracking-wider font-medium">Integrations</p>
+                <h2 className="text-2xl md:text-3xl font-semibold mt-2">Works with your favorite tools</h2>
             </div>
 
-            <div className="relative w-full flex overflow-hidden mask-fade-sides">
-                <div className="flex animate-marquee whitespace-nowrap gap-12 py-4">
+            <div className="relative w-full flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+                <div className="flex animate-marquee gap-8 md:gap-12 py-4">
                     {INTEGRATIONS.map((name) => (
-                        <div key={name} className="relative w-[140px] h-[50px] shrink-0 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+                        <div
+                            key={name}
+                            className="relative w-[120px] md:w-[160px] h-[40px] md:h-[48px] shrink-0 opacity-70 hover:opacity-100 transition-all duration-300"
+                        >
                             <Image
                                 src={`/integrations/${name}.svg`}
                                 alt={name}
@@ -33,7 +35,10 @@ export const IntegrationsMarquee = () => {
                     ))}
                     {/* Duplicate for infinite loop */}
                     {INTEGRATIONS.map((name) => (
-                        <div key={`${name}-duplicate`} className="relative w-[140px] h-[50px] shrink-0 opacity-50 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0">
+                        <div
+                            key={`${name}-duplicate`}
+                            className="relative w-[120px] md:w-[160px] h-[40px] md:h-[48px] shrink-0 opacity-70 hover:opacity-100 transition-all duration-300"
+                        >
                             <Image
                                 src={`/integrations/${name}.svg`}
                                 alt={name}

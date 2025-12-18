@@ -18,6 +18,11 @@ import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Enterprise } from "@/components/sections/Enterprise";
 import { AnimatedCheck } from "@/components/ui/AnimatedCheck";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { BorderBeam } from "@/components/ui/BorderBeam";
+import { AuroraBackground } from "@/components/ui/AuroraBackground";
+import ShimmerButton from "@/components/ui/ShimmerButton";
+import { AttioBadge } from "@/components/ui/AttioBadge";
+import { GridSpotlight } from "@/components/ui/GridSpotlight";
 import { StickyScrollReal as StickyScroll } from "@/components/ui/StickyScroll";
 import { ContainerScroll } from "@/components/ui/ContainerScroll";
 import { KaraokeText } from "@/components/ui/KaraokeText";
@@ -76,17 +81,19 @@ export default function Home() {
             backgroundImage: `repeating-linear-gradient(125deg, transparent, transparent 6px, #dee2e6 6px, #dee2e6 7px)`
           }}
         />
+        {/* Attio Grid Spotlight Background */}
+        <GridSpotlight className="opacity-60" />
 
         <ContainerScroll
           titleComponent={
             <div className="mb-8">
-              <div className="mb-8 flex justify-center">
-                <AnimatedPill>
-                  <span className="flex items-center gap-2 text-foreground">
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <div className="mb-8 flex justify-center relative z-20">
+                <AttioBadge className="cursor-pointer">
+                  <span className="text-[13px] font-medium text-[#5C5E63] flex items-center gap-1">
                     New: AI-Powered Paywall Builder
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m5.5 4 3 3-3 3" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" /></svg>
                   </span>
-                </AnimatedPill>
+                </AttioBadge>
               </div>
 
               <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground mb-6 leading-[1.1]">
@@ -229,31 +236,34 @@ export default function Home() {
       {/* Final CTA */}
       <Section className="py-24 md:py-32">
         <Container>
-          <FadeIn direction="up">
-            <div className="bg-brand rounded-[32px] p-8 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-brand/20">
-              <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-              <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
-              <div className="relative z-10">
-                <KaraokeText
-                  text="Ready to grow your revenue?"
-                  className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tighter justify-center text-center"
-                />
+          <Container>
+            {/* Section is large to show aurora logic, but we keep it constrained for the CTA feel */}
+            <div className="rounded-[32px] overflow-hidden relative shadow-2xl">
+              <AuroraBackground className="h-[500px] !bg-zinc-900">
+                <div className="relative z-10 text-center px-4">
+                  <KaraokeText
+                    text="Ready to grow your revenue?"
+                    className="text-4xl md:text-7xl font-bold text-white mb-8 tracking-tighter justify-center text-center"
+                  />
 
-                <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-2xl mx-auto font-medium">
-                  Join 15,000+ apps using Adapty to power their subscription business.
-                  Start for free, no credit card required.
-                </p>
-                <div className="flex flex-col sm:flex-row justify-center gap-4">
-                  <Button size="lg" className="bg-white text-brand hover:bg-gray-50 shadow-xl border-0 h-14 px-8 text-lg">
-                    Get started free
-                  </Button>
-                  <Button size="lg" variant="secondary" className="border-white/30 text-white hover:bg-white/10 h-14 px-8 text-lg backdrop-blur-sm">
-                    Schedule a demo
-                  </Button>
+                  <p className="text-xl md:text-2xl text-neutral-200 mb-12 max-w-2xl mx-auto font-medium">
+                    Join 15,000+ apps using Adapty to power their subscription business.
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row justify-center gap-4">
+                    <ShimmerButton className="shadow-2xl">
+                      <span className="text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+                        Get started free
+                      </span>
+                    </ShimmerButton>
+                    <Button size="lg" variant="secondary" className="border-white/20 text-white hover:bg-white/10 h-12 px-8 text-lg backdrop-blur-sm bg-transparent">
+                      Schedule a demo
+                    </Button>
+                  </div>
                 </div>
-              </div>
+              </AuroraBackground>
             </div>
-          </FadeIn>
+          </Container>
         </Container>
       </Section>
     </>

@@ -35,6 +35,9 @@ This file contains essential project configuration and context for AI agents wor
 - **Org ID**: team_wmpr3f4f8wYu7ZUqqOLy0uX0
 - **Production URL**: https://adapty-pt2.vercel.app
 - **Framework**: Next.js (auto-detected)
+- **Git Integration**: Connected to kirniy/adapty-pt2 (auto-deploy on push)
+- **PR Comments**: Enabled
+- **Deployment Events**: Enabled
 
 ---
 

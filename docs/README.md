@@ -18,7 +18,8 @@ This folder contains comprehensive documentation for the Adapty website redesign
 
 | File | Description |
 |------|-------------|
-| [VISUAL_REFERENCE.md](./VISUAL_REFERENCE.md) | **NEW** - Design analysis with screenshots of all reference sites |
+| [EXTRACTED_STYLES.md](./EXTRACTED_STYLES.md) | **CRITICAL** - Live CSS extracted from Attio/Linear/Vercel/Polar via DevTools |
+| [VISUAL_REFERENCE.md](./VISUAL_REFERENCE.md) | Design analysis with screenshots of all reference sites |
 | [DESIGN_SYSTEM.md](./DESIGN_SYSTEM.md) | Colors, typography, spacing, and component specifications |
 | [CONTENT_STRUCTURE.md](./CONTENT_STRUCTURE.md) | Homepage sections and blog structure with actual content |
 | [CMS_SETUP.md](./CMS_SETUP.md) | Complete Sanity.io setup guide with schemas and queries |

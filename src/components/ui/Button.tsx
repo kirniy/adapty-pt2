@@ -11,7 +11,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         return (
             <button
                 className={cn(
-                    "inline-flex items-center justify-center whitespace-nowrap font-medium transition-all duration-200 ease-smooth disabled:pointer-events-none disabled:opacity-50",
+                    "inline-flex items-center justify-center whitespace-nowrap font-medium transition-all duration-200 ease-smooth disabled:pointer-events-none disabled:opacity-50 active:scale-95",
                     "rounded-[10px]",
                     size === 'sm' && "h-8 px-3 text-xs",
                     size === 'md' && "h-10 px-[12px] text-[15px]",

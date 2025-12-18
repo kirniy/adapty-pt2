@@ -15,6 +15,7 @@ import { SDKCodeSnippet } from "@/components/sections/SDKCodeSnippet";
 import { G2Badges } from "@/components/sections/G2Badges";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Enterprise } from "@/components/sections/Enterprise";
+import { AnimatedCheck } from "@/components/ui/AnimatedCheck";
 
 import { FadeIn } from "@/components/animations/FadeIn";
 
@@ -156,10 +157,10 @@ export default function Home() {
                     'Pre-built high-converting templates',
                     'Real-time preview on device',
                     'Instant updates without app release'
-                  ].map((item) => (
+                  ].map((item, i) => (
                     <li key={item} className="flex items-center gap-3">
                       <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 flex-shrink-0">
-                        <Check className="w-3.5 h-3.5" />
+                        <AnimatedCheck delay={i * 0.1} className="w-3.5 h-3.5" />
                       </div>
                       <span className="text-foreground font-medium">{item}</span>
                     </li>
@@ -202,10 +203,10 @@ export default function Home() {
                     'Trial duration experiments',
                     'Paywall layout A/B tests',
                     'Target specific audiences'
-                  ].map((item) => (
+                  ].map((item, i) => (
                     <li key={item} className="flex items-center gap-3">
                       <div className="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0">
-                        <Check className="w-3.5 h-3.5" />
+                        <AnimatedCheck delay={i * 0.1} className="w-3.5 h-3.5" />
                       </div>
                       <span className="text-foreground font-medium">{item}</span>
                     </li>
@@ -335,28 +336,58 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-bold mb-16 text-center tracking-tight">Loved by product teams</h2>
             <div className="columns-1 md:columns-3 gap-6 space-y-6">
               <TestimonialCard
-                quote="Adapty helped us increase our trial-to-paid conversion by 34%. The paywall builder saved us months of development time."
-                author={{ name: "Alex Z.", role: "CEO", company: "Moonlight Apps" }}
+                quote="We integrated and tested everything within a month. After some A/B test iterations, we found the winning paywall that doubled our conversion rate."
+                author={{
+                  name: "Magnus Olafsson",
+                  role: "Founder & CEO",
+                  company: "Sleep Cycle",
+                  avatar: "/images/testimonials/magnus-olafsson.webp"
+                }}
               />
               <TestimonialCard
-                quote="The analytics are incredible. We finally understand our subscription metrics and can make data-driven decisions."
-                author={{ name: "Sarah J.", role: "Product Lead", company: "FitBody" }}
+                quote="For us as developers, Adapty is a great product. It handles all the complexity for us and lets us focus on building a great app experience."
+                author={{
+                  name: "Ilgar Tali",
+                  role: "Founder",
+                  company: "Muse Sleep",
+                  avatar: "/images/testimonials/ilgar-tali.webp"
+                }}
               />
               <TestimonialCard
-                quote="Switching to Adapty was the best decision we made. Setup took less than a day and everything just works."
-                author={{ name: "Mike R.", role: "CTO", company: "Scanner Pro" }}
+                quote="I have experimented with a lot of subscription analytics services and Adapty by far has the best data accuracy."
+                author={{
+                  name: "Mike McSweeney",
+                  role: "VP of Marketing",
+                  company: "Rootd",
+                  avatar: "/images/testimonials/mike-mcsweeney.webp"
+                }}
               />
               <TestimonialCard
-                quote="The best revenue data accuracy on the market. We trust Adapty with our entire business."
-                author={{ name: "Jessica K.", role: "Founder", company: "Mindful" }}
+                quote="Having access to detailed data you can actually trust is what makes or breaks subscription apps. Thanks to Adapty, we now have the confidence to make big decisions."
+                author={{
+                  name: "Chris Bick",
+                  role: "Head of Business",
+                  company: "Imprint",
+                  avatar: "/images/testimonials/chris-bick.webp"
+                }}
               />
               <TestimonialCard
-                quote="Their support team is amazing. They helped us migrate from a competitor in record time."
-                author={{ name: "David L.", role: "Lead Dev", company: "Health+" }}
+                quote="It literally takes 30 seconds to make a paywall change across all platforms. Non-developers on our team can create new paywalls any time they want."
+                author={{
+                  name: "Cem Ortabas",
+                  role: "CEO",
+                  company: "Anyplay",
+                  avatar: "/images/testimonials/cem-ortabas.webp"
+                }}
               />
               <TestimonialCard
-                quote="The A/B testing features are a game changer. We've doubled our revenue in 6 months."
-                author={{ name: "Emily W.", role: "Growth", company: "Yoga Daily" }}
+                quote="Adapty is the best solution for subscription apps. It handles everything from A/B testing to analytics. We migrated from RevenueCat in a week."
+                author={{
+                  name: "Roi Mulia",
+                  role: "CEO",
+                  company: "Starter Studio",
+                  avatar: "/images/testimonials/roi-mulia.webp"
+                }}
               />
             </div>
           </FadeIn>

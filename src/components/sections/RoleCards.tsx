@@ -55,7 +55,7 @@ export function RoleCards() {
                             <motion.div
                                 layoutId="activeRole"
                                 className="absolute inset-0 bg-white shadow-sm rounded-lg -z-10"
-                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             />
                         )}
                         {role.label}

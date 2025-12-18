@@ -27,21 +27,26 @@ export function GridSpotlight({ className }: { className?: string }) {
         >
             <div className="absolute inset-0 bg-white"></div>
 
-            {/* Dots Layer */}
+            {/* Base Grey Grid (Always Visible) */}
             <div
                 className="absolute inset-0"
                 style={{
                     backgroundImage: "radial-gradient(#EEEFF1 1px, transparent 1px)",
-                    backgroundSize: "20px 20px"
+                    backgroundSize: "24px 24px"
                 }}
             ></div>
 
-            {/* The Spotlight Reveal */}
+            {/* The Interactive Highlight Grid (Revealed by Mouse) */}
             <div
-                className="absolute inset-0 transition-opacity duration-300"
+                className="absolute inset-0 bg-transparent transition-opacity duration-300"
                 style={{
                     opacity,
-                    backgroundImage: `radial-gradient(400px circle at ${position.x}px ${position.y}px, rgba(64, 127, 242, 0.08), transparent 80%)`
+                    // The grid of blue dots
+                    backgroundImage: "radial-gradient(#407FF2 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
+                    // The mask that reveals them around the mouse
+                    maskImage: `radial-gradient(300px circle at ${position.x}px ${position.y}px, black, transparent)`,
+                    WebkitMaskImage: `radial-gradient(300px circle at ${position.x}px ${position.y}px, black, transparent)`
                 }}
             ></div>
         </div>

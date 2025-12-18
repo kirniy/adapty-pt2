@@ -84,7 +84,7 @@ export const StickyScrollReal = ({ content, contentClassName }: StickyScrollProp
             {/* Sticky image container on the right */}
             <div
                 className={cn(
-                    "hidden lg:block h-[500px] w-[700px] rounded-2xl bg-background-secondary sticky top-[calc(50vh-250px)] overflow-hidden border border-border-subtle shadow-elevated",
+                    "hidden lg:block h-[500px] w-[700px] rounded-2xl bg-[#1a1a2e] sticky top-[calc(50vh-250px)] overflow-hidden border border-white/10 shadow-elevated",
                     contentClassName
                 )}
             >

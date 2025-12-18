@@ -171,7 +171,7 @@ export const SDKCodeSnippet = () => {
                                         {CODE_EXAMPLES[activeTab].split('\n').map((line, i) => (
                                             <div key={i} className="table-row">
                                                 <span className="table-cell select-none text-right pr-2 md:pr-4 text-white/20 w-6 md:w-8">{i + 1}</span>
-                                                <span className="table-cell whitespace-pre">
+                                                <span className="table-cell whitespace-pre-wrap break-words">
                                                     {highlightSyntax(line)}
                                                 </span>
                                             </div>
@@ -206,13 +206,17 @@ function highlightSyntax(code: string) {
     // For now, let's keep it simple and just return the string if simple regex fails or just color keywords
     // Reverting to manual span wrapping for specific known keywords for stability
 
+    // Check for comments first - prevents duplication bug
+    if (code.trim().startsWith('//')) {
+        return <span className="text-[#565f89]">{code}</span>;
+    }
+
     // Quick manual highlighting for key terms
     const words = code.split(' ');
     return words.map((word, i) => {
         let color = '#CDD6F4';
-        if (word.startsWith('//')) return <span key={i} className="text-[#565f89]">{words.slice(i).join(' ')}</span>;
-        if (['import', 'try', 'await', 'if', 'let', 'val', 'const', 'final'].includes(word)) color = '#BB9AF7';
-        if (word.includes('"')) color = '#9ECE6A';
+        if (['import', 'try', 'await', 'if', 'let', 'val', 'const', 'final', 'catch', 'final'].includes(word)) color = '#BB9AF7';
+        if (word.includes('"') || word.includes("'")) color = '#9ECE6A';
         if (word.includes('Adapty') || word.includes('adapty')) color = '#7AA2F7';
         if (word.includes('activate') || word.includes('getPaywall') || word.includes('makePurchase')) color = '#7DCFFF';
 

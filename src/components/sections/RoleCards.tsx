@@ -89,12 +89,13 @@ export function RoleCards() {
                             </ul>
                         </div>
 
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated border border-border-subtle bg-white group">
+                        <div className="rounded-2xl overflow-hidden shadow-elevated border border-border-subtle bg-background-secondary group">
                             <Image
                                 src={activeRole.image}
                                 alt={activeRole.label}
-                                fill
-                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                width={800}
+                                height={600}
+                                className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
                             />
                         </div>
                     </motion.div>

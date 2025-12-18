@@ -214,6 +214,7 @@ export default function Home() {
                 image={
                   <Image src="/images/feature-ab.webp" alt="A/B Testing" width={400} height={200} className="w-full h-auto" />
                 }
+                darkImageBg
                 className="md:col-span-1"
               />
               <FeatureCard

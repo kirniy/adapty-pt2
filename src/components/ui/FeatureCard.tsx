@@ -10,9 +10,10 @@ interface FeatureCardProps {
     image?: React.ReactNode
     className?: string
     href?: string
+    darkImageBg?: boolean
 }
 
-export function FeatureCard({ title, description, icon, image, className, href }: FeatureCardProps) {
+export function FeatureCard({ title, description, icon, image, className, href, darkImageBg = false }: FeatureCardProps) {
     const Wrapper = href ? Link : 'div'
 
     return (
@@ -39,7 +40,10 @@ export function FeatureCard({ title, description, icon, image, className, href }
                         </p>
 
                         {image && (
-                            <div className="mt-auto -mx-8 -mb-8 rounded-t-xl overflow-hidden shadow-inner bg-background-tertiary">
+                            <div className={cn(
+                                "mt-auto -mx-8 -mb-8 rounded-t-xl overflow-hidden shadow-inner",
+                                darkImageBg ? "bg-[#1a1a2e]" : "bg-background-tertiary"
+                            )}>
                                 {image}
                             </div>
                         )}

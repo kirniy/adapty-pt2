@@ -126,25 +126,25 @@ export const SDKCodeSnippet = () => {
                         </div>
                     </div>
 
-                    <div className="order-1 lg:order-2 relative group perspective-1000">
+                    <div className="order-1 lg:order-2 relative group perspective-1000 min-w-0">
                         {/* Abstract glow */}
                         <div className="absolute inset-0 bg-brand/20 blur-[100px] rounded-full -z-10 group-hover:bg-brand/30 transition-colors duration-500" />
 
                         <div className="bg-[#1E1E2E] rounded-xl shadow-2xl border border-white/10 overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
                             {/* Window Actions + Tabs */}
-                            <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-[#252535]">
-                                <div className="flex gap-2">
+                            <div className="flex items-center justify-between px-3 md:px-4 py-3 border-b border-white/5 bg-[#252535] gap-3">
+                                <div className="flex gap-2 flex-shrink-0">
                                     <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
                                     <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
                                     <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
                                 </div>
-                                <div className="flex gap-1 bg-black/20 p-1 rounded-lg">
+                                <div className="flex gap-1 bg-black/20 p-1 rounded-lg overflow-x-auto scrollbar-hide">
                                     {(['swift', 'kotlin', 'flutter', 'react-native'] as Tab[]).map((tab) => (
                                         <button
                                             key={tab}
                                             onClick={() => setActiveTab(tab)}
                                             className={cn(
-                                                "px-3 py-1 rounded-md text-xs font-medium transition-all duration-200 capitalize",
+                                                "px-2 md:px-3 py-1 rounded-md text-[10px] md:text-xs font-medium transition-all duration-200 capitalize whitespace-nowrap flex-shrink-0",
                                                 activeTab === tab
                                                     ? "bg-white/10 text-white shadow-sm"
                                                     : "text-white/40 hover:text-white/70 hover:bg-white/5"
@@ -157,7 +157,7 @@ export const SDKCodeSnippet = () => {
                             </div>
 
                             {/* Code Area */}
-                            <div className="p-6 overflow-x-auto relative group/code">
+                            <div className="p-4 md:p-6 overflow-x-auto relative group/code">
                                 <button
                                     onClick={handleCopy}
                                     className="absolute top-4 right-4 p-2 rounded-lg bg-white/5 text-white/40 hover:text-white hover:bg-white/10 transition-all opacity-0 group-hover/code:opacity-100"
@@ -166,12 +166,12 @@ export const SDKCodeSnippet = () => {
                                     {copied ? <CheckCircle2 className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
                                 </button>
 
-                                <pre className="font-mono text-sm leading-relaxed text-[#CDD6F4]">
-                                    <code>
+                                <pre className="font-mono text-[11px] md:text-sm leading-relaxed text-[#CDD6F4] min-w-0">
+                                    <code className="block">
                                         {CODE_EXAMPLES[activeTab].split('\n').map((line, i) => (
                                             <div key={i} className="table-row">
-                                                <span className="table-cell select-none text-right pr-4 text-white/20">{i + 1}</span>
-                                                <span className="table-cell">
+                                                <span className="table-cell select-none text-right pr-2 md:pr-4 text-white/20 w-6 md:w-8">{i + 1}</span>
+                                                <span className="table-cell whitespace-pre">
                                                     {highlightSyntax(line)}
                                                 </span>
                                             </div>

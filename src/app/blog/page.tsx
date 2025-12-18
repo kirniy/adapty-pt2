@@ -1,65 +1,111 @@
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { BlogCard } from "@/components/ui/BlogCard";
-import { client } from "@/lib/sanity/client";
-import { POSTS_QUERY, CATEGORIES_QUERY, FEATURED_POST_QUERY } from "@/lib/sanity/queries";
-import { Button } from "@/components/ui/Button";
+import { client, urlFor } from "@/lib/sanity";
+import Link from "next/link";
+import Image from "next/image";
+import { FadeIn } from "@/components/animations/FadeIn";
+import { formatDate } from "@/lib/utils"; // Assuming utils has this or I will create it/inline it
 
-// Revalidate every 60 seconds
-export const revalidate = 60;
+async function getPosts() {
+    return client.fetch(`
+    *[_type == "blogPost"] | order(publishedAt desc) {
+      _id,
+      title,
+      slug,
+      excerpt,
+      mainImage,
+      publishedAt,
+      readTime,
+      "author": author->{name, image},
+      "category": category->{title}
+    }
+  `);
+}
 
 export default async function BlogPage() {
-    const posts = await client.fetch(POSTS_QUERY);
-    const categories = await client.fetch(CATEGORIES_QUERY);
-    const featuredPost = await client.fetch(FEATURED_POST_QUERY);
-
-    // Filter out featured post from main list if it's the same
-    const otherPosts = posts.filter((p: any) => p.slug.current !== featuredPost?.slug);
+    const posts = await getPosts();
 
     return (
-        <div className="min-h-screen">
-            <Section className="pb-12 pt-[140px] md:pt-[160px]">
+        <main className="pt-32 pb-24">
+            <Section>
                 <Container>
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-border-default pb-8">
-                        <div className="max-w-2xl">
-                            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-4">
-                                Latest news and insights
+                    <FadeIn>
+                        <div className="max-w-2xl mb-16">
+                            <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+                                Blog
                             </h1>
-                            <p className="text-xl text-foreground-secondary">
-                                Learn about subscription monetization, app growth, and Adapty updates.
+                            <p className="text-xl text-foreground-secondary leading-relaxed">
+                                Insights, updates, and guides on mobile app growth and monetization.
                             </p>
                         </div>
+                    </FadeIn>
 
-                        {/* Categories (Horizontal Scroll) */}
-                        <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
-                            <Button variant="secondary" className="bg-foreground text-background border-foreground hover:bg-foreground/90">All</Button>
-                            {categories.map((cat: any) => (
-                                <Button key={cat._id} variant="secondary" className="whitespace-nowrap">
-                                    {cat.name}
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {featuredPost && (
-                        <div className="mb-20">
-                            <BlogCard post={featuredPost} featured={true} />
-                        </div>
-                    )}
-
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-                        {otherPosts.map((post: any) => (
-                            <BlogCard key={post._id} post={post} />
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {posts.map((post: any, index: number) => (
+                            <FadeIn key={post._id} delay={index * 0.1}>
+                                <Link
+                                    href={`/blog/${post.slug.current}`}
+                                    className="group flex flex-col h-full bg-white rounded-2xl border border-border-subtle overflow-hidden hover:shadow-card hover:-translate-y-1 transition-all duration-300 ease-smooth"
+                                >
+                                    <div className="relative h-48 w-full bg-background-secondary overflow-hidden">
+                                        {post.mainImage ? (
+                                            <Image
+                                                src={urlFor(post.mainImage).url()}
+                                                alt={post.title}
+                                                fill
+                                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            />
+                                        ) : (
+                                            <div className="absolute inset-0 flex items-center justify-center text-foreground-secondary/20 font-bold text-4xl">
+                                                Aa
+                                            </div>
+                                        )}
+                                        {post.category && (
+                                            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-foreground">
+                                                {post.category.title}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="p-6 flex flex-col flex-grow">
+                                        <div className="flex items-center gap-2 text-xs text-foreground-secondary mb-3 font-medium">
+                                            {post.publishedAt && (
+                                                <time dateTime={post.publishedAt}>
+                                                    {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                                                </time>
+                                            )}
+                                            <span>•</span>
+                                            <span>{post.readTime || 5} min read</span>
+                                        </div>
+                                        <h3 className="text-xl font-bold mb-3 group-hover:text-brand transition-colors line-clamp-2">
+                                            {post.title}
+                                        </h3>
+                                        <p className="text-foreground-secondary text-sm leading-relaxed mb-6 line-clamp-3">
+                                            {post.excerpt}
+                                        </p>
+                                        <div className="mt-auto flex items-center gap-3 pt-4 border-t border-border-subtle/50">
+                                            {post.author?.image ? (
+                                                <Image
+                                                    src={urlFor(post.author.image).url()}
+                                                    alt={post.author.name}
+                                                    width={24}
+                                                    height={24}
+                                                    className="rounded-full"
+                                                />
+                                            ) : (
+                                                <div className="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center text-brand text-xs font-bold">
+                                                    {post.author?.name?.[0] || 'A'}
+                                                </div>
+                                            )}
+                                            <span className="text-sm font-medium text-foreground">{post.author?.name || 'Adapty Team'}</span>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </FadeIn>
                         ))}
                     </div>
-
-                    {!featuredPost && otherPosts.length === 0 && (
-                        <div className="text-center py-20 text-foreground-secondary">
-                            No posts found. Start writing in Sanity CMS!
-                        </div>
-                    )}
                 </Container>
             </Section>
-        </div>
+        </main>
     );
 }

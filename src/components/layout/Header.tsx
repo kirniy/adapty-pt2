@@ -34,10 +34,11 @@ const NAV_ITEMS = [
         label: "Resources", href: "#", children: [
             { label: "Blog", href: "/blog" },
             { label: "Documentation", href: "/docs" },
+            { label: "Case Studies", href: "/case-studies" },
         ]
     },
     { label: "Pricing", href: "/pricing" },
-    { label: "Docs", href: "/docs" },
+    { label: "Blog", href: "/blog" },
 ];
 
 export function Header() {

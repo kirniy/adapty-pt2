@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef } from "react";
-import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
+import { useScroll, useTransform, motion, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface StickyScrollProps {
@@ -14,132 +14,92 @@ interface StickyScrollProps {
 }
 
 export const StickyScroll = ({ content, contentClassName }: StickyScrollProps) => {
-    const [activeCard, setActiveCard] = React.useState(0);
+    return <StickyScrollReal content={content} contentClassName={contentClassName} />;
+};
+
+export const StickyScrollReal = ({ content, contentClassName }: StickyScrollProps) => {
+    const [activeCard, setActiveCard] = useState(0);
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
-        // target: ref,
-        container: ref,
+        target: ref,
         offset: ["start start", "end start"],
     });
 
     const cardLength = content.length;
 
-    useTransform(
-        scrollYProgress,
-        [0, 1],
-        [0, 100] // just for hook usage, logic is in onScroll
-    );
-
-    // Manual scroll listener to determine active card because useScroll with container is tricky for precise breakpoints sometimes
-    const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
-        const scrollTop = e.currentTarget.scrollTop;
-        const scrollHeight = e.currentTarget.scrollHeight;
-        const clientHeight = e.currentTarget.clientHeight;
-
-        // Calculate index
-        const sectionHeight = scrollHeight / cardLength;
-        const index = Math.round(scrollTop / (sectionHeight / 2)); // rough approximation
-
-        // Better: find which section is closest to top
-        const scrollPos = scrollTop;
-        // Each section is essentially full height? No, we scroll text blocks.
-
-        // Let's use intersection observer simplified approach or generic scroll percentage
-        // Actually the standard Sticky Scroll implementation usually just maps scrollY of the window
-        // But here we might want a contained scroll or window scroll. 
-        // Attio uses window scroll. 
-    };
-
-    // Re-implementing using Window Scroll for the "Attio" feel
-    // The component receives content, renders text on left, and a sticky area on right.
-
-    return (
-        <motion.div
-            className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10 scrollbar-hide"
-            ref={ref}
-            onScroll={(e) => {
-                // simple active card logic based on scroll position of this container
-                const target = e.currentTarget;
-                const index = Math.round(target.scrollTop / 300); // assuming text block height
-                // This is too simpler. Let's do it better below.
-            }}
-        >
-            {/* Placeholder for standard exported component, see below for real impl */}
-        </motion.div>
-    );
-};
-
-// Proper Implementation
-export const StickyScrollReal = ({ content, contentClassName }: StickyScrollProps) => {
-    const [activeCard, setActiveCard] = React.useState(0);
-    const ref = useRef<any>(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start start", "end end"],
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        const cardsBreakpoints = content.map((_, index) => index / cardLength);
+        const closestBreakpointIndex = cardsBreakpoints.reduce(
+            (acc, breakpoint, index) => {
+                const distance = Math.abs(latest - breakpoint);
+                if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
+                    return index;
+                }
+                return acc;
+            },
+            0
+        );
+        setActiveCard(closestBreakpointIndex);
     });
-
-    const cardLength = content.length;
-
-    useTransform(
-        scrollYProgress,
-        [0, 1],
-        [0, cardLength - 1]
-    ).on("change", (latest) => {
-        const cardIndex = Math.round(latest * (cardLength - 0.5)); // slight adjustment
-        // Clamp
-        const index = Math.min(Math.max(cardIndex, 0), cardLength - 1);
-        if (index !== activeCard) {
-            setActiveCard(index);
-        }
-    });
-
-    const backgroundColors = [
-        "var(--slate-900)",
-        "var(--black)",
-        "var(--neutral-900)",
-    ];
-
-    // Attio has a white background, so we don't change BG color usually, but we swap content
 
     return (
         <motion.div
             ref={ref}
-            className="h-[300vh] relative flex justify-center space-x-10 rounded-md p-10" // tall container
+            className="relative flex justify-center gap-10 px-4 md:px-10"
         >
-            <div className="div relative flex items-start px-4">
-                <div className="max-w-2xl">
+            {/* Text content on the left */}
+            <div className="relative flex items-start">
+                <div className="max-w-xl">
                     {content.map((item, index) => (
-                        <div key={item.title + index} className="my-20 h-[80vh] flex flex-col justify-center">
+                        <div
+                            key={item.title + index}
+                            className="min-h-[60vh] flex flex-col justify-center py-20"
+                        >
                             <motion.h2
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: activeCard === index ? 1 : 0.3 }}
-                                className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+                                initial={{ opacity: 0.3 }}
+                                animate={{
+                                    opacity: activeCard === index ? 1 : 0.3,
+                                }}
+                                transition={{ duration: 0.3 }}
+                                className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight"
                             >
                                 {item.title}
                             </motion.h2>
                             <motion.p
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: activeCard === index ? 1 : 0.3 }}
-                                className="text-xl text-foreground-secondary max-w-sm mt-4 leading-relaxed"
+                                initial={{ opacity: 0.3 }}
+                                animate={{
+                                    opacity: activeCard === index ? 1 : 0.3,
+                                }}
+                                transition={{ duration: 0.3 }}
+                                className="text-lg md:text-xl text-foreground-secondary max-w-md mt-6 leading-relaxed"
                             >
                                 {item.description}
                             </motion.p>
                         </div>
                     ))}
-                    <div className="h-40" />
+                    <div className="h-[30vh]" />
                 </div>
             </div>
 
-            {/* Sticky Visual Side */}
+            {/* Sticky image container on the right */}
             <div
                 className={cn(
-                    "hidden lg:block w-[800px] rounded-2xl bg-white sticky top-24 overflow-hidden border border-border-subtle shadow-elevated",
+                    "hidden lg:block h-[500px] w-[700px] rounded-2xl bg-background-secondary sticky top-[calc(50vh-250px)] overflow-hidden border border-border-subtle shadow-elevated",
                     contentClassName
                 )}
             >
-                <div className="flex items-center justify-center p-4">
-                    {content[activeCard].content ?? null}
-                </div>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeCard}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="w-full h-full flex items-center justify-center"
+                    >
+                        {content[activeCard].content ?? null}
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </motion.div>
     );

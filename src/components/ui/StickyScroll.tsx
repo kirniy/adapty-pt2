@@ -45,7 +45,7 @@ export const StickyScrollReal = ({ content, contentClassName }: StickyScrollProp
     return (
         <motion.div
             ref={ref}
-            className="relative flex items-start justify-center gap-10 px-4 md:px-10"
+            className="relative flex justify-center gap-10 px-4 md:px-10"
         >
             {/* Text content on the left */}
             <div className="relative max-w-xl">

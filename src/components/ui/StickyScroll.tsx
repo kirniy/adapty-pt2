@@ -28,7 +28,7 @@ export const StickyScrollReal = ({ content, contentClassName }: StickyScrollProp
     const cardLength = content.length;
 
     useMotionValueEvent(scrollYProgress, "change", (latest) => {
-        const cardsBreakpoints = content.map((_, index) => index / cardLength);
+        const cardsBreakpoints = content.map((_, index) => index / content.length);
         const closestBreakpointIndex = cardsBreakpoints.reduce(
             (acc, breakpoint, index) => {
                 const distance = Math.abs(latest - breakpoint);
@@ -45,44 +45,46 @@ export const StickyScrollReal = ({ content, contentClassName }: StickyScrollProp
     return (
         <motion.div
             ref={ref}
-            className="relative flex items-start justify-center gap-10 px-4 md:px-10"
+            className="relative flex justify-center gap-10 px-4 md:px-10"
         >
             {/* Text content on the left */}
-            <div className="relative max-w-xl">
-                {content.map((item, index) => (
-                    <div
-                        key={item.title + index}
-                        className="min-h-[60vh] flex flex-col justify-center py-20"
-                    >
-                        <motion.h2
-                            initial={{ opacity: 0.3 }}
-                            animate={{
-                                opacity: activeCard === index ? 1 : 0.3,
-                            }}
-                            transition={{ duration: 0.3 }}
-                            className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight"
+            <div className="relative flex items-start">
+                <div className="max-w-xl">
+                    {content.map((item, index) => (
+                        <div
+                            key={item.title + index}
+                            className="min-h-[60vh] flex flex-col justify-center py-20"
                         >
-                            {item.title}
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0.3 }}
-                            animate={{
-                                opacity: activeCard === index ? 1 : 0.3,
-                            }}
-                            transition={{ duration: 0.3 }}
-                            className="text-lg md:text-xl text-foreground-secondary max-w-md mt-6 leading-relaxed"
-                        >
-                            {item.description}
-                        </motion.p>
-                    </div>
-                ))}
-                <div className="h-[30vh]" />
+                            <motion.h2
+                                initial={{ opacity: 0.3 }}
+                                animate={{
+                                    opacity: activeCard === index ? 1 : 0.3,
+                                }}
+                                transition={{ duration: 0.3 }}
+                                className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight"
+                            >
+                                {item.title}
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0.3 }}
+                                animate={{
+                                    opacity: activeCard === index ? 1 : 0.3,
+                                }}
+                                transition={{ duration: 0.3 }}
+                                className="text-lg md:text-xl text-foreground-secondary max-w-md mt-6 leading-relaxed"
+                            >
+                                {item.description}
+                            </motion.p>
+                        </div>
+                    ))}
+                    <div className="h-[30vh]" />
+                </div>
             </div>
 
-            {/* Sticky image container on the right - self-start is CRITICAL for sticky in flex */}
+            {/* Sticky image container on the right */}
             <div
                 className={cn(
-                    "hidden lg:block h-[500px] w-[700px] rounded-2xl bg-[#1a1a2e] sticky top-[calc(50vh-250px)] self-start overflow-hidden border border-white/10 shadow-elevated",
+                    "hidden lg:block h-[500px] w-[700px] rounded-2xl bg-[#1a1a2e] sticky top-[calc(50vh-250px)] overflow-hidden border border-white/10 shadow-elevated",
                     contentClassName
                 )}
             >

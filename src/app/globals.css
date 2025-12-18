@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  --font-gilroy: var(--font-gilroy);
+  
+  --color-background: #FFFFFF;
+  --color-background-secondary: #FAFAFA;
+  --color-background-tertiary: #F4F5F6;
+  --color-background-muted: #EEEFF1;
+  
+  --color-foreground: #181818;
+  --color-foreground-secondary: #75777C;
+  --color-foreground-muted: #A1A1AA;
+  
+  --color-brand: #6720FF;
+  --color-brand-hover: #5519CC;
+  --color-brand-light: #F5F3FF;
+  
+  --color-border: #E6E7EA;
+  --color-border-subtle: #F0F0F0;
+  --color-border-focus: #266DF0;
+  
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  
+  --animate-smooth: cubic-bezier(0.2, 0, 0, 1);
+}
+
+:root {
+  /* Design Tokens as CSS Variables for utility usage if needed */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #FAFAFA;
+  --bg-tertiary: #F4F5F6;
+  --bg-muted: #EEEFF1;
+
+  --text-primary: #181818;
+  --text-secondary: #75777C;
+  --text-muted: #A1A1AA;
+
+  --brand-primary: #6720FF;
+  --brand-hover: #5519CC;
+  --brand-light: #F5F3FF;
+
+  --border-default: #E6E7EA;
+  --border-subtle: #F0F0F0;
+  --border-focus: #266DF0;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-card: 0 2px 6px rgba(28,40,64,0.06), 0 6px 20px -2px rgba(28,40,64,0.08);
+  --shadow-elevated: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  
+  --font-gilroy: 'Gilroy', system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-gilroy);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .mask-fade-sides {
+     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s cubic-bezier(0.2, 0, 0, 1) forwards;
+  }
+
+  .fill-mode-forwards {
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+     transform: translateX(-50%);
+  }
+}
+
+/* CSS Houdini @property for animatable gradients */
+@property --gradient-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.animated-gradient-border {
+  position: relative;
+  border-radius: 9999px;
+}
+
+.animated-gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  padding: 2px;
+  background: conic-gradient(
+    from var(--gradient-angle) at 50% 50%,
+    #fd9038 0%,
+    #f5b900 12%,
+    #ff5b59 37%,
+    #266df0 62%,
+    #13dd8d 88%,
+    #fd9038 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gradient-spin 30s linear infinite;
+}
+
+@keyframes gradient-spin {
+  0% { --gradient-angle: 0deg; }
+  100% { --gradient-angle: 360deg; }
+}
+
+/* Animation keyframes for Tailwind v4 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+

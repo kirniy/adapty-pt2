@@ -1,0 +1,152 @@
+/* Language Switcher - matching original adapty.io */
+.switcher {
+    --toggle-width: 38px;
+    --list-width: 172px;
+    --bg-color: #fff;
+    --border-color: #e5e5e5;
+    --radius: 3px;
+    --z-dropdown: 50;
+
+    position: relative;
+    margin-left: 16px;
+    margin-right: 2px;
+}
+
+.toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: var(--toggle-width);
+    height: 19px;
+    padding: 0;
+    background-color: rgb(17, 17, 17);
+    /* DARK/BLACK filled */
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+    /* WHITE text */
+    transition: background-color 0.15s, color 0.15s;
+    position: relative;
+}
+
+/* Chevron is on .code::after, not here */
+
+.switcher:hover .toggle,
+.switcherOpen .toggle {
+    background-color: rgb(50, 50, 50);
+    /* Slightly lighter on hover */
+    color: #fff;
+}
+
+.flag {
+    width: 36px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.toggle .flag {
+    display: none;
+}
+
+.code {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 0;
+    padding-left: 1px;
+}
+
+.code::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjEyIiB2aWV3Qm94PSIwIDAgOCAxMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEuNTQwNTYgMTEuNzQ1M0wwLjEyNDk2NSAxMC4zNDFMNC4yNDMxNyA2LjIwOTc1TDAuMTQ5MjQ3IDIuMTA4MzdMMS41NDA1NiAwLjcyMjU5NUw3LjA1MTkyIDYuMjMzOTZMMS41NDA1NiAxMS43NDUzWiIgZmlsbD0id2hpdGUiPjwvcGF0aD48L3N2Zz4g");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: rotate(90deg);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.switcher:hover .code::after,
+.switcherOpen .code::after {
+    transform: rotate(45deg);
+}
+
+
+.label {
+    display: none;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: var(--list-width);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    z-index: var(--z-dropdown);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.switcher:hover .dropdown,
+.switcherOpen .dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+.item {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: #444;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    text-decoration: none;
+    transition: background-color 0.05s;
+    width: 100%;
+}
+
+.option:hover {
+    background-color: rgba(103, 32, 255, 0.1);
+}
+
+.option .flag {
+    display: inline-block;
+    width: 24px;
+    height: 16px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.optionLabel {
+    font-size: 14px;
+    font-weight: 500;
+}

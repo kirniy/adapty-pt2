@@ -1,5 +1,7 @@
+"use client";
 import React from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface AttioBadgeProps {
     children: React.ReactNode;
@@ -14,9 +16,20 @@ export function AttioBadge({ children, className }: AttioBadgeProps) {
                 {children}
             </div>
 
-            {/* The Animated Beam Layer */}
-            <div className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="animate-beam-rotate absolute inset-[-150%] [background:conic-gradient(from_0deg,transparent_0,transparent_20%,#407FF2_50%,transparent_80%,transparent_100%)]"></div>
+            {/* The Animated Beam Layer (Constant) */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <motion.div
+                    className="absolute top-[50%] left-[50%] w-[1000%] aspect-square -translate-x-1/2 -translate-y-1/2"
+                    style={{
+                        background: "conic-gradient(from 0deg, transparent 0deg, transparent 280deg, #407FF2 360deg)"
+                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{
+                        duration: 4,
+                        ease: "linear",
+                        repeat: Infinity,
+                    }}
+                />
             </div>
         </div>
     );

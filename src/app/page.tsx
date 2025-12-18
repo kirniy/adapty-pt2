@@ -11,6 +11,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimatedPill } from "@/components/ui/AnimatedPill";
 import { ArrowRight, Check, BarChart2, Smartphone, DollarSign, Layers } from "lucide-react";
+import { EmailCTA } from "@/components/ui/EmailCTA";
+import { Marquee } from "@/components/ui/Marquee";
 import { Stats } from "@/components/sections/Stats";
 import { SDKCodeSnippet } from "@/components/sections/SDKCodeSnippet";
 import { G2Badges } from "@/components/sections/G2Badges";
@@ -107,11 +109,8 @@ export default function Home() {
                 validation.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
-                <Button size="lg" className="w-full sm:w-auto group shadow-brand/25 shadow-lg relative z-10">
-                  Start for free
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
+              <div className="flex justify-center mb-20 relative z-10">
+                <EmailCTA variant="light" />
               </div>
             </div>
           }
@@ -128,23 +127,25 @@ export default function Home() {
       </div>
 
       {/* Trusted By */}
-      <Section className="py-12 border-b border-border-subtle bg-white">
+      <Section className="py-12 border-b border-border-subtle bg-white overflow-hidden">
         <Container>
           <div className="flex flex-col items-center gap-8">
             <p className="text-sm font-medium text-foreground-muted uppercase tracking-widest text-center">
               Trusted by 15,000+ apps worldwide
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              {['bumble', 'feeld', 'hubx', 'almus', 'weewoo'].map((logo) => (
-                <Image
-                  key={logo}
-                  src={`/logos/trusted-by/${logo}.svg`}
-                  alt={logo}
-                  width={120}
-                  height={40}
-                  className="h-8 md:h-10 w-auto object-contain hover:scale-110 transition-transform duration-300"
-                />
-              ))}
+            <div className="relative w-full mask-fade-sides">
+              <Marquee pauseOnHover speed={30} className="py-4">
+                {['bumble', 'feeld', 'hubx', 'almus', 'weewoo', 'bumble', 'feeld', 'hubx'].map((logo, i) => (
+                  <Image
+                    key={`${logo}-${i}`}
+                    src={`/logos/trusted-by/${logo}.svg`}
+                    alt={logo}
+                    width={120}
+                    height={40}
+                    className="h-8 md:h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 mx-8"
+                  />
+                ))}
+              </Marquee>
             </div>
           </div>
         </Container>
@@ -250,15 +251,8 @@ export default function Home() {
                     Join 15,000+ apps using Adapty to power their subscription business.
                   </p>
 
-                  <div className="flex flex-col sm:flex-row justify-center gap-4">
-                    <ShimmerButton className="shadow-2xl">
-                      <span className="text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                        Get started free
-                      </span>
-                    </ShimmerButton>
-                    <Button size="lg" variant="secondary" className="border-white/20 text-white hover:bg-white/10 h-12 px-8 text-lg backdrop-blur-sm bg-transparent">
-                      Schedule a demo
-                    </Button>
+                  <div className="flex justify-center">
+                    <EmailCTA variant="dark" buttonText="Get started free" />
                   </div>
                 </div>
               </AuroraBackground>

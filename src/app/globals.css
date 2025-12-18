@@ -65,7 +65,11 @@ body {
 
 @layer utilities {
   .animate-marquee {
-    animation: marquee 40s linear infinite;
+    animation: marquee var(--duration, 40s) linear infinite;
+  }
+
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration, 40s) linear infinite;
   }
 
   .mask-fade-sides {
@@ -197,7 +201,17 @@ body {
   }
 
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% - var(--gap, 1rem)));
+  }
+}
+
+@keyframes marquee-vertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(calc(-100% - var(--gap, 1rem)));
   }
 }
 

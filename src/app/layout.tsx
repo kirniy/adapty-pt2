@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { CursorTracker } from "@/components/ui/CursorTracker";
 
 const gilroy = localFont({
   src: [
@@ -44,6 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${gilroy.variable} font-sans antialiased text-foreground bg-background flex flex-col min-h-screen`}>
+        <CursorTracker />
         <Header />
         <main className="flex-grow pt-[116px]">
           {children}

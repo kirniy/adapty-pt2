@@ -84,6 +84,106 @@ body {
   .fill-mode-forwards {
     animation-fill-mode: forwards;
   }
+
+  /* tailwindcss-animate plugin compatibility for Tailwind v4 */
+  .animate-in {
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  .fade-in {
+    --tw-enter-opacity: 0;
+    animation-name: fadeIn;
+  }
+
+  .slide-in-from-bottom-4 {
+    --tw-enter-translate-y: 1rem;
+    animation-name: slideUpSmall;
+  }
+
+  .slide-in-from-bottom-8 {
+    --tw-enter-translate-y: 2rem;
+    animation-name: slideUp;
+  }
+
+  .zoom-in-95 {
+    --tw-enter-scale: 0.95;
+    animation-name: zoomIn;
+  }
+
+  /* Combined animations for animate-in */
+  .animate-in.fade-in.slide-in-from-bottom-8 {
+    animation-name: slideUpFade;
+  }
+
+  .animate-in.fade-in.slide-in-from-bottom-4 {
+    animation-name: slideUpFadeSmall;
+  }
+
+  .animate-in.fade-in.zoom-in-95 {
+    animation-name: zoomInFade;
+  }
+
+  /* Override opacity-0 when animation is active */
+  .animate-in.fade-in {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUpSmall {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFadeSmall {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomInFade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes marquee {

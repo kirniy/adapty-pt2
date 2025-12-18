@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ROLES = [
     {
@@ -38,48 +39,66 @@ export function RoleCards() {
     return (
         <div className="flex flex-col items-center">
             {/* Tabs */}
-            <div className="flex p-1 bg-background-tertiary rounded-xl mb-12">
+            <div className="flex p-1 bg-background-tertiary rounded-xl mb-12 relative">
                 {ROLES.map((role) => (
                     <button
                         key={role.id}
                         onClick={() => setActiveRole(role)}
                         className={cn(
-                            "px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-200",
+                            "relative px-6 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 z-10",
                             activeRole.id === role.id
-                                ? "bg-white text-foreground shadow-sm"
+                                ? "text-foreground"
                                 : "text-foreground-secondary hover:text-foreground"
                         )}
                     >
+                        {activeRole.id === role.id && (
+                            <motion.div
+                                layoutId="activeRole"
+                                className="absolute inset-0 bg-white shadow-sm rounded-lg -z-10"
+                                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                            />
+                        )}
                         {role.label}
                     </button>
                 ))}
             </div>
 
             {/* Content */}
-            <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
-                <div className="animate-in fade-in slide-in-from-left-4 duration-500 key={activeRole.id}">
-                    <h3 className="text-3xl md:text-4xl font-bold mb-4">{activeRole.title}</h3>
-                    <p className="text-lg text-foreground-secondary mb-8 leading-relaxed">
-                        {activeRole.description}
-                    </p>
-                    <ul className="space-y-3 mb-8">
-                        {activeRole.features.map(feature => (
-                            <li key={feature} className="flex items-center gap-3 text-foreground font-medium">
-                                <div className="w-1.5 h-1.5 rounded-full bg-brand" />
-                                {feature}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+            <div className="w-full">
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeRole.id}
+                        initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        className="grid lg:grid-cols-2 gap-12 items-center w-full"
+                    >
+                        <div>
+                            <h3 className="text-3xl md:text-4xl font-bold mb-4">{activeRole.title}</h3>
+                            <p className="text-lg text-foreground-secondary mb-8 leading-relaxed">
+                                {activeRole.description}
+                            </p>
+                            <ul className="space-y-3 mb-8">
+                                {activeRole.features.map(feature => (
+                                    <li key={feature} className="flex items-center gap-3 text-foreground font-medium">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-brand" />
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated border border-border-subtle bg-white group animate-in fade-in zoom-in-95 duration-500 key={activeRole.id}-img">
-                    <Image
-                        src={activeRole.image}
-                        alt={activeRole.label}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                </div>
+                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-elevated border border-border-subtle bg-white group">
+                            <Image
+                                src={activeRole.image}
+                                alt={activeRole.label}
+                                fill
+                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            />
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
     );

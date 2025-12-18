@@ -94,7 +94,7 @@ export function Header() {
                 </nav>
 
                 <div className="hidden md:flex items-center gap-4">
-                    <Link href="/login" className="text-[15px] font-medium text-foreground hover:text-brand transition-all duration-300 ease-smooth">
+                    <Link href="/login" className="text-[15px] font-medium text-foreground hover:text-brand transition-all duration-300 ease-smooth whitespace-nowrap">
                         Log in
                     </Link>
                     <Button>Sign up</Button>

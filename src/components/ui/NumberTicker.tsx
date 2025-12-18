@@ -1,24 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface NumberTickerProps {
-  value: number;
-  direction?: "up" | "down";
-  delay?: number;
-  className?: string;
-  decimalPlaces?: number;
-  prefix?: string;
-  suffix?: string;
-}
-
-/**
- * Number Ticker Component
- * Animates numbers counting up/down when they come into view
- * Based on Magic UI's number-ticker
- */
 export function NumberTicker({
   value,
   direction = "up",
@@ -27,7 +12,15 @@ export function NumberTicker({
   decimalPlaces = 0,
   prefix = "",
   suffix = "",
-}: NumberTickerProps) {
+}: {
+  value: number;
+  direction?: "up" | "down";
+  className?: string;
+  delay?: number;
+  decimalPlaces?: number;
+  prefix?: string;
+  suffix?: string;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(direction === "down" ? value : 0);
   const springValue = useSpring(motionValue, {
@@ -35,7 +28,6 @@ export function NumberTicker({
     stiffness: 100,
   });
   const isInView = useInView(ref, { once: true, margin: "0px" });
-  const [displayValue, setDisplayValue] = useState(direction === "down" ? value : 0);
 
   useEffect(() => {
     if (isInView) {
@@ -46,19 +38,21 @@ export function NumberTicker({
   }, [motionValue, isInView, delay, value, direction]);
 
   useEffect(() => {
-    const unsubscribe = springValue.on("change", (latest) => {
-      setDisplayValue(parseFloat(latest.toFixed(decimalPlaces)));
+    springValue.on("change", (latest) => {
+      if (ref.current) {
+        const formatted = Intl.NumberFormat("en-US", {
+          minimumFractionDigits: decimalPlaces,
+          maximumFractionDigits: decimalPlaces,
+        }).format(Number(latest.toFixed(decimalPlaces)));
+        ref.current.textContent = `${prefix}${formatted}${suffix}`;
+      }
     });
-    return () => unsubscribe();
-  }, [springValue, decimalPlaces]);
+  }, [springValue, decimalPlaces, prefix, suffix]);
 
   return (
-    <span ref={ref} className={cn("tabular-nums", className)}>
-      {prefix}
-      {Intl.NumberFormat("en-US").format(displayValue)}
-      {suffix}
-    </span>
+    <span
+      className={cn("inline-block tabular-nums tracking-wider text-black dark:text-white", className)}
+      ref={ref}
+    />
   );
 }
-
-export default NumberTicker;

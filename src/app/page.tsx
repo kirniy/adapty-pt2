@@ -20,12 +20,11 @@ import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Enterprise } from "@/components/sections/Enterprise";
 import { AnimatedCheck } from "@/components/ui/AnimatedCheck";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { BorderBeam } from "@/components/ui/BorderBeam";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
-import ShimmerButton from "@/components/ui/ShimmerButton";
 import { AttioBadge } from "@/components/ui/AttioBadge";
 import { GridSpotlight } from "@/components/ui/GridSpotlight";
 import { StickyScrollReal as StickyScroll } from "@/components/ui/StickyScroll";
+import { NumberTicker } from "@/components/ui/NumberTicker";
 import { ContainerScroll } from "@/components/ui/ContainerScroll";
 import { KaraokeText } from "@/components/ui/KaraokeText";
 
@@ -38,9 +37,9 @@ export default function Home() {
         <Image
           src="/images/feature-paywall.webp"
           alt="Paywall Builder"
-          width={800}
-          height={600}
-          className="w-full h-full object-cover"
+          width={1600}
+          height={1200}
+          className="w-full h-auto object-contain"
         />
       ),
     },
@@ -51,9 +50,9 @@ export default function Home() {
         <Image
           src="/images/feature-ab.webp"
           alt="A/B Testing"
-          width={800}
-          height={600}
-          className="w-full h-full object-cover"
+          width={1600}
+          height={1200}
+          className="w-full h-auto object-contain"
         />
       ),
     },
@@ -64,9 +63,9 @@ export default function Home() {
         <Image
           src="/images/feature-analytics.webp"
           alt="Analytics"
-          width={800}
-          height={600}
-          className="w-full h-full object-cover"
+          width={1600}
+          height={1200}
+          className="w-full h-auto object-contain"
         />
       ),
     },
@@ -134,15 +133,15 @@ export default function Home() {
               Trusted by 15,000+ apps worldwide
             </p>
             <div className="relative w-full mask-fade-sides">
-              <Marquee pauseOnHover speed={30} className="py-4">
-                {['bumble', 'feeld', 'hubx', 'almus', 'weewoo', 'bumble', 'feeld', 'hubx'].map((logo, i) => (
+              <Marquee pauseOnHover speed={25} gap="4rem" className="py-4">
+                {['bumble', 'feeld', 'hubx', 'almus', 'weewoo'].map((logo) => (
                   <Image
-                    key={`${logo}-${i}`}
+                    key={logo}
                     src={`/logos/trusted-by/${logo}.svg`}
                     alt={logo}
                     width={120}
                     height={40}
-                    className="h-8 md:h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300 mx-8"
+                    className="h-8 md:h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300"
                   />
                 ))}
               </Marquee>

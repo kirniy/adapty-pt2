@@ -1,23 +1,19 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import React from "react";
 
 interface MarqueeProps {
   className?: string;
   reverse?: boolean;
   pauseOnHover?: boolean;
-  children?: ReactNode;
+  children?: React.ReactNode;
   vertical?: boolean;
   repeat?: number;
   speed?: number;
+  gap?: string;
 }
 
-/**
- * Marquee Component
- * Infinite scrolling content, perfect for logo walls
- * Based on Magic UI's marquee
- */
 export function Marquee({
   className,
   reverse = false,
@@ -26,27 +22,36 @@ export function Marquee({
   vertical = false,
   repeat = 4,
   speed = 40,
+  gap = "1rem",
 }: MarqueeProps) {
   return (
     <div
       className={cn(
-        "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
-        vertical ? "flex-col" : "flex-row",
-        className
+        "group flex overflow-hidden p-2",
+        {
+          "flex-row": !vertical,
+          "flex-col": vertical,
+        },
+        className,
       )}
-      style={{ "--duration": `${speed}s` } as React.CSSProperties}
+      style={{
+        "--duration": `${speed}s`,
+        "--gap": gap,
+        gap: gap,
+      } as React.CSSProperties}
     >
       {Array(repeat)
         .fill(0)
         .map((_, i) => (
           <div
             key={i}
-            className={cn(
-              "flex shrink-0 justify-around [gap:var(--gap)]",
-              vertical ? "animate-marquee-vertical flex-col" : "animate-marquee flex-row",
-              pauseOnHover && "group-hover:[animation-play-state:paused]",
-              reverse && "[animation-direction:reverse]"
-            )}
+            className={cn("flex shrink-0 justify-around", {
+              "animate-marquee flex-row": !vertical,
+              "animate-marquee-vertical flex-col": vertical,
+              "group-hover:[animation-play-state:paused]": pauseOnHover,
+              "[animation-direction:reverse]": reverse,
+            })}
+            style={{ gap }}
           >
             {children}
           </div>
@@ -54,5 +59,3 @@ export function Marquee({
     </div>
   );
 }
-
-export default Marquee;

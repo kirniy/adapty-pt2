@@ -65,11 +65,11 @@ body {
 
 @layer utilities {
   .animate-marquee {
-    animation: marquee var(--duration, 40s) linear infinite;
+    animation: marquee var(--marquee-duration, 30s) linear infinite;
   }
 
   .animate-marquee-vertical {
-    animation: marquee-vertical var(--duration, 40s) linear infinite;
+    animation: marquee-vertical var(--marquee-duration, 30s) linear infinite;
   }
 
   .mask-fade-sides {
@@ -201,7 +201,7 @@ body {
   }
 
   100% {
-    transform: translateX(calc(-100% - var(--gap, 1rem)));
+    transform: translateX(calc(-100% - var(--marquee-gap, 2rem)));
   }
 }
 
@@ -211,7 +211,7 @@ body {
   }
 
   100% {
-    transform: translateY(calc(-100% - var(--gap, 1rem)));
+    transform: translateY(calc(-100% - var(--marquee-gap, 2rem)));
   }
 }
 
@@ -310,9 +310,31 @@ body {
     }
   }
 
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+
   --animate-aurora: aurora 60s linear infinite;
   --animate-shimmer: shimmer 2s linear infinite;
   --animate-border-beam: border-beam calc(var(--duration)*1s) infinite linear;
+  --animate-marquee: marquee var(--duration) linear infinite;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   --animate-ai-shimmer: ai-shimmer 3s infinite linear;
 
   @keyframes aurora {

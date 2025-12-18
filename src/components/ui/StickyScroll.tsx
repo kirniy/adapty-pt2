@@ -133,11 +133,13 @@ export const StickyScrollReal = ({ content, contentClassName }: StickyScrollProp
             {/* Sticky Visual Side */}
             <div
                 className={cn(
-                    "hidden lg:block h-[600px] w-[800px] rounded-2xl bg-white sticky top-24 overflow-hidden border border-border-subtle shadow-elevated",
+                    "hidden lg:block w-[800px] rounded-2xl bg-white sticky top-24 overflow-hidden border border-border-subtle shadow-elevated",
                     contentClassName
                 )}
             >
-                {content[activeCard].content ?? null}
+                <div className="flex items-center justify-center p-4">
+                    {content[activeCard].content ?? null}
+                </div>
             </div>
         </motion.div>
     );

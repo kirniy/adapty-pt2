@@ -23,7 +23,7 @@ import { FadeIn } from "@/components/animations/FadeIn";
 import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { AttioBadge } from "@/components/ui/AttioBadge";
 import { GridSpotlight } from "@/components/ui/GridSpotlight";
-import { StickyScrollReal as StickyScroll } from "@/components/ui/StickyScroll";
+import { StickyScroll } from "@/components/ui/StickyScroll";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 import { ContainerScroll } from "@/components/ui/ContainerScroll";
 import { KaraokeText } from "@/components/ui/KaraokeText";

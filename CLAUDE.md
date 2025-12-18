@@ -31,8 +31,9 @@ This file contains essential project configuration and context for AI agents wor
 
 ### Vercel
 - **Project Name**: adapty-pt2
-- **Project ID**: _(to be added after Vercel setup)_
-- **Production URL**: _(to be added after deployment)_
+- **Project ID**: prj_GqqfXstuzoThn4u3Z2ALWwGjomfd
+- **Org ID**: team_wmpr3f4f8wYu7ZUqqOLy0uX0
+- **Production URL**: https://adapty-pt2.vercel.app
 - **Framework**: Next.js (auto-detected)
 
 ---
@@ -173,7 +174,7 @@ NEXT_PUBLIC_SANITY_DATASET=production
 ## Deliverables Checklist
 
 - [x] GitHub repository (public)
-- [ ] Deployed Vercel URL
+- [x] Vercel project linked (adapty-pt2)
 - [ ] Sanity Studio accessible
 - [ ] Homepage complete
 - [ ] Blog page complete

@@ -214,17 +214,28 @@ export async function POST(req: Request) {
         );
     }
 
-    const body = (await req.json()) as { messages?: unknown };
-    const messages = Array.isArray(body.messages) ? body.messages : [];
+    try {
+        const body = (await req.json()) as { messages?: unknown };
+        const messages = Array.isArray(body.messages) ? body.messages : [];
 
-    const result = await streamText({
-        model: google("gemini-3-flash-preview"),
-        tools: {
-            google_search: google.tools.googleSearch({}),
-        },
-        system: systemInstruction,
-        messages: convertToCoreMessages(messages),
-    });
+        const result = await streamText({
+            model: google("gemini-3-flash-preview"),
+            tools: {
+                google_search: google.tools.googleSearch({}),
+            },
+            system: systemInstruction,
+            messages: convertToCoreMessages(messages),
+        });
 
-    return result.toTextStreamResponse();
+        return result.toTextStreamResponse();
+    } catch (error) {
+        console.error("Chat API Error:", error);
+        return NextResponse.json(
+            {
+                error: error instanceof Error ? error.message : "Unknown error occurred",
+                details: String(error),
+            },
+            { status: 500 }
+        );
+    }
 }

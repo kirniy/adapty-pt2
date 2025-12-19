@@ -3,6 +3,7 @@ import { BorderBeam } from "@/components/ui/BorderBeam";
 import { FeatureScrollStack } from "@/components/sections/FeatureScrollStack";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/CustomButton";
+import { AIChatWidget } from "@/components/ui/AIChatWidget";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { RoleCards } from "@/components/sections/RoleCards";

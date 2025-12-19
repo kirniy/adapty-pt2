@@ -1,6 +1,6 @@
-import React from "react";
-
 // @hidden
+import React from 'react';
+
 function MessageLoading() {
     return (
         <svg

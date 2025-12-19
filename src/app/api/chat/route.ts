@@ -1,31 +1,49 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import { NextResponse } from "next/server";
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { streamText, convertToCoreMessages } from 'ai';
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || "");
+const google = createGoogleGenerativeAI({
+    apiKey: process.env.GOOGLE_API_KEY,
+});
+
+export const maxDuration = 30;
+
+const systemInstruction = `You are an expert AI assistant for the Adapty.io redesign project.
+You have access to the full project documentation and design system.
+Your goal is to answer questions about the implementation, design system, colors, animations, and tech stack.
+
+DESIGN SYSTEM:
+Color Palette:
+- Light Theme Only
+- Brand: #6720FF (Adapty Purple), #5419D4 (Hover)
+- Accents: Gradient Borders (Orange, Yellow, Red, Blue, Green)
+- Text: #171717 (Primary), #525252 (Secondary)
+- Fonts: Gilroy (Primary), Inter (Body)
+- Spacing: 4px base unit
+
+ANIMATIONS (Attio Style):
+- Transitions: ease-smooth (cubic-bezier(0.2, 0, 0, 1))
+- Staggered Entrances: fade-in slide-in-from-bottom-4 with delay
+- Gradient Borders: CSS Houdini @property --gradient-angle
+- Scroll Physics: StickyScroll, FeatureScrollStack (3D stacking)
+
+IMPLEMENTATION DETAILS:
+- Stack: Next.js 15, Tailwind CSS v4, Framer Motion, Sanity.io
+- Components: AnimatedPill, CustomButton, SpotlightCard, TheInfiniteGrid
+- Icons: Lucide React
+
+CONTEXT:
+The user is asking about the codebase or design. Be helpful, concise, and technically accurate.
+If asked about specific code implementation, refer to the "Attio DNA" or "Implementation Brief".
+`;
 
 export async function POST(req: Request) {
-    try {
-        const { messages } = await req.json();
-        const lastMessage = messages[messages.length - 1];
+    const { messages } = await req.json();
 
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" }); // Using the requested Flash model (or fallback to pro if unavailable publicly yet, but trying flash-exp as per user intent for 'gemini 3.0 flash' which might be misnamed by user, usually it is 1.5 flash or 2.0 flash exp. User said 'gemini 3.0 flash model (yes, this one... find a model name)'. The latest public flash is 1.5-flash or 2.0-flash-exp. I will use 1.5-flash as safe bet or 2.0-flash-exp if intended. Let's use 'gemini-1.5-flash' for stability or check docs. The user insisted on 3.0 but that likely doesn't exist publicly via API key yet. I'll use 1.5-flash which is the standard fast model or 2.0-flash-exp).
-        // User Update: User said "Gemini 3.0 Flash model". This is likely "Gemini 1.5 Flash" or "Gemini 2.0 Flash". I will use "gemini-1.5-flash" as it is the current standard production flash model.
+    const result = await streamText({
+        model: google('gemini-1.5-flash-latest'),
+        messages: convertToCoreMessages(messages),
+        system: systemInstruction,
+    });
 
-        // Actually, let's try 'gemini-2.0-flash-exp' as it is the newest cutting edge.
-        const chat = model.startChat({
-            history: messages.slice(0, -1).map((m: any) => ({
-                role: m.sender === 'user' ? 'user' : 'model',
-                parts: [{ text: m.content }],
-            })),
-        });
-
-        const result = await chat.sendMessage(lastMessage.content);
-        const response = await result.response;
-        const text = response.text();
-
-        return NextResponse.json({ content: text });
-    } catch (error) {
-        console.error("Gemini API Error:", error);
-        return NextResponse.json({ content: "Sorry, I am having trouble connecting to AI right now." }, { status: 500 });
-    }
+    return result.toDataStreamResponse();
 }

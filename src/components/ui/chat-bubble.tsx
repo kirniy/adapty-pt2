@@ -2,9 +2,13 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/Button" // Note: existing Button component might be capitalized
+// import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar" // We need to create/update this
+import { Button } from "@/components/ui/CustomButton"
 import { MessageLoading } from "@/components/ui/message-loading";
+
+// Minimal Avatar implementation if not exists, but we should create separate file.
+// For now I will assume I will create src/components/ui/avatar.tsx next.
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 interface ChatBubbleProps {
     variant?: "sent" | "received"

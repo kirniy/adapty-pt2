@@ -23,8 +23,8 @@ export const FeatureScrollStack = ({ content, className }: FeatureScrollStackPro
 
     return (
         <div ref={containerRef} className={cn("relative min-h-[300vh] bg-background", className)}>
-            <div className="absolute inset-x-0 top-0 h-[600px] pointer-events-none select-none opacity-[0.4] mask-fade-sides z-0">
-                <TheInfiniteGrid className="!static w-full h-full text-foreground/5" />
+            <div className="absolute inset-x-0 top-0 h-[600px] pointer-events-none select-none opacity-[0.8] mask-fade-sides z-0 flex justify-center">
+                <TheInfiniteGrid className="!static w-full h-full text-foreground/10" />
             </div>
 
             <div className="sticky top-0 h-screen flex items-center overflow-hidden">
@@ -191,8 +191,8 @@ const CardInternal = ({ index, range, scrollYProgress, total, item }: any) => {
                 {/* Visual Right */}
                 <div className="w-full md:w-3/5 bg-background-tertiary relative overflow-hidden flex items-center justify-center">
                     {/* Infinite Grid inside card for consistency */}
-                    <div className="absolute inset-0 opacity-30 pointer-events-none">
-                        <TheInfiniteGrid className="!static w-full h-full text-foreground/5" />
+                    <div className="absolute inset-0 opacity-50 pointer-events-none">
+                        <TheInfiniteGrid className="!static w-full h-full text-foreground/10" />
                     </div>
 
                     <div className="relative z-10 p-8 w-full h-full flex items-center justify-center">

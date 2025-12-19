@@ -27,9 +27,9 @@ export const Stats = () => {
                                 <NumberTicker
                                     value={stat.value}
                                     prefix={stat.prefix}
-                                    suffix={stat.suffix}
                                     decimalPlaces={stat.decimalPlaces || 0}
                                     delay={0.2 + i * 0.1}
+                                    className="!text-black" // Force black text strictly
                                 />
                             </div>
                             <div className="text-foreground-secondary mt-2 font-medium">{stat.label}</div>

@@ -4,15 +4,21 @@ import React from "react";
 import { Shield, Lock, Server } from "lucide-react";
 import { Button } from "@/components/ui/CustomButton";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { TheInfiniteGrid } from "@/components/ui/TheInfiniteGrid";
 
 export const Enterprise = () => {
     return (
         <Section className="py-24 bg-white text-foreground overflow-hidden relative">
             {/* Ambient Background Glow - Subtle & Light */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-500/5 blur-[150px] rounded-full -translate-x-1/2 translate-y-1/2 pointer-events-none" />
+            <div className="absolute inset-0 pointer-events-none select-none opacity-[0.3]">
+                <TheInfiniteGrid className="!static w-full h-full text-foreground/5" />
+            </div>
 
-            <Container>
+            {/* Colorful Blur Blobs */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/5 blur-[120px] rounded-full translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-60" />
+            <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-blue-500/5 blur-[150px] rounded-full -translate-x-1/2 translate-y-1/2 pointer-events-none opacity-60" />
+
+            <Container className="relative z-10">
                 <div className="grid lg:grid-cols-2 gap-20 items-center">
                     <div>
                         <div className="inline-flex items-center gap-2 mb-8 text-brand font-medium bg-brand/5 px-4 py-1.5 rounded-full text-sm border border-brand/10">
@@ -33,7 +39,7 @@ export const Enterprise = () => {
                     </div>
 
                     <div className="grid gap-6">
-                        <SpotlightCard className="bg-white border-border-subtle p-8 shadow-sm hover:shadow-md transition-shadow" spotlightColor="rgba(103, 32, 255, 0.05)">
+                        <SpotlightCard className="bg-white/80 backdrop-blur-sm border-border-subtle p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300" spotlightColor="rgba(103, 32, 255, 0.05)">
                             <div className="flex items-start gap-6">
                                 <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 shrink-0 border border-emerald-500/10">
                                     <Shield className="w-6 h-6" />
@@ -45,7 +51,7 @@ export const Enterprise = () => {
                             </div>
                         </SpotlightCard>
 
-                        <SpotlightCard className="bg-white border-border-subtle p-8 shadow-sm hover:shadow-md transition-shadow" spotlightColor="rgba(38, 109, 240, 0.05)">
+                        <SpotlightCard className="bg-white/80 backdrop-blur-sm border-border-subtle p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300" spotlightColor="rgba(38, 109, 240, 0.05)">
                             <div className="flex items-start gap-6">
                                 <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 shrink-0 border border-blue-500/10">
                                     <Lock className="w-6 h-6" />
@@ -57,7 +63,7 @@ export const Enterprise = () => {
                             </div>
                         </SpotlightCard>
 
-                        <SpotlightCard className="bg-white border-border-subtle p-8 shadow-sm hover:shadow-md transition-shadow" spotlightColor="rgba(168, 85, 247, 0.05)">
+                        <SpotlightCard className="bg-white/80 backdrop-blur-sm border-border-subtle p-8 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300" spotlightColor="rgba(168, 85, 247, 0.05)">
                             <div className="flex items-start gap-6">
                                 <div className="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-600 shrink-0 border border-purple-500/10">
                                     <Server className="w-6 h-6" />

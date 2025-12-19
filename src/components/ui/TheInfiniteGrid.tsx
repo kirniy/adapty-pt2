@@ -61,7 +61,7 @@ export const TheInfiniteGrid = ({
         <div
             ref={containerRef}
             className={cn(
-                "relative w-full h-screen flex flex-col items-center justify-center overflow-hidden bg-background",
+                "relative w-full overflow-hidden pointer-events-none",
                 className
             )}
         >

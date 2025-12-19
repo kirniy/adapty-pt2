@@ -41,12 +41,14 @@ const trustedByLogos = [
 export default function Home() {
   return (
     <>
-      <div className="min-h-screen bg-background relative">
+      <div className="min-h-screen bg-background relative overflow-visible">
+        {/* Stable Background Layer */}
+        <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-multiply">
+          <TheInfiniteGrid className="h-full w-full" />
+        </div>
+
         {/* Hero Section */}
-        <div className="bg-gradient-to-b from-white to-background-tertiary/30 relative overflow-x-clip overflow-y-visible pt-8">
-          <div className="absolute inset-0 z-0 opacity-40 mix-blend-multiply pointer-events-none">
-            <TheInfiniteGrid className="!fixed inset-0 h-full w-full pointer-events-none" />
-          </div>
+        <div className="bg-gradient-to-b from-white to-background-tertiary/30 relative pt-8">
 
           <ContainerScroll
             titleComponent={

@@ -1,5 +1,6 @@
 import { Container } from "@/components/ui/Container";
 import { BorderBeam } from "@/components/ui/BorderBeam";
+import { FeatureScrollStack } from "@/components/sections/FeatureScrollStack";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/CustomButton";
 import { FeatureCard } from "@/components/ui/FeatureCard";
@@ -178,18 +179,16 @@ export default function Home() {
 
         <Stats />
 
-        <div className="py-24 bg-white relative overflow-hidden">
-          {/* Subtly reuse infinite grid for consistency */}
-          <div className="absolute inset-x-0 top-0 h-[600px] pointer-events-none select-none opacity-[0.4] mask-fade-sides">
-            <TheInfiniteGrid className="!static w-full h-full text-foreground/5" />
-          </div>
-
-          <Container>
-            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 tracking-tight">
+        <div className="bg-background-secondary/20 border-b border-border-subtle relative">
+          <Container className="pt-24 pb-12 text-center z-10 relative">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
               Everything you need <br /> to grow your app
             </h2>
+            <p className="text-xl text-foreground-secondary max-w-2xl mx-auto">
+              The infrastructure that scales with you.
+            </p>
           </Container>
-          <StickyScroll content={stickyContent} />
+          <FeatureScrollStack content={stickyContent} />
         </div>
 
         <SDKCodeSnippet />

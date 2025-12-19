@@ -31,7 +31,7 @@ export function AIChatWidget() {
             id: "welcome",
             role: "assistant",
             content:
-                "Hi! I'm the Adapty AI Assistant. Ask me anything about the design system, documentation, or implementation code!",
+                "Hi! I'm Adapty AI. Ask me anything about in-app subscriptions, paywalls, A/B testing, our SDK integration, or pricing. How can I help you today?",
         },
     ]);
     const [input, setInput] = useState("");
@@ -126,7 +126,7 @@ export function AIChatWidget() {
                         <div className="flex items-center gap-1.5">
                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                             <p className="text-[11px] font-medium text-muted-foreground">
-                                Gemini 3 Flash
+                                Powered by Gemini
                             </p>
                         </div>
                     </div>

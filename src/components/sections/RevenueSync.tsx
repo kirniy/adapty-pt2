@@ -66,13 +66,16 @@ export const RevenueSync = () => {
                                 <span className="text-sm font-bold text-foreground tracking-wide">In-app-purchase events</span>
                             </div>
 
-                            <div className="flex flex-col items-center gap-2 mb-6">
-                                <div className="text-white/80 animate-bounce">↓</div>
-                                <div className="text-white font-bold text-2xl flex items-center gap-2">
-                                    <Image src="/images/logo-white.svg" alt="Adapty" width={32} height={32} className="opacity-90" />
-                                    adapty
+                            <div className="flex flex-col items-center gap-3 mb-6">
+                                <svg className="w-6 h-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                                <div className="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-3">
+                                    <Image src="/images/logo-white.svg" alt="Adapty" width={120} height={32} className="h-8 w-auto" />
                                 </div>
-                                <div className="text-white/80 animate-bounce delay-75">↓</div>
+                                <svg className="w-6 h-6 text-white/70" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
                             </div>
 
                             {/* Mosaic Grid */}

@@ -5,8 +5,64 @@ import { client, urlFor } from "@/lib/sanity";
 import Link from "next/link";
 import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { PortableText } from "next-sanity";
+import { PortableText, PortableTextComponents } from "next-sanity";
 import { ArrowLeft } from "lucide-react";
+
+// Custom components for PortableText rendering
+const portableTextComponents: PortableTextComponents = {
+    types: {
+        codeBlock: ({ value }: { value: { code: string; language?: string } }) => (
+            <pre className="bg-zinc-900 text-zinc-100 rounded-lg p-4 overflow-x-auto my-6 text-sm">
+                <code className={`language-${value.language || 'text'}`}>
+                    {value.code}
+                </code>
+            </pre>
+        ),
+        image: ({ value }: { value: { asset: { _ref: string }; alt?: string } }) => (
+            <div className="my-8">
+                <Image
+                    src={urlFor(value).url()}
+                    alt={value.alt || 'Blog image'}
+                    width={800}
+                    height={450}
+                    className="rounded-2xl"
+                />
+            </div>
+        ),
+    },
+    marks: {
+        code: ({ children }) => (
+            <code className="bg-zinc-100 text-zinc-800 px-1.5 py-0.5 rounded text-sm font-mono">
+                {children}
+            </code>
+        ),
+        link: ({ value, children }) => (
+            <a href={value?.href} className="text-brand hover:underline" target="_blank" rel="noopener noreferrer">
+                {children}
+            </a>
+        ),
+    },
+    block: {
+        h1: ({ children }) => <h1 className="text-4xl font-bold mt-12 mb-6">{children}</h1>,
+        h2: ({ children }) => <h2 className="text-3xl font-bold mt-10 mb-4">{children}</h2>,
+        h3: ({ children }) => <h3 className="text-2xl font-bold mt-8 mb-3">{children}</h3>,
+        h4: ({ children }) => <h4 className="text-xl font-bold mt-6 mb-2">{children}</h4>,
+        blockquote: ({ children }) => (
+            <blockquote className="border-l-4 border-brand pl-4 italic my-6 text-foreground-secondary">
+                {children}
+            </blockquote>
+        ),
+        normal: ({ children }) => <p className="my-4 leading-relaxed">{children}</p>,
+    },
+    list: {
+        bullet: ({ children }) => <ul className="list-disc pl-6 my-4 space-y-2">{children}</ul>,
+        number: ({ children }) => <ol className="list-decimal pl-6 my-4 space-y-2">{children}</ol>,
+    },
+    listItem: {
+        bullet: ({ children }) => <li className="leading-relaxed">{children}</li>,
+        number: ({ children }) => <li className="leading-relaxed">{children}</li>,
+    },
+};
 
 async function getPost(slug: string) {
     return client.fetch(`
@@ -108,8 +164,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {/* Content */}
             <Section>
                 <Container className="max-w-3xl">
-                    <div className="prose prose-lg prose-slate max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-brand prose-img:rounded-2xl">
-                        <PortableText value={post.body} />
+                    <div className="max-w-none text-foreground">
+                        <PortableText value={post.body} components={portableTextComponents} />
                     </div>
                 </Container>
             </Section>

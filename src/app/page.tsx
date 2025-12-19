@@ -20,6 +20,7 @@ import { AttioBadge } from "@/components/ui/AttioBadge";
 import { ContainerScroll } from "@/components/ui/ContainerScroll";
 import { KaraokeText } from "@/components/ui/KaraokeText";
 import { TheInfiniteGrid } from "@/components/ui/TheInfiniteGrid";
+import { MagneticText } from "@/components/ui/morphing-cursor";
 
 // Authentic content from adapty.io
 const stickyContent = [
@@ -103,9 +104,9 @@ export default function Home() {
                   </Link>
                 </div>
 
-                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground mb-6 leading-[1.1]">
-                  Revenue management <br />
-                  for in-app purchases
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-foreground mb-6 leading-[1.1] flex flex-col items-center">
+                  <MagneticText text="Revenue management" className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1]" />
+                  <MagneticText text="for in-app purchases" className="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.1]" />
                 </h1>
 
                 <p className="text-xl md:text-2xl text-foreground-secondary max-w-2xl mx-auto mb-12 leading-relaxed font-normal">
@@ -118,14 +119,32 @@ export default function Home() {
               </div>
             }
           >
-            <Image
-              src="/images/hero-overview.webp"
-              alt="Adapty Dashboard"
-              width={1400}
-              height={720}
-              className="w-full h-full object-cover object-left-top"
-              priority
-            />
+            <div className="relative w-full h-full flex items-center justify-center">
+              {/* iPad Frame */}
+              <div className="w-full h-full border-4 border-[#6C6C6C] p-2 bg-[#222222] rounded-[30px] shadow-2xl relative z-10">
+                <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl border border-gray-700">
+                  <Image
+                    src="/images/hero-overview.webp"
+                    alt="Adapty Dashboard"
+                    width={1400}
+                    height={720}
+                    className="w-full h-full object-cover object-left-top"
+                    priority
+                  />
+                </div>
+              </div>
+
+              {/* iPhone floating next to it */}
+              <div className="absolute -right-4 md:-right-16 -bottom-10 md:-bottom-20 z-20 w-[200px] md:w-[280px] pointer-events-none">
+                <Image
+                  src="/images/hero-phone.webp"
+                  alt="Adapty Mobile App"
+                  width={300}
+                  height={600}
+                  className="w-full h-auto drop-shadow-2xl"
+                />
+              </div>
+            </div>
           </ContainerScroll>
         </div>
 

@@ -146,10 +146,13 @@ adapty-pt2/
 - [x] Blog detail page with Portable Text
 - [x] Sanity client and queries set up
 
-### 🔄 Phase 4: Blog Content (IN PROGRESS)
-- [ ] Import 50 most recent blog posts from Adapty
-- [ ] Download and host blog images locally
-- [ ] Create authors and categories in Sanity
+### 🔄 Phase 4: Blog Content (PARTIAL - 23/48 posts)
+- [x] Import 48 blog posts metadata from Adapty (titles, excerpts, categories, authors)
+- [x] Download and host blog cover images locally (/public/blog/)
+- [x] Download author avatars from Gravatar (/public/authors/)
+- [x] Create authors and categories in Sanity
+- [x] Import 23 posts with full Portable Text content
+- [ ] Import remaining 25 posts (need to scrape when Firecrawl resets)
 
 ### ✅ Phase 5: Polish (COMPLETE)
 - [x] Mobile responsive design
@@ -161,22 +164,114 @@ adapty-pt2/
 
 ## Sanity CMS
 
-### Setup Commands
-```bash
-npm install @sanity/client @sanity/image-url next-sanity
-npx sanity@latest init --env
+### Project Details
+- **Project ID**: `r5c34qsa`
+- **Dataset**: `production`
+- **API Version**: `2025-12-19`
+- **Studio URL**: https://adapty-pt2.vercel.app/studio
+
+### API Token (Write Access)
 ```
+skhXLNL5sRbExh4mLWoJ8X3lRKqsHKOFheVsajGhdt5dDn8alTnuj09lj50GHbJjREIOxn093gMoEx64c
+```
+Use with: `SANITY_API_TOKEN=<token> node scripts/update-post-content.mjs`
 
 ### Environment Variables
 ```env
-NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_PROJECT_ID=r5c34qsa
 NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2025-12-19
 ```
 
-### Schemas to Create
-- `category` - Blog categories
-- `author` - Blog authors
-- `blogPost` - Blog posts with Portable Text
+### Schemas
+- `category` - Blog categories (7 categories imported)
+- `author` - Blog authors with Gravatar avatars (5 authors imported)
+- `blogPost` - Blog posts with Portable Text body
+
+---
+
+## Blog Content Import
+
+### Current Status
+- **48 posts** have metadata (title, excerpt, category, author, cover image)
+- **23 posts** have full Portable Text content
+- **25 posts** still need full content (have excerpts only)
+
+### Scripts Location
+All import scripts are in `/scripts/`:
+
+| Script | Purpose |
+|--------|---------|
+| `blog-posts.json` | Metadata for all 48 posts |
+| `crawled-content-raw.json` | Raw Firecrawl output (~3MB) |
+| `process-crawled-content.mjs` | Converts markdown → Portable Text |
+| `processed-blog-content.json` | 23 posts with full content |
+| `update-post-content.mjs` | Updates Sanity with content |
+
+### Posts Missing Full Content (25 posts)
+These posts need to be scraped and imported:
+
+```
+paywall-newsletter-23
+paywall-newsletter-22
+paywall-newsletter-21
+paywall-newsletter-20
+how-health-and-fitness-apps-nail-upselling-on-ios
+9-subscription-trends-dominating-2025
+how-to-lower-cac-with-ad-platform-signals
+state-of-in-app-subscriptions-2025-in-10-minutes
+from-pmf-to-profit-in-subscription-app
+quickstart-adapty-setup-guide-react-native-with-expo
+wwdc25-what-apple-announced
+how-to-build-personalized-paywalls
+add-android-in-app-purchases-to-your-app
+quickstart-adapty-setupguide-ios-with-swiftui
+how-to-use-push-notifications-to-increase-app-revenue
+quickstart-adapty-setup-guide-ios-with-uikit
+guide-to-ad-testing
+revenuecat-alternatives-why-i-switched-to-adapty
+new-us-ruling-on-external-ios-payments
+why-japanese-aso-creatives-need-different-strategy
+why-your-web-to-app-funnel-is-broken-and-how-to-fix-it
+how-to-optimize-aso-for-japan
+what-is-web-to-app-and-how-does-it-work
+february-adapty-updates-rich-text-smarter-taxes-and-more
+what-japanese-paywalls-look-like-and-why-western-strategies-wont-work
+```
+
+### How to Import Remaining Posts
+
+1. **Crawl remaining URLs with Firecrawl** (when API resets):
+   ```javascript
+   // Use Firecrawl MCP to crawl:
+   const urls = [
+     'https://adapty.io/blog/paywall-newsletter-23/',
+     'https://adapty.io/blog/paywall-newsletter-22/',
+     // ... all 25 URLs above
+   ];
+   // firecrawl_crawl or firecrawl_batch_scrape
+   ```
+
+2. **Save crawled content** to `scripts/crawled-content-raw.json`
+
+3. **Process and import**:
+   ```bash
+   # Process markdown to Portable Text
+   node scripts/process-crawled-content.mjs
+
+   # Import to Sanity
+   SANITY_API_TOKEN='skhXLNL5sRbExh4mLWoJ8X3lRKqsHKOFheVsajGhdt5dDn8alTnuj09lj50GHbJjREIOxn093gMoEx64c' \
+     node scripts/update-post-content.mjs
+   ```
+
+### Markdown to Portable Text Conversion
+The `process-crawled-content.mjs` script handles:
+- Headers (h1-h4)
+- Paragraphs with inline formatting (bold, italic, code, links)
+- Bullet and numbered lists
+- Blockquotes
+- Code blocks
+- Removes navigation, footer, share buttons, author bios
 
 ---
 

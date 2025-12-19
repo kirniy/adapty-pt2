@@ -59,11 +59,27 @@ export default defineType({
             of: [
                 {
                     type: 'block',
+                    marks: {
+                        decorators: [
+                            { title: 'Strong', value: 'strong' },
+                            { title: 'Emphasis', value: 'em' },
+                            { title: 'Code', value: 'code' },
+                        ],
+                    },
                 },
                 {
                     type: 'image',
                     options: { hotspot: true }
-                }
+                },
+                {
+                    type: 'object',
+                    name: 'codeBlock',
+                    title: 'Code Block',
+                    fields: [
+                        { name: 'code', type: 'text', title: 'Code' },
+                        { name: 'language', type: 'string', title: 'Language' },
+                    ],
+                },
             ],
         }),
         defineField({

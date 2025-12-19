@@ -11,7 +11,8 @@
       "url": "https://adapty.io/blog/what-does-restore-purchase-mean/",
       "author": "Victoria Kharlan",
       "imageLocal": "/blog/what-does-restore-purchase-mean.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/12/NameWhat-Does-Restore-Purchase-Mean.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/12/NameWhat-Does-Restore-Purchase-Mean.png",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "Why 45% of users delete your app in 24 hours — and how onboarding can save you",
@@ -23,7 +24,9 @@
       "image": "https://adapty.io/assets/uploads/2025/11/Why-45-of-users-delete-your-app-within-24-hours-1.webp",
       "url": "https://adapty.io/blog/why-users-delete-your-app-in-24-hours/",
       "imageLocal": "/blog/why-users-delete-your-app-in-24-hours.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/Why-45-of-users-delete-your-app-within-24-hours-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/Why-45-of-users-delete-your-app-within-24-hours-1.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "How to fix your app onboarding flow (Real A/B test data inside)",
@@ -35,7 +38,9 @@
       "image": "https://adapty.io/assets/uploads/2025/11/How-to-fix-your-app-onboarding-flow.webp",
       "url": "https://adapty.io/blog/how-to-fix-your-onboarding-flow/",
       "imageLocal": "/blog/how-to-fix-your-onboarding-flow.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/How-to-fix-your-app-onboarding-flow.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/How-to-fix-your-app-onboarding-flow.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "How to build app onboarding flows that convert?",
@@ -47,7 +52,9 @@
       "image": "https://adapty.io/assets/uploads/2025/11/How-to-build-onboarding-flows-that-convert.webp",
       "url": "https://adapty.io/blog/how-to-build-app-onboarding-flows-that-convert/",
       "imageLocal": "/blog/how-to-build-app-onboarding-flows-that-convert.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/How-to-build-onboarding-flows-that-convert.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/How-to-build-onboarding-flows-that-convert.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "Mobile app analytics stack: UA, monetization & product metrics explained",
@@ -59,7 +66,9 @@
       "image": "https://adapty.io/assets/uploads/2025/10/metrics-explained.webp",
       "url": "https://adapty.io/blog/app-analytics-stack-explained/",
       "imageLocal": "/blog/app-analytics-stack-explained.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/metrics-explained.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/metrics-explained.webp",
+      "author": "Dmitry Shestoperov",
+      "authorSlug": "dshestoperov"
     },
     {
       "title": "Going from $10K to $100K MRR: 7 questions that unlock app growth",
@@ -72,7 +81,8 @@
       "url": "https://adapty.io/blog/unlocking-growth-to-100k-mrr/",
       "author": "Dmitry Shestoperov",
       "imageLocal": "/blog/unlocking-growth-to-100k-mrr.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/Nameebook_10k_100k_MRR.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/Nameebook_10k_100k_MRR.webp",
+      "authorSlug": "dshestoperov"
     },
     {
       "title": "How Adapty keeps running when (almost) nothing else does",
@@ -85,7 +95,8 @@
       "url": "https://adapty.io/blog/how-adapty-keeps-running/",
       "author": "Kirill Potekhin",
       "imageLocal": "/blog/how-adapty-keeps-running.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/covers-2025.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/covers-2025.webp",
+      "authorSlug": "kirill-potekhin"
     },
     {
       "title": "Paywall Newsletter #26: Smart paywalls from plant apps",
@@ -98,7 +109,8 @@
       "url": "https://adapty.io/blog/paywall-newsletter-26/",
       "author": "Dmitry Shestoperov",
       "imageLocal": "/blog/paywall-newsletter-26.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/opengraph_newsletter%E2%80%A8-26-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/opengraph_newsletter%E2%80%A8-26-1.webp",
+      "authorSlug": "dshestoperov"
     },
     {
       "title": "Turn tomorrow's revenue into today's growth: Introducing Adapty Finance",
@@ -111,7 +123,8 @@
       "url": "https://adapty.io/blog/introducing-adapty-finance/",
       "author": "Victoria Kharlan",
       "imageLocal": "/blog/introducing-adapty-finance.jpg",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/adapty_finance_cover@1x.jpg"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/adapty_finance_cover@1x.jpg",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "Paywall Newsletter #25: Cloudy with a chance of conversions",
@@ -123,7 +136,9 @@
       "image": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter25.png",
       "url": "https://adapty.io/blog/paywall-newsletter-25/",
       "imageLocal": "/blog/paywall-newsletter-25.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter25.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter25.png",
+      "author": "Dmitry Shestoperov",
+      "authorSlug": "dshestoperov"
     },
     {
       "title": "Paywall Newsletter #24: Keeping your focus",
@@ -135,7 +150,9 @@
       "image": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter24.webp",
       "url": "https://adapty.io/blog/paywall-newsletter-24/",
       "imageLocal": "/blog/paywall-newsletter-24.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter24.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter24.webp",
+      "author": "Dmitry Shestoperov",
+      "authorSlug": "dshestoperov"
     },
     {
       "title": "How adding onboarding friction before your app's paywall can grow your revenue",
@@ -147,7 +164,9 @@
       "image": "https://adapty.io/assets/uploads/2025/08/revenuethroughfriction.webp",
       "url": "https://adapty.io/blog/how-friction-can-grow-your-apps-revenue/",
       "imageLocal": "/blog/how-friction-can-grow-your-apps-revenue.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/revenuethroughfriction.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/revenuethroughfriction.webp",
+      "author": "Léa Samrani",
+      "authorSlug": "lea-samrani"
     },
     {
       "title": "Paywall Newsletter #23: Education made profitable",
@@ -159,7 +178,9 @@
       "image": "https://adapty.io/assets/uploads/2025/08/newsletter23updated.webp",
       "url": "https://adapty.io/blog/paywall-newsletter-23/",
       "imageLocal": "/blog/paywall-newsletter-23.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/newsletter23updated.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/newsletter23updated.webp",
+      "author": "Dmitry Shestoperov",
+      "authorSlug": "dshestoperov"
     },
     {
       "title": "How to analyze and optimize Apple Search Ads in 2025?",
@@ -171,7 +192,9 @@
       "image": "https://adapty.io/assets/uploads/2025/08/How-to-analyze-and-optimize-Apple-Ads.webp",
       "url": "https://adapty.io/blog/how-to-analyze-and-optimize-apple-ads/",
       "imageLocal": "/blog/how-to-analyze-and-optimize-apple-ads.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/How-to-analyze-and-optimize-Apple-Ads.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/How-to-analyze-and-optimize-Apple-Ads.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "Apple Search Ads guide for 2025: Best practices from beginner to expert",
@@ -183,7 +206,9 @@
       "image": "https://adapty.io/assets/uploads/2025/08/NameApple-Ads_-Tips-best-practices-1.webp",
       "url": "https://adapty.io/blog/apple-ads-best-practices/",
       "imageLocal": "/blog/apple-ads-best-practices.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/NameApple-Ads_-Tips-best-practices-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/NameApple-Ads_-Tips-best-practices-1.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "Paywall Newsletter #22: From calories to conversions",
@@ -195,7 +220,9 @@
       "image": "https://adapty.io/assets/uploads/2025/08/opengraph_newsletter22.webp",
       "url": "https://adapty.io/blog/paywall-newsletter-22/",
       "imageLocal": "/blog/paywall-newsletter-22.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/opengraph_newsletter22.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/opengraph_newsletter22.webp",
+      "author": "Dmitry Shestoperov",
+      "authorSlug": "dshestoperov"
     },
     {
       "title": "The art of conversion: How Health & Fitness apps nail upselling on iOS",
@@ -207,7 +234,9 @@
       "image": "https://adapty.io/assets/uploads/2025/08/How-Health-Fitness-Apps-Nail-Upselling-on-iOS.webp",
       "url": "https://adapty.io/blog/how-health-and-fitness-apps-nail-upselling-on-ios/",
       "imageLocal": "/blog/how-health-and-fitness-apps-nail-upselling-on-ios.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/How-Health-Fitness-Apps-Nail-Upselling-on-iOS.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/How-Health-Fitness-Apps-Nail-Upselling-on-iOS.webp",
+      "author": "Natalia Burakova",
+      "authorSlug": "natalia-burakova"
     },
     {
       "title": "Apple Search Ads beginner's guide: From setup to revenue optimization",
@@ -219,7 +248,9 @@
       "image": "https://adapty.io/assets/uploads/2025/08/The-complete-guide-to-Apple-Ads.webp",
       "url": "https://adapty.io/blog/apple-search-ads/",
       "imageLocal": "/blog/apple-search-ads.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/The-complete-guide-to-Apple-Ads.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/The-complete-guide-to-Apple-Ads.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "How to sell your app for maximum value: Insights into what buyers want",
@@ -231,7 +262,9 @@
       "image": "https://adapty.io/assets/uploads/2025/07/howtosellanapp.webp",
       "url": "https://adapty.io/blog/selling-your-app-for-maximum-value/",
       "imageLocal": "/blog/selling-your-app-for-maximum-value.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/howtosellanapp.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/howtosellanapp.webp",
+      "author": "Evelin Herrera",
+      "authorSlug": "evelin-herrera"
     },
     {
       "title": "9 subscription economy trends dominating 2025: The complete strategy guide",
@@ -243,7 +276,9 @@
       "image": "https://adapty.io/assets/uploads/2025/07/9-subscription-trends-dominating-2025.webp",
       "url": "https://adapty.io/blog/9-subscription-trends-dominating-2025/",
       "imageLocal": "/blog/9-subscription-trends-dominating-2025.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/9-subscription-trends-dominating-2025.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/9-subscription-trends-dominating-2025.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "Paywall Newsletter #21: How travel apps convert users",
@@ -255,7 +290,9 @@
       "image": "https://adapty.io/assets/uploads/2025/07/opengraph_newsletter21-new.webp",
       "url": "https://adapty.io/blog/paywall-newsletter-21/",
       "imageLocal": "/blog/paywall-newsletter-21.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/opengraph_newsletter21-new.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/opengraph_newsletter21-new.webp",
+      "author": "Dmitry Shestoperov",
+      "authorSlug": "dshestoperov"
     },
     {
       "title": "How to feed ad platforms the best signals and reduce your CAC",
@@ -267,7 +304,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/NameName32.webp",
       "url": "https://adapty.io/blog/how-to-lower-cac-with-ad-platform-signals/",
       "imageLocal": "/blog/how-to-lower-cac-with-ad-platform-signals.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/NameName32.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/NameName32.webp",
+      "author": "Shumel Lais",
+      "authorSlug": "shumellais"
     },
     {
       "title": "State of in-app subscriptions 2025: everything you need to know in 10 minutes",
@@ -279,7 +318,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/SOIAS-cover.webp",
       "url": "https://adapty.io/blog/state-of-in-app-subscriptions-2025-in-10-minutes/",
       "imageLocal": "/blog/state-of-in-app-subscriptions-2025-in-10-minutes.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/SOIAS-cover.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/SOIAS-cover.webp",
+      "author": "Aleksandr Samoilenko",
+      "authorSlug": "asamoilenko"
     },
     {
       "title": "Is Apple's new EU in-app purchase fee system more complex than ever?",
@@ -291,7 +332,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/fee-system-in-app-purchase-preview-1.webp",
       "url": "https://adapty.io/blog/apple-eu-in-app-purchase-fee-system-2025/",
       "imageLocal": "/blog/apple-eu-in-app-purchase-fee-system-2025.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/fee-system-in-app-purchase-preview-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/fee-system-in-app-purchase-preview-1.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "How to go from product-market fit to profit in your subscription app",
@@ -303,7 +346,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/CP-PMF-to-profit-preview-1.webp",
       "url": "https://adapty.io/blog/from-pmf-to-profit-in-subscription-app/",
       "imageLocal": "/blog/from-pmf-to-profit-in-subscription-app.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/CP-PMF-to-profit-preview-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/CP-PMF-to-profit-preview-1.webp",
+      "author": "Daniel Layfield",
+      "authorSlug": "daniellayfield"
     },
     {
       "title": "Quickstart Adapty setup guide: React Native with Expo",
@@ -315,7 +360,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_React-Native.png",
       "url": "https://adapty.io/blog/quickstart-adapty-setup-guide-react-native-with-expo/",
       "imageLocal": "/blog/quickstart-adapty-setup-guide-react-native-with-expo.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_React-Native.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_React-Native.png",
+      "author": "Ben Gohlke",
+      "authorSlug": "bgohlke"
     },
     {
       "title": "WWDC25 summary: What Apple announced and what does it mean for app developers?",
@@ -327,7 +374,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/WWDC25_-What-Apple-announced-and-what-does-it-mean-for-app-developers-preview-1.webp",
       "url": "https://adapty.io/blog/wwdc25-what-apple-announced/",
       "imageLocal": "/blog/wwdc25-what-apple-announced.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/WWDC25_-What-Apple-announced-and-what-does-it-mean-for-app-developers-preview-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/WWDC25_-What-Apple-announced-and-what-does-it-mean-for-app-developers-preview-1.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "How to build personalized paywalls with user attributes and Adapty segments",
@@ -339,7 +388,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/How-to-build-personalized-paywalls-with-user-attributes-and-Adapty-segments-1-preview-1.webp",
       "url": "https://adapty.io/blog/how-to-build-personalized-paywalls/",
       "imageLocal": "/blog/how-to-build-personalized-paywalls.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/How-to-build-personalized-paywalls-with-user-attributes-and-Adapty-segments-1-preview-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/How-to-build-personalized-paywalls-with-user-attributes-and-Adapty-segments-1-preview-1.webp",
+      "author": "Anton Gubarenko",
+      "authorSlug": "agubarenko"
     },
     {
       "title": "How to add Android in-app purchases to your app in 10 minutes",
@@ -351,7 +402,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/Add-Subscriptions-to-Your-Android-App-with-Adapty-in-10-Minutes-2025-Guide-preview-1.webp",
       "url": "https://adapty.io/blog/add-android-in-app-purchases-to-your-app/",
       "imageLocal": "/blog/add-android-in-app-purchases-to-your-app.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Add-Subscriptions-to-Your-Android-App-with-Adapty-in-10-Minutes-2025-Guide-preview-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Add-Subscriptions-to-Your-Android-App-with-Adapty-in-10-Minutes-2025-Guide-preview-1.webp",
+      "author": "Burak Ilhan",
+      "authorSlug": "ilhan"
     },
     {
       "title": "Quickstart Adapty setup guide: iOS with SwiftUI",
@@ -363,7 +416,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp",
       "url": "https://adapty.io/blog/quickstart-adapty-setupguide-ios-with-swiftui/",
       "imageLocal": "/blog/quickstart-adapty-setupguide-ios-with-swiftui.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp",
+      "author": "Ben Gohlke",
+      "authorSlug": "bgohlke"
     },
     {
       "title": "How to increase app revenue: Push notifications and targeted messaging",
@@ -375,7 +430,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/How-to-message-cohorts-correctly-preview-1.webp",
       "url": "https://adapty.io/blog/how-to-use-push-notifications-to-increase-app-revenue/",
       "imageLocal": "/blog/how-to-use-push-notifications-to-increase-app-revenue.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/How-to-message-cohorts-correctly-preview-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/How-to-message-cohorts-correctly-preview-1.webp",
+      "author": "Elena Montoya",
+      "authorSlug": "elena-montoya"
     },
     {
       "title": "Quickstart Adapty Setup Guide: iOS with UIKit",
@@ -387,7 +444,9 @@
       "image": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp",
       "url": "https://adapty.io/blog/quickstart-adapty-setup-guide-ios-with-uikit/",
       "imageLocal": "/blog/quickstart-adapty-setup-guide-ios-with-uikit.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp",
+      "author": "Ben Gohlke",
+      "authorSlug": "bgohlke"
     },
     {
       "title": "Guide to ad testing: How to test and scale ads for web-to-app in 2025",
@@ -399,7 +458,9 @@
       "image": "https://adapty.io/assets/uploads/2025/07/Cover-Ad-testing.webp",
       "url": "https://adapty.io/blog/guide-to-ad-testing/",
       "imageLocal": "/blog/guide-to-ad-testing.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/Cover-Ad-testing.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/Cover-Ad-testing.webp",
+      "author": "Manson Chen",
+      "authorSlug": "manson-chen"
     },
     {
       "title": "How to validate server-side transactions with Apple's App Store Server API",
@@ -411,7 +472,9 @@
       "image": "https://adapty.io/assets/uploads/2025/07/cover-app-store-server-api.webp",
       "url": "https://adapty.io/blog/validating-iap-with-app-store-server-api/",
       "imageLocal": "/blog/validating-iap-with-app-store-server-api.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/cover-app-store-server-api.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/cover-app-store-server-api.webp",
+      "author": "Ben Gohlke",
+      "authorSlug": "bgohlke"
     },
     {
       "title": "RevenueCat alternatives: Why I switched to Adapty for my indie weather app",
@@ -423,7 +486,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/cover-StoreKit-to-Adapty.webp",
       "url": "https://adapty.io/blog/revenuecat-alternatives-why-i-switched-to-adapty/",
       "imageLocal": "/blog/revenuecat-alternatives-why-i-switched-to-adapty.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-StoreKit-to-Adapty.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-StoreKit-to-Adapty.webp",
+      "author": "Ben Gohlke",
+      "authorSlug": "bgohlke"
     },
     {
       "title": "Top 9 ways to monetize your app in 2025 and beyond",
@@ -435,7 +500,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/Mobile-app-monetization.png",
       "url": "https://adapty.io/blog/mobile-app-monetization-strategies/",
       "imageLocal": "/blog/mobile-app-monetization-strategies.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Mobile-app-monetization.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Mobile-app-monetization.png",
+      "author": "Disha Sharma",
+      "authorSlug": "disha-sharma"
     },
     {
       "title": "Can you use Stripe for in-app purchases in 2025?",
@@ -447,7 +514,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/Stripe-for-in-app-purchases.webp",
       "url": "https://adapty.io/blog/can-you-use-stripe-for-in-app-purchases/",
       "imageLocal": "/blog/can-you-use-stripe-for-in-app-purchases.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Stripe-for-in-app-purchases.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Stripe-for-in-app-purchases.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "Google App Campaigns playbook 2025: Setup, optimization, reporting & best practices",
@@ -459,7 +528,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/cover-google-app-campaigns-playbook-2025.webp",
       "url": "https://adapty.io/blog/google-app-campaigns-playbook-2025/",
       "imageLocal": "/blog/google-app-campaigns-playbook-2025.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-google-app-campaigns-playbook-2025.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-google-app-campaigns-playbook-2025.webp",
+      "author": "Aniruddha Mishra",
+      "authorSlug": "aniruddha-mishra"
     },
     {
       "title": "New U.S. ruling on external iOS payments",
@@ -471,7 +542,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/New-US-Ruling-on-iOS-Payments.webp",
       "url": "https://adapty.io/blog/new-us-ruling-on-external-ios-payments/",
       "imageLocal": "/blog/new-us-ruling-on-external-ios-payments.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/New-US-Ruling-on-iOS-Payments.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/New-US-Ruling-on-iOS-Payments.webp",
+      "author": "Victoria Kharlan",
+      "authorSlug": "vkharlan"
     },
     {
       "title": "How to A/B test free trials on iOS",
@@ -483,7 +556,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/cover-how-to-ab-test-free-trials-on-ois.webp",
       "url": "https://adapty.io/blog/how-to-ab-test-free-trials-on-ios/",
       "imageLocal": "/blog/how-to-ab-test-free-trials-on-ios.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-how-to-ab-test-free-trials-on-ois.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-how-to-ab-test-free-trials-on-ois.webp",
+      "author": "Ben Gohlke",
+      "authorSlug": "bgohlke"
     },
     {
       "title": "Why Japanese ASO creatives need a different strategy",
@@ -495,7 +570,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/Japanese-ASO-Creatives.webp",
       "url": "https://adapty.io/blog/why-japanese-aso-creatives-need-different-strategy/",
       "imageLocal": "/blog/why-japanese-aso-creatives-need-different-strategy.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Japanese-ASO-Creatives.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Japanese-ASO-Creatives.webp",
+      "author": "Aleksandr Samoilenko",
+      "authorSlug": "asamoilenko"
     },
     {
       "title": "How to reduce early churn and activate the second session",
@@ -507,7 +584,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/Overcoming-Death-Valley-Guide.png",
       "url": "https://adapty.io/blog/how-to-reduce-early-churn/",
       "imageLocal": "/blog/how-to-reduce-early-churn.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Overcoming-Death-Valley-Guide.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Overcoming-Death-Valley-Guide.png",
+      "author": "Selcuk Aciner",
+      "authorSlug": "selcukaciner"
     },
     {
       "title": "Why your web-to-app funnel is broken and how to fix it",
@@ -519,7 +598,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/Why-your-web-to-app-funnel-is-broken-and-how-to-fix-it.png",
       "url": "https://adapty.io/blog/why-your-web-to-app-funnel-is-broken-and-how-to-fix-it/",
       "imageLocal": "/blog/why-your-web-to-app-funnel-is-broken-and-how-to-fix-it.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Why-your-web-to-app-funnel-is-broken-and-how-to-fix-it.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Why-your-web-to-app-funnel-is-broken-and-how-to-fix-it.png",
+      "author": "Aleksandr Samoilenko",
+      "authorSlug": "asamoilenko"
     },
     {
       "title": "Paywall Newsletter #20: Apps built by women, loved by thousands",
@@ -531,7 +612,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/opengraph_newsletter20_16x9.webp",
       "url": "https://adapty.io/blog/paywall-newsletter-20/",
       "imageLocal": "/blog/paywall-newsletter-20.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/opengraph_newsletter20_16x9.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/opengraph_newsletter20_16x9.webp",
+      "author": "Julia Ruzmanova",
+      "authorSlug": "jruzmanova"
     },
     {
       "title": "How to optimize ASO for Japan and why direct translations won't work",
@@ -543,7 +626,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/How-to-optimize-ASO-for-Japan.png",
       "url": "https://adapty.io/blog/how-to-optimize-aso-for-japan/",
       "imageLocal": "/blog/how-to-optimize-aso-for-japan.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/How-to-optimize-ASO-for-Japan.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/How-to-optimize-ASO-for-Japan.png",
+      "author": "Aleksandr Samoilenko",
+      "authorSlug": "asamoilenko"
     },
     {
       "title": "What is web-to-app and how does it work",
@@ -555,7 +640,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/w2a-1-featurePic.png",
       "url": "https://adapty.io/blog/what-is-web-to-app-and-how-does-it-work/",
       "imageLocal": "/blog/what-is-web-to-app-and-how-does-it-work.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/w2a-1-featurePic.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/w2a-1-featurePic.png",
+      "author": "Aleksandr Samoilenko",
+      "authorSlug": "asamoilenko"
     },
     {
       "title": "February Adapty updates: Rich text, smarter taxes, and more",
@@ -567,7 +654,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/adapty-february-updates.png",
       "url": "https://adapty.io/blog/february-adapty-updates-rich-text-smarter-taxes-and-more/",
       "imageLocal": "/blog/february-adapty-updates-rich-text-smarter-taxes-and-more.png",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/adapty-february-updates.png"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/adapty-february-updates.png",
+      "author": "Aleksandr Samoilenko",
+      "authorSlug": "asamoilenko"
     },
     {
       "title": "What Japanese paywalls look like and why Western strategies won't work",
@@ -579,7 +668,9 @@
       "image": "https://adapty.io/assets/uploads/2025/05/Property-1covers-2024-Property-2Property-24-1.webp",
       "url": "https://adapty.io/blog/what-japanese-paywalls-look-like-and-why-western-strategies-wont-work/",
       "imageLocal": "/blog/what-japanese-paywalls-look-like-and-why-western-strategies-wont-work.webp",
-      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Property-1covers-2024-Property-2Property-24-1.webp"
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Property-1covers-2024-Property-2Property-24-1.webp",
+      "author": "Aleksandr Samoilenko",
+      "authorSlug": "asamoilenko"
     }
   ],
   "categories": [
@@ -636,9 +727,39 @@
   ],
   "authors": [
     {
-      "name": "Victoria Kharlan",
-      "slug": "vkharlan",
-      "bio": "Lessons I wish I had. Now yours."
+      "name": "Aleksandr Samoilenko",
+      "slug": "asamoilenko",
+      "bio": ""
+    },
+    {
+      "name": "Aniruddha Mishra",
+      "slug": "aniruddha-mishra",
+      "bio": ""
+    },
+    {
+      "name": "Anton Gubarenko",
+      "slug": "agubarenko",
+      "bio": ""
+    },
+    {
+      "name": "Ben Gohlke",
+      "slug": "bgohlke",
+      "bio": ""
+    },
+    {
+      "name": "Burak Ilhan",
+      "slug": "ilhan",
+      "bio": ""
+    },
+    {
+      "name": "Daniel Layfield",
+      "slug": "daniellayfield",
+      "bio": ""
+    },
+    {
+      "name": "Disha Sharma",
+      "slug": "disha-sharma",
+      "bio": ""
     },
     {
       "name": "Dmitry Shestoperov",
@@ -646,9 +767,54 @@
       "bio": "I write @ Adapty"
     },
     {
+      "name": "Elena Montoya",
+      "slug": "elena-montoya",
+      "bio": ""
+    },
+    {
+      "name": "Evelin Herrera",
+      "slug": "evelin-herrera",
+      "bio": ""
+    },
+    {
+      "name": "Julia Ruzmanova",
+      "slug": "jruzmanova",
+      "bio": ""
+    },
+    {
       "name": "Kirill Potekhin",
       "slug": "kirill-potekhin",
       "bio": "CPO, co-founder, and product development expert"
+    },
+    {
+      "name": "Léa Samrani",
+      "slug": "lea-samrani",
+      "bio": ""
+    },
+    {
+      "name": "Manson Chen",
+      "slug": "manson-chen",
+      "bio": ""
+    },
+    {
+      "name": "Natalia Burakova",
+      "slug": "natalia-burakova",
+      "bio": ""
+    },
+    {
+      "name": "Selcuk Aciner",
+      "slug": "selcukaciner",
+      "bio": ""
+    },
+    {
+      "name": "Shumel Lais",
+      "slug": "shumellais",
+      "bio": ""
+    },
+    {
+      "name": "Victoria Kharlan",
+      "slug": "vkharlan",
+      "bio": "Lessons I wish I had. Now yours."
     }
   ]
 }

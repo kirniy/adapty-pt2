@@ -68,6 +68,18 @@ const normalizeCodeBlock = (code: string, language?: string) => {
     return { code: normalized, label };
 };
 
+const dedupeCodeBlocks = (body: Array<{ _type?: string; code?: string }>) => {
+    const cleaned: Array<{ _type?: string; code?: string }> = [];
+    for (const block of body) {
+        const prev = cleaned[cleaned.length - 1];
+        if (block?._type === "codeBlock" && prev?._type === "codeBlock" && prev.code === block.code) {
+            continue;
+        }
+        cleaned.push(block);
+    }
+    return cleaned;
+};
+
 const CodeBlock = ({ code, language }: { code: ReactNode; language?: string }) => {
     const normalized = typeof code === "string" ? normalizeCodeBlock(code, language) : { code, label: "" };
     const label = normalized.label;
@@ -181,6 +193,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         )
     }
 
+    const body = Array.isArray(post.body) ? dedupeCodeBlocks(post.body) : [];
+
     return (
         <article className="pt-32 pb-24">
             {/* Header */}
@@ -252,7 +266,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <Section>
                 <Container className="max-w-3xl">
                     <div className="max-w-none text-foreground">
-                        <PortableText value={post.body} components={portableTextComponents} />
+                        <PortableText value={body} components={portableTextComponents} />
                     </div>
                 </Container>
             </Section>

@@ -56,7 +56,7 @@ export const RevenueSync = () => {
             <Container>
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     {/* Visual Side (Mosaic) */}
-                    <div className="relative rounded-[32px] bg-[#00A3B5] p-8 md:p-10 shadow-2xl overflow-hidden order-last lg:order-first h-[500px] flex flex-col items-center justify-center">
+                    <div className="relative rounded-[32px] bg-[#00A3B5] p-8 md:p-10 shadow-2xl overflow-hidden order-last lg:order-first min-h-[600px] flex flex-col items-center justify-center">
                         {/* Subtle gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
 

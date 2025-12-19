@@ -32,7 +32,7 @@ const trustedByLogos = [
   { name: 'feeld', file: 'feeld.svg' },
   { name: 'bumble', file: 'bumble.svg' },
   { name: 'weewoo', file: 'weewoo.svg' },
-  { name: 'appnation', file: 'appnation.svg' },
+  { name: 'appnation', file: 'appnation.webp' },
   { name: 'almus', file: 'almus.svg' },
   { name: 'impala-studios', file: 'impala-studios.svg' },
   { name: 'hubx', file: 'hubx.svg' },

@@ -68,6 +68,62 @@ const normalizeCodeBlock = (code: string, language?: string) => {
     return { code: normalized, label };
 };
 
+const TABLE_DIVIDER_RE = /\|\s*-{3,}\s*\|/;
+
+const unescapeMarkdown = (value: string) =>
+    value.replace(/\\([_[\](){}/])/g, "$1");
+
+const extractTableCode = (block: { _type?: string; style?: string; listItem?: string; children?: Array<{ text?: string }> }) => {
+    if (!block || block._type !== "block" || block.style !== "normal" || block.listItem) {
+        return null;
+    }
+
+    const rawText = Array.isArray(block.children)
+        ? block.children.map((child) => child.text || "").join("")
+        : "";
+
+    if (!rawText || !rawText.includes("|") || !TABLE_DIVIDER_RE.test(rawText)) {
+        return null;
+    }
+
+    const normalized = rawText
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/&nbsp;/gi, " ")
+        .replace(/\u00a0/g, " ")
+        .replace(/\r\n/g, "\n")
+        .replace(/\r/g, "\n");
+
+    const segments = normalized
+        .split("|")
+        .map((segment) => segment.trim())
+        .filter(Boolean);
+
+    const contentSegments = segments.filter((segment) => !/^[-–—]+$/.test(segment));
+    if (contentSegments.length !== 1) {
+        return null;
+    }
+
+    const code = unescapeMarkdown(contentSegments[0]).trim();
+    return code || null;
+};
+
+const normalizeBody = (body: Array<{ _type?: string; code?: string; language?: string; _key?: string }>) => {
+    const converted = body.map((block) => {
+        const code = extractTableCode(block as { _type?: string; style?: string; listItem?: string; children?: Array<{ text?: string }> });
+        if (!code) {
+            return block;
+        }
+        return {
+            _key: (block as { _key?: string })._key,
+            _type: "codeBlock",
+            code,
+            language: "text",
+        };
+    });
+
+    return dedupeCodeBlocks(converted);
+};
+
 const dedupeCodeBlocks = (body: Array<{ _type?: string; code?: string }>) => {
     const cleaned: Array<{ _type?: string; code?: string }> = [];
     for (const block of body) {
@@ -193,7 +249,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         )
     }
 
-    const body = Array.isArray(post.body) ? dedupeCodeBlocks(post.body) : [];
+    const body = Array.isArray(post.body) ? normalizeBody(post.body) : [];
 
     return (
         <article className="pt-32 pb-24">

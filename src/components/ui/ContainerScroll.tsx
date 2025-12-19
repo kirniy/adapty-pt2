@@ -92,7 +92,7 @@ export const Card = ({
                 rotateX: rotate,
                 scale,
             }}
-            className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full perspective-1000"
+            className="max-w-5xl -mt-24 md:-mt-12 mx-auto h-[30rem] md:h-[40rem] w-full perspective-1000"
         >
             {children}
         </motion.div>

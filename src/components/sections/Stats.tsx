@@ -27,8 +27,8 @@ export const Stats = () => {
                     {stats.map((stat, i) => (
                         <div
                             key={stat.label}
-                            className="opacity-0 animate-slide-up fill-mode-forwards"
-                            style={{ animationDelay: `${0.1 + i * 0.1}s` }}
+                            className="opacity-0 animate-slide-up"
+                            style={{ animationDelay: `${0.1 + i * 0.1}s`, animationFillMode: 'forwards' }}
                         >
                             <div className="text-4xl md:text-5xl font-bold text-foreground">
                                 <NumberTicker

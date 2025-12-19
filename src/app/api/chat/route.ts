@@ -1,4 +1,4 @@
-import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { google } from "@ai-sdk/google";
 import { streamText, convertToCoreMessages } from "ai";
 import { NextResponse } from "next/server";
 
@@ -217,11 +217,11 @@ export async function POST(req: Request) {
     const body = (await req.json()) as { messages?: unknown };
     const messages = Array.isArray(body.messages) ? body.messages : [];
 
-    const google = createGoogleGenerativeAI({ apiKey });
     const result = await streamText({
-        model: google("gemini-3-flash-preview", {
-            useSearchGrounding: true,
-        }),
+        model: google("gemini-2.5-flash-preview-05-20"),
+        tools: {
+            google_search: google.tools.googleSearch({}),
+        },
         system: systemInstruction,
         messages: convertToCoreMessages(messages),
     });

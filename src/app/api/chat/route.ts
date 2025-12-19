@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const result = await streamText({
-        model: google('gemini-1.5-flash-latest'),
+        model: google('gemini-3-flash-preview'),
         messages: convertToCoreMessages(messages),
         system: systemInstruction,
     });

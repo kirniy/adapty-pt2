@@ -322,9 +322,10 @@ export default function Home() {
 
               {/* Content */}
               <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-                <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
-                  Get started today or schedule a demo for your personal onboarding
-                </h2>
+                <KaraokeText
+                  text="Get started today or schedule a demo for your personal onboarding"
+                  className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight leading-[1.1]"
+                />
 
                 <div className="mt-12 flex flex-col items-center gap-6 w-full max-w-lg">
                   {/* Using Hero-style EmailCTA in dark mode */}

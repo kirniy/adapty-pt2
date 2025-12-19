@@ -12,7 +12,7 @@
 
 [Live Demo](https://adapty-pt2.vercel.app) | [Sanity Studio](https://adapty-pt2.vercel.app/studio) | [Original Site](https://adapty.io)
 
-[![Extended Documentation](https://img.shields.io/badge/Extended_Documentation-Read_on_Google_Docs-4285F4?style=for-the-badge&logo=google-docs&logoColor=white)](https://docs.google.com/document/d/136gnLrV7its3GqEbAjuNwpdIV2ks_afqGm56BF51Q80/edit?usp=sharing)
+[![Extended Documentation](https://img.shields.io/badge/Extended_Documentation-Read_on_Google_Docs-4285F4?style=for-the-badge&logo=google-docs&logoColor=white)](https://docs.google.com/document/d/1ga8LXlozkhSr3AdTTdLuiqS_cJn_FCZeIMdFSaWL_I0/edit?usp=sharing)
 
 </div>
 

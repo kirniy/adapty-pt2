@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/Section";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 const TESTIMONIALS = [
     {
@@ -59,9 +60,11 @@ const AUTOPLAY_MS = 8500;
 
 export const TestimonialsCarousel = () => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [direction, setDirection] = useState(1); // 1 = forward, -1 = backward
 
     useEffect(() => {
         const timer = window.setInterval(() => {
+            setDirection(1);
             setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
         }, AUTOPLAY_MS);
 
@@ -71,11 +74,28 @@ export const TestimonialsCarousel = () => {
     const active = TESTIMONIALS[activeIndex];
 
     const handlePrev = () => {
+        setDirection(-1);
         setActiveIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
     };
 
     const handleNext = () => {
+        setDirection(1);
         setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+    };
+
+    const slideVariants = {
+        enter: (dir: number) => ({
+            x: dir > 0 ? 100 : -100,
+            opacity: 0,
+        }),
+        center: {
+            x: 0,
+            opacity: 1,
+        },
+        exit: (dir: number) => ({
+            x: dir > 0 ? -100 : 100,
+            opacity: 0,
+        }),
     };
 
     return (
@@ -97,49 +117,60 @@ export const TestimonialsCarousel = () => {
                     </p>
                 </div>
 
-                <div className="relative rounded-[32px] bg-white/90 backdrop-blur border border-border-subtle shadow-elevated p-6 md:p-10">
-                    <div
-                        key={active.id}
-                        className="grid md:grid-cols-2 gap-10 items-center animate-in fade-in duration-500"
-                    >
-                        <div className="order-2 md:order-1">
-                            <div className="relative w-full max-w-[360px] mx-auto aspect-[3/4] rounded-[28px] overflow-hidden shadow-elevated">
-                                <Image
-                                    src={active.image}
-                                    alt={active.name}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                        </div>
-                        <div className="order-1 md:order-2">
-                            <p className="text-xl md:text-2xl font-medium leading-relaxed text-foreground mb-8">
-                                &ldquo;{active.quote}&rdquo;
-                            </p>
-                            <div className="flex items-center gap-4 flex-wrap">
-                                <div>
-                                    <div className="font-semibold text-foreground">{active.name}</div>
-                                    <div className="text-sm text-foreground-secondary">{active.position}</div>
-                                </div>
-                                <div className="ml-auto rounded-xl bg-foreground p-2">
+                <div className="relative rounded-[32px] bg-white/90 backdrop-blur border border-border-subtle shadow-elevated p-6 md:p-10 overflow-hidden">
+                    <AnimatePresence mode="wait" custom={direction}>
+                        <motion.div
+                            key={active.id}
+                            custom={direction}
+                            variants={slideVariants}
+                            initial="enter"
+                            animate="center"
+                            exit="exit"
+                            transition={{
+                                x: { type: "spring", stiffness: 300, damping: 30 },
+                                opacity: { duration: 0.3 },
+                            }}
+                            className="grid md:grid-cols-2 gap-10 items-center"
+                        >
+                            <div className="order-2 md:order-1">
+                                <div className="relative w-full max-w-[360px] mx-auto aspect-[3/4] rounded-[28px] overflow-hidden shadow-elevated">
                                     <Image
-                                        src={active.logo}
+                                        src={active.image}
                                         alt={active.name}
-                                        width={140}
-                                        height={40}
-                                        className="h-6 w-auto object-contain"
+                                        fill
+                                        className="object-cover"
                                     />
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <div className="order-1 md:order-2">
+                                <p className="text-xl md:text-2xl font-medium leading-relaxed text-foreground mb-8">
+                                    &ldquo;{active.quote}&rdquo;
+                                </p>
+                                <div className="flex items-center gap-4 flex-wrap">
+                                    <div>
+                                        <div className="font-semibold text-foreground">{active.name}</div>
+                                        <div className="text-sm text-foreground-secondary">{active.position}</div>
+                                    </div>
+                                    <div className="ml-auto rounded-xl bg-foreground p-2">
+                                        <Image
+                                            src={active.logo}
+                                            alt={active.name}
+                                            width={140}
+                                            height={40}
+                                            className="h-6 w-auto object-contain"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </AnimatePresence>
 
                     <div className="mt-8 flex flex-wrap items-center justify-between gap-6">
                         <div className="flex items-center gap-2">
                             <button
                                 type="button"
                                 onClick={handlePrev}
-                                className="h-10 w-10 rounded-full border border-border-subtle bg-white text-foreground hover:bg-foreground hover:text-white transition-colors"
+                                className="h-10 w-10 rounded-full border border-border-subtle bg-white text-foreground hover:bg-brand hover:text-white hover:border-brand transition-all duration-200 shadow-sm"
                                 aria-label="Previous testimonial"
                             >
                                 <ArrowLeft className="w-4 h-4 mx-auto" />
@@ -147,7 +178,7 @@ export const TestimonialsCarousel = () => {
                             <button
                                 type="button"
                                 onClick={handleNext}
-                                className="h-10 w-10 rounded-full border border-border-subtle bg-white text-foreground hover:bg-foreground hover:text-white transition-colors"
+                                className="h-10 w-10 rounded-full border border-border-subtle bg-white text-foreground hover:bg-brand hover:text-white hover:border-brand transition-all duration-200 shadow-sm"
                                 aria-label="Next testimonial"
                             >
                                 <ArrowRight className="w-4 h-4 mx-auto" />
@@ -158,12 +189,15 @@ export const TestimonialsCarousel = () => {
                                 <button
                                     key={testimonial.id}
                                     type="button"
-                                    onClick={() => setActiveIndex(index)}
+                                    onClick={() => {
+                                        setDirection(index > activeIndex ? 1 : -1);
+                                        setActiveIndex(index);
+                                    }}
                                     className={cn(
-                                        "h-2.5 w-2.5 rounded-full transition-colors",
+                                        "h-2.5 rounded-full transition-all duration-300",
                                         index === activeIndex
-                                            ? "bg-foreground"
-                                            : "bg-foreground/20 hover:bg-foreground/40"
+                                            ? "bg-brand w-6"
+                                            : "bg-foreground/20 hover:bg-foreground/40 w-2.5"
                                     )}
                                     aria-label={`Go to ${testimonial.name} testimonial`}
                                 />

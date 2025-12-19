@@ -43,7 +43,7 @@ export default function Home() {
     <>
       <div className="min-h-screen bg-background relative">
         {/* Hero Section */}
-        <div className="bg-gradient-to-b from-white to-background-tertiary/30 relative overflow-hidden">
+        <div className="bg-gradient-to-b from-white to-background-tertiary/30 relative overflow-x-hidden overflow-y-visible pt-8">
           <div className="absolute inset-0 z-0 opacity-40 mix-blend-multiply pointer-events-none">
             <TheInfiniteGrid className="!fixed inset-0 h-full w-full pointer-events-none" />
           </div>

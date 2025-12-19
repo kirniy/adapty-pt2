@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/CustomButton";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -14,42 +15,132 @@ import { ResourcesMenu } from "./menus/ResourcesMenu";
 import { DocsMenu } from "./menus/DocsMenu";
 import { AnimatePresence, motion } from "framer-motion";
 
-// Mobile menu data - simplified versions of mega menus
-const MOBILE_MENU_DATA: Record<string, { title: string; href: string }[]> = {
-    Product: [
-        { title: "Subscriptions SDK", href: "https://adapty.io/sdk/" },
-        { title: "Paywall Builder", href: "https://adapty.io/paywall-builder/" },
-        { title: "A/B Testing", href: "https://adapty.io/paywall-ab-testing/" },
-        { title: "Revenue Analytics", href: "https://adapty.io/revenue-analytics/" },
-        { title: "LTV Analytics", href: "https://adapty.io/ltv-analytics/" },
-        { title: "Refund Saver", href: "https://adapty.io/refund-saver/" },
-        { title: "Integrations", href: "https://adapty.io/integrations/" },
-    ],
-    Cases: [
-        { title: "Productivity app", href: "https://adapty.io/clients/productivity-app/" },
-        { title: "Text on Pic", href: "https://adapty.io/clients/text-on-pic/" },
-        { title: "Going Merry", href: "https://adapty.io/clients/going-merry/" },
-        { title: "Shmoody", href: "https://adapty.io/clients/shmoody/" },
-        { title: "Glam AI", href: "https://adapty.io/clients/glam-ai/" },
-        { title: "View all case studies", href: "https://adapty.io/clients/" },
-    ],
-    Resources: [
-        { title: "Blog", href: "https://adapty.io/blog/" },
-        { title: "Podcasts", href: "https://adapty.io/podcasts/" },
-        { title: "Community", href: "https://adapty.io/community/" },
-        { title: "Webinars", href: "https://adapty.io/webinars/" },
-        { title: "Paywall Newsletter", href: "https://adapty.io/paywall-newsletter/" },
-        { title: "Ebooks", href: "https://adapty.io/ebooks/10k-100k-mrr/" },
-    ],
-    Docs: [
-        { title: "Quick Start", href: "https://adapty.io/docs/quickstart/" },
-        { title: "iOS SDK", href: "https://adapty.io/docs/ios-installation/" },
-        { title: "Android SDK", href: "https://adapty.io/docs/android-installation/" },
-        { title: "React Native", href: "https://adapty.io/docs/react-native-installation/" },
-        { title: "Flutter", href: "https://adapty.io/docs/flutter-installation/" },
-        { title: "All Documentation", href: "https://adapty.io/docs/" },
-    ],
+// Mobile menu data - matching original Adapty structure with sections
+type MobileMenuSection = {
+    title: string;
+    items: { title: string; href: string }[];
 };
+
+type MobileMenuConfig = {
+    topLinks?: { title: string; href: string }[];
+    sections?: MobileMenuSection[];
+};
+
+const MOBILE_MENU_DATA: Record<string, MobileMenuConfig> = {
+    Product: {
+        topLinks: [
+            { title: "Why Adapty?", href: "https://adapty.io/why-adapty/" },
+            { title: "Product changelog", href: "https://adapty.io/changelog/" },
+            { title: "System status", href: "https://status.adapty.io/" },
+            { title: "Comparisons", href: "https://adapty.io/compare/" },
+        ],
+        sections: [
+            {
+                title: "TECH",
+                items: [
+                    { title: "Subscriptions SDK", href: "https://adapty.io/sdk/" },
+                    { title: "Subscribers sync", href: "https://adapty.io/subscribers-sync/" },
+                    { title: "Fallback paywalls", href: "https://adapty.io/fallback-paywalls/" },
+                    { title: "Refund saver", href: "https://adapty.io/refund-saver/" },
+                ],
+            },
+            {
+                title: "ANALYTICS",
+                items: [
+                    { title: "Revenue analytics", href: "https://adapty.io/revenue-analytics/" },
+                    { title: "LTV analytics", href: "https://adapty.io/ltv-analytics/" },
+                    { title: "AI LTV and revenue predictions", href: "https://adapty.io/ai-predictions/" },
+                ],
+            },
+            {
+                title: "PAYWALLS",
+                items: [
+                    { title: "Paywall builder", href: "https://adapty.io/paywall-builder/" },
+                    { title: "A/B testing", href: "https://adapty.io/paywall-ab-testing/" },
+                    { title: "Targeting", href: "https://adapty.io/targeting/" },
+                    { title: "Localizations", href: "https://adapty.io/localizations/" },
+                ],
+            },
+        ],
+    },
+    Cases: {
+        sections: [
+            {
+                title: "CASE STUDIES",
+                items: [
+                    { title: "Productivity app", href: "https://adapty.io/clients/productivity-app/" },
+                    { title: "Text on Pic", href: "https://adapty.io/clients/text-on-pic/" },
+                    { title: "Going Merry", href: "https://adapty.io/clients/going-merry/" },
+                    { title: "Shmoody", href: "https://adapty.io/clients/shmoody/" },
+                    { title: "Glam AI", href: "https://adapty.io/clients/glam-ai/" },
+                    { title: "View all case studies", href: "https://adapty.io/clients/" },
+                ],
+            },
+        ],
+    },
+    Resources: {
+        sections: [
+            {
+                title: "LEARN",
+                items: [
+                    { title: "Blog", href: "https://adapty.io/blog/" },
+                    { title: "Podcasts", href: "https://adapty.io/podcasts/" },
+                    { title: "Webinars", href: "https://adapty.io/webinars/" },
+                    { title: "Ebooks", href: "https://adapty.io/ebooks/" },
+                ],
+            },
+            {
+                title: "COMMUNITY",
+                items: [
+                    { title: "Community", href: "https://adapty.io/community/" },
+                    { title: "Paywall Newsletter", href: "https://adapty.io/paywall-newsletter/" },
+                ],
+            },
+        ],
+    },
+    Docs: {
+        topLinks: [
+            { title: "Quick start", href: "https://adapty.io/docs/quickstart/" },
+            { title: "Migrate to Adapty", href: "https://adapty.io/docs/migration/" },
+            { title: "Platform status page", href: "https://status.adapty.io/" },
+            { title: "Support Center", href: "https://adapty.io/support/" },
+        ],
+        sections: [
+            {
+                title: "MOBILE SDK",
+                items: [
+                    { title: "iOS", href: "https://adapty.io/docs/ios-installation/" },
+                    { title: "Android", href: "https://adapty.io/docs/android-installation/" },
+                    { title: "React Native", href: "https://adapty.io/docs/react-native-installation/" },
+                    { title: "Flutter", href: "https://adapty.io/docs/flutter-installation/" },
+                    { title: "Unity", href: "https://adapty.io/docs/unity-installation/" },
+                ],
+            },
+            {
+                title: "WEB",
+                items: [
+                    { title: "Stripe", href: "https://adapty.io/docs/stripe/" },
+                    { title: "Server-side API", href: "https://adapty.io/docs/api/" },
+                ],
+            },
+        ],
+    },
+};
+
+// Main menu items for mobile (matching original Adapty structure)
+const MOBILE_MAIN_MENU = [
+    { label: "Company", hasSubmenu: false, href: "https://adapty.io/about/" },
+    { label: "Product", hasSubmenu: true },
+    { label: "Solution", hasSubmenu: false, href: "https://adapty.io/solutions/" },
+    { label: "Resources", hasSubmenu: true },
+    { label: "Integrations", hasSubmenu: false, href: "https://adapty.io/integrations/" },
+    { label: "Subscriptions SDK", hasSubmenu: false, href: "https://adapty.io/sdk/" },
+    { label: "Case Studies", hasSubmenu: true, dataKey: "Cases" },
+    { label: "Docs", hasSubmenu: true },
+    { label: "Pricing", hasSubmenu: false, href: "https://adapty.io/pricing/" },
+    { label: "Blog", hasSubmenu: false, href: "/blog" },
+    { label: "web2app", hasSubmenu: false, href: "https://funnelfox.com/", highlight: true },
+];
 
 const NAV_ITEMS = [
     {
@@ -78,6 +169,7 @@ export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredNav, setHoveredNav] = useState<string | null>(null);
     const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -86,6 +178,28 @@ export function Header() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    useEffect(() => {
+        if (!mobileMenuOpen) {
+            document.body.style.overflow = "";
+            document.body.style.paddingRight = "";
+            return;
+        }
+
+        const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.body.style.overflow = "hidden";
+        document.body.style.paddingRight = scrollBarWidth ? `${scrollBarWidth}px` : "";
+
+        return () => {
+            document.body.style.overflow = "";
+            document.body.style.paddingRight = "";
+        };
+    }, [mobileMenuOpen]);
+
+    useEffect(() => {
+        setMobileMenuOpen(false);
+        setExpandedMobileMenu(null);
+    }, [pathname]);
 
     return (
         <header
@@ -174,98 +288,167 @@ export function Header() {
                 <button
                     className="md:hidden z-50 p-2"
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-expanded={mobileMenuOpen}
+                    aria-controls="mobile-menu"
                 >
                     {mobileMenuOpen ? <X /> : <Menu />}
                 </button>
 
-                {/* Mobile Menu Overlay */}
+                {/* Mobile Menu Slide-in Drawer */}
                 <AnimatePresence>
                     {mobileMenuOpen && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="fixed inset-0 top-[80px] bg-white z-40 overflow-y-auto md:hidden"
-                        >
-                            <div className="px-6 py-6 flex flex-col">
-                                {NAV_ITEMS.map(item => (
-                                    <div key={item.label} className="border-b border-border-subtle last:border-b-0">
-                                        {item.component ? (
-                                            // Accordion item with submenu
-                                            <div>
-                                                <button
-                                                    onClick={() => setExpandedMobileMenu(
-                                                        expandedMobileMenu === item.label ? null : item.label
-                                                    )}
-                                                    className="w-full flex items-center justify-between py-4 text-xl font-semibold text-foreground"
-                                                >
-                                                    {item.label}
-                                                    <ChevronDown
-                                                        className={cn(
-                                                            "w-5 h-5 transition-transform duration-200",
-                                                            expandedMobileMenu === item.label && "rotate-180"
-                                                        )}
-                                                    />
-                                                </button>
-                                                <AnimatePresence>
-                                                    {expandedMobileMenu === item.label && MOBILE_MENU_DATA[item.label] && (
-                                                        <motion.div
-                                                            initial={{ height: 0, opacity: 0 }}
-                                                            animate={{ height: "auto", opacity: 1 }}
-                                                            exit={{ height: 0, opacity: 0 }}
-                                                            transition={{ duration: 0.2 }}
-                                                            className="overflow-hidden"
-                                                        >
-                                                            <div className="pb-4 pl-4 flex flex-col gap-3">
-                                                                {MOBILE_MENU_DATA[item.label].map(subItem => (
-                                                                    <Link
-                                                                        key={subItem.title}
-                                                                        href={subItem.href}
-                                                                        onClick={() => {
-                                                                            setMobileMenuOpen(false);
-                                                                            setExpandedMobileMenu(null);
-                                                                        }}
-                                                                        className="flex items-center gap-2 py-2 text-base text-foreground-secondary hover:text-brand transition-colors"
-                                                                    >
-                                                                        <ChevronRight className="w-4 h-4 opacity-50" />
-                                                                        {subItem.title}
-                                                                    </Link>
-                                                                ))}
-                                                            </div>
-                                                        </motion.div>
-                                                    )}
-                                                </AnimatePresence>
-                                            </div>
-                                        ) : (
-                                            // Direct link
-                                            <Link
-                                                href={item.href || "#"}
-                                                target={item.external ? "_blank" : undefined}
-                                                onClick={() => {
-                                                    setMobileMenuOpen(false);
-                                                    setExpandedMobileMenu(null);
-                                                }}
-                                                className={cn(
-                                                    "block py-4 text-xl font-semibold transition-colors",
-                                                    item.highlight
-                                                        ? "text-[#FF8A00] hover:text-[#FF8A00]/80"
-                                                        : "text-foreground hover:text-brand"
-                                                )}
-                                            >
-                                                {item.label}
-                                            </Link>
-                                        )}
+                        <>
+                            {/* Backdrop overlay */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="fixed inset-0 bg-black/20 z-40 md:hidden"
+                                onClick={() => {
+                                    setMobileMenuOpen(false);
+                                    setExpandedMobileMenu(null);
+                                }}
+                            />
+                            {/* Slide-in panel */}
+                            <motion.div
+                                initial={{ x: "100%" }}
+                                animate={{ x: 0 }}
+                                exit={{ x: "100%" }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                id="mobile-menu"
+                                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-white z-50 flex flex-col md:hidden shadow-2xl"
+                            >
+                                {/* Header with close button */}
+                                <div className="flex items-center justify-between px-6 py-4 border-b border-border-subtle">
+                                    <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+                                        <Image
+                                            src="/logos/adapty-logo-black.svg"
+                                            alt="Adapty"
+                                            width={90}
+                                            height={20}
+                                            className="h-5 w-auto"
+                                            style={{ width: "auto" }}
+                                        />
+                                    </Link>
+                                    <div className="flex items-center gap-3">
+                                        <LanguageSwitcher />
+                                        <button
+                                            onClick={() => {
+                                                setMobileMenuOpen(false);
+                                                setExpandedMobileMenu(null);
+                                            }}
+                                            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                            aria-label="Close menu"
+                                        >
+                                            <X className="w-5 h-5" />
+                                        </button>
                                     </div>
-                                ))}
+                                </div>
 
-                                {/* Mobile CTA Buttons */}
-                                <div className="flex flex-col gap-3 mt-8 pt-6 border-t border-border-subtle">
+                                {/* Menu content - scrollable */}
+                                <div className="flex-1 overflow-y-auto px-6 py-4">
+                                    {!expandedMobileMenu ? (
+                                        // Main menu view
+                                        <div>
+                                            {MOBILE_MAIN_MENU.map((item) => (
+                                                item.hasSubmenu ? (
+                                                    <button
+                                                        key={item.label}
+                                                        onClick={() => setExpandedMobileMenu(item.dataKey || item.label)}
+                                                        className="w-full flex items-center justify-between py-4 text-[17px] font-semibold text-foreground border-b border-border-subtle/50 last:border-b-0"
+                                                    >
+                                                        {item.label}
+                                                        <ChevronRight className="w-5 h-5 text-foreground-muted" />
+                                                    </button>
+                                                ) : (
+                                                    <Link
+                                                        key={item.label}
+                                                        href={item.href || "#"}
+                                                        target={item.href?.startsWith("http") ? "_blank" : undefined}
+                                                        rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                                                        onClick={() => setMobileMenuOpen(false)}
+                                                        className={cn(
+                                                            "block py-4 text-[17px] font-semibold border-b border-border-subtle/50 last:border-b-0",
+                                                            item.highlight
+                                                                ? "text-[#FF8A00]"
+                                                                : "text-foreground"
+                                                        )}
+                                                    >
+                                                        {item.label}
+                                                    </Link>
+                                                )
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        // Submenu view
+                                        <div>
+                                            {/* Back button and title */}
+                                            <button
+                                                onClick={() => setExpandedMobileMenu(null)}
+                                                className="flex items-center gap-2 text-brand font-semibold mb-4 pb-4 border-b border-border-subtle w-full"
+                                            >
+                                                <svg className="w-4 h-4 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                    <path d="M9 18l6-6-6-6" />
+                                                </svg>
+                                                {expandedMobileMenu}
+                                            </button>
+
+                                            {/* Top links (if any) */}
+                                            {MOBILE_MENU_DATA[expandedMobileMenu]?.topLinks && (
+                                                <div className="mb-6">
+                                                    {MOBILE_MENU_DATA[expandedMobileMenu].topLinks!.map((link) => (
+                                                        <Link
+                                                            key={link.title}
+                                                            href={link.href}
+                                                            target={link.href.startsWith("http") ? "_blank" : undefined}
+                                                                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                                                onClick={() => {
+                                                                    setMobileMenuOpen(false);
+                                                                    setExpandedMobileMenu(null);
+                                                                }}
+                                                                className="block py-2.5 text-[15px] font-semibold text-foreground hover:text-brand transition-colors"
+                                                            >
+                                                                {link.title}
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                )}
+
+                                                {/* Sections */}
+                                                {MOBILE_MENU_DATA[expandedMobileMenu]?.sections?.map((section) => (
+                                                    <div key={section.title} className="mb-6">
+                                                        <h3 className="text-xs font-semibold text-foreground-muted tracking-wider mb-3">
+                                                            {section.title}
+                                                        </h3>
+                                                        {section.items.map((item) => (
+                                                            <Link
+                                                                key={item.title}
+                                                                href={item.href}
+                                                                target={item.href.startsWith("http") ? "_blank" : undefined}
+                                                                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                                                onClick={() => {
+                                                                    setMobileMenuOpen(false);
+                                                                    setExpandedMobileMenu(null);
+                                                                }}
+                                                                className="block py-2.5 text-[15px] text-foreground hover:text-brand transition-colors"
+                                                            >
+                                                                {item.title}
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                ))}
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Fixed CTA buttons at bottom */}
+                                <div className="px-6 py-4 border-t border-border-subtle bg-white flex gap-3">
                                     <a
                                         href="https://app.adapty.io"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-full text-center py-3 text-base font-semibold text-brand border border-brand rounded-lg hover:bg-brand/5 transition-colors"
+                                        className="flex-1 text-center py-3 text-sm font-semibold text-brand border border-brand rounded-lg hover:bg-brand/5 transition-colors"
                                     >
                                         Sign up
                                     </a>
@@ -273,13 +456,13 @@ export function Header() {
                                         href="https://adapty.io/schedule-demo/"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="w-full text-center py-3 text-base font-semibold text-white bg-[#5900FF] rounded-lg hover:bg-[#4500C6] transition-colors"
+                                        className="flex-1 text-center py-3 text-sm font-semibold text-white bg-[#5900FF] rounded-lg hover:bg-[#4500C6] transition-colors"
                                     >
                                         Contact sales
                                     </a>
                                 </div>
-                            </div>
-                        </motion.div>
+                            </motion.div>
+                        </>
                     )}
                 </AnimatePresence>
                 {/* Centered Mega Menu Dropdown */}

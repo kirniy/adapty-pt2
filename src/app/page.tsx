@@ -54,7 +54,7 @@ export default function Home() {
                 <div className="mb-8 flex justify-center relative z-20">
                   <Link href="https://adapty.io/ebooks/100k-app-playbook/">
                     <AttioBadge className="cursor-pointer">
-                      <span className="text-[13px] font-medium text-shimmer-subtle flex items-center gap-1">
+                      <span className="text-[13px] font-medium text-foreground-secondary flex items-center gap-1">
                         Ebook: $100K playbook | download
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m5.5 4 3 3-3 3" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" /></svg>
                       </span>

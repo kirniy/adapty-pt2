@@ -17,26 +17,26 @@ const SECTIONS = {
     mobile: {
         title: "MOBILE SDK",
         items: [
-            { title: "iOS", href: "https://adapty.io/docs/ios-installation/", icon: "https://adapty.io/assets/uploads/2024/03/icon-20x20-apple.svg" },
-            { title: "Android", href: "https://adapty.io/docs/android-installation/", icon: "https://adapty.io/assets/uploads/2024/03/icon-20x20-android.svg" },
-            { title: "React Native", href: "https://adapty.io/docs/react-native-installation/", icon: "https://adapty.io/assets/uploads/2024/03/icon-20x20-react.svg" },
-            { title: "Unity", href: "https://adapty.io/docs/unity-installation/", icon: "https://adapty.io/assets/uploads/2024/03/icon-20x20-unity.svg" },
-            { title: "Flutter", href: "https://adapty.io/docs/flutter-installation/", icon: "https://adapty.io/assets/uploads/2024/03/icon-20x20-flutter.svg" },
-            { title: "FlutterFlow", href: "https://adapty.io/docs/flutterflow-installation/", icon: "https://adapty.io/assets/uploads/2024/04/flutterflow-1.svg" },
-            { title: "Capacitor", href: "https://adapty.io/docs/capacitor-installation/", icon: "https://adapty.io/assets/uploads/2024/03/icon-20x20-capacitor.svg" },
-            { title: "Kotlin Multiplatform", href: "https://adapty.io/docs/kmp-installation/", icon: "https://adapty.io/assets/uploads/2024/05/kmp.svg" },
+            { title: "iOS", href: "https://adapty.io/docs/ios-installation/", icon: "/images/menu-icons/icon-ios-64x64-1.svg" },
+            { title: "Android", href: "https://adapty.io/docs/android-installation/", icon: "/images/menu-icons/icon-android-64x64-1.svg" },
+            { title: "React Native", href: "https://adapty.io/docs/react-native-installation/", icon: "/images/menu-icons/icon-react-native-64x64-1.svg" },
+            { title: "Unity", href: "https://adapty.io/docs/unity-installation/", icon: "/images/menu-icons/icon-unity-64x64-1.svg" },
+            { title: "Flutter", href: "https://adapty.io/docs/flutter-installation/", icon: "/images/menu-icons/icon-flutter-64x64-1.svg" },
+            { title: "FlutterFlow", href: "https://adapty.io/docs/flutterflow-installation/", icon: "/images/menu-icons/icon-flutterflow-64x64-1.svg" },
+            { title: "Capacitor", href: "https://adapty.io/docs/capacitor-installation/", icon: "/images/menu-icons/capacitor-logo.svg" },
+            { title: "Kotlin Multiplatform", href: "https://adapty.io/docs/kmp-installation/", icon: "/images/menu-icons/kmp-logo.svg" },
         ]
     },
     web: {
         title: "WEB PAYMENTS",
         items: [
-            { title: "Stripe", href: "https://adapty.io/docs/stripe/", icon: "https://adapty.io/assets/uploads/2024/03/icon-20x20-stripe.svg" },
+            { title: "Stripe", href: "https://adapty.io/docs/stripe/", icon: "/images/menu-icons/icon-stripe-64x64-1.svg" },
         ]
     },
     api: {
         title: "WEB API",
         items: [
-            { title: "Server-side API", href: "https://adapty.io/docs/api/", icon: "https://adapty.io/assets/uploads/2024/03/icon-20x20-api.svg" },
+            { title: "Server-side API", href: "https://adapty.io/docs/api/", icon: "/images/menu-icons/web-api.svg" },
         ]
     }
 };

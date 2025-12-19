@@ -1,11 +1,6 @@
-import { createGoogleGenerativeAI } from '@ai-sdk/google';
-import { streamText, convertToCoreMessages } from 'ai';
-
-const google = createGoogleGenerativeAI({
-    apiKey: process.env.GOOGLE_API_KEY,
-});
-
-export const maxDuration = 30;
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
+import { streamText, convertToCoreMessages } from "ai";
+import { NextResponse } from "next/server";
 
 const systemInstruction = `You are an expert AI assistant for the Adapty.io redesign project.
 You have access to the full project documentation and design system.
@@ -27,7 +22,7 @@ ANIMATIONS (Attio Style):
 - Scroll Physics: StickyScroll, FeatureScrollStack (3D stacking)
 
 IMPLEMENTATION DETAILS:
-- Stack: Next.js 15, Tailwind CSS v4, Framer Motion, Sanity.io
+- Stack: Next.js, Tailwind CSS v4, Framer Motion, Sanity.io
 - Components: AnimatedPill, CustomButton, SpotlightCard, TheInfiniteGrid
 - Icons: Lucide React
 
@@ -37,13 +32,28 @@ If asked about specific code implementation, refer to the "Attio DNA" or "Implem
 `;
 
 export async function POST(req: Request) {
-    const { messages } = await req.json();
+    const apiKey =
+        process.env.GOOGLE_GENERATIVE_AI_API_KEY ?? process.env.GOOGLE_API_KEY;
 
+    if (!apiKey) {
+        return NextResponse.json(
+            {
+                content:
+                    "Missing GOOGLE_GENERATIVE_AI_API_KEY (or GOOGLE_API_KEY). Add it to `.env.local` to enable chat.",
+            },
+            { status: 500 }
+        );
+    }
+
+    const body = (await req.json()) as { messages?: unknown };
+    const messages = Array.isArray(body.messages) ? body.messages : [];
+
+    const google = createGoogleGenerativeAI({ apiKey });
     const result = await streamText({
-        model: google('gemini-3-flash-preview'),
-        messages: convertToCoreMessages(messages),
+        model: google("gemini-3-flash-preview"),
         system: systemInstruction,
+        messages: convertToCoreMessages(messages),
     });
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
 }

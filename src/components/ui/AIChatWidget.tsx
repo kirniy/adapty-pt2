@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { useChat } from "ai/react";
+import React, { useState, useCallback } from "react";
 import {
     ExpandableChat,
     ExpandableChatHeader,
@@ -9,30 +8,107 @@ import {
     ExpandableChatFooter,
 } from "@/components/ui/expandable-chat";
 import { ChatMessageList } from "@/components/ui/chat-message-list";
-import { ChatBubble, ChatBubbleAvatar, ChatBubbleMessage, ChatBubbleActionWrapper, ChatBubbleAction } from "@/components/ui/chat-bubble";
+import {
+    ChatBubble,
+    ChatBubbleAvatar,
+    ChatBubbleMessage,
+    ChatBubbleActionWrapper,
+    ChatBubbleAction,
+} from "@/components/ui/chat-bubble";
 import { ChatInput } from "@/components/ui/chat-input";
 import { Button } from "@/components/ui/CustomButton";
-import { Send, Bot, User, Paperclip, Mic, Copy, RefreshCw, Sparkles } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { Send, Paperclip, Copy, Sparkles } from "lucide-react";
+
+interface Message {
+    id: string;
+    role: "user" | "assistant";
+    content: string;
+}
 
 export function AIChatWidget() {
-    const { messages, input, handleInputChange, handleSubmit, isLoading, reload, stop } = useChat({
-        api: "/api/chat",
-        initialMessages: [
-            {
-                id: "welcome",
-                role: "assistant",
-                content: "Hi! I'm the Adapty AI Assistant. Ask me anything about the design system, documentation, or implementation code!",
+    const [messages, setMessages] = useState<Message[]>([
+        {
+            id: "welcome",
+            role: "assistant",
+            content:
+                "Hi! I'm the Adapty AI Assistant. Ask me anything about the design system, documentation, or implementation code!",
+        },
+    ]);
+    const [input, setInput] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleSubmit = useCallback(
+        async (e?: React.FormEvent) => {
+            e?.preventDefault();
+            const text = input.trim();
+            if (!text || isLoading) return;
+
+            const userMessage: Message = {
+                id: `user-${Date.now()}`,
+                role: "user",
+                content: text,
+            };
+
+            setMessages((prev) => [...prev, userMessage]);
+            setInput("");
+            setIsLoading(true);
+
+            try {
+                const response = await fetch("/api/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        messages: [...messages, userMessage].map((m) => ({
+                            role: m.role,
+                            content: m.content,
+                        })),
+                    }),
+                });
+
+                // Handle streaming response
+                const reader = response.body?.getReader();
+                if (!reader) throw new Error("No reader");
+
+                const decoder = new TextDecoder();
+                let fullText = "";
+
+                const assistantMessage: Message = {
+                    id: `assistant-${Date.now()}`,
+                    role: "assistant",
+                    content: "",
+                };
+                setMessages((prev) => [...prev, assistantMessage]);
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    fullText += decoder.decode(value, { stream: true });
+                    setMessages((prev) =>
+                        prev.map((m) =>
+                            m.id === assistantMessage.id
+                                ? { ...m, content: fullText }
+                                : m
+                        )
+                    );
+                }
+            } catch {
+                const errorMessage: Message = {
+                    id: `error-${Date.now()}`,
+                    role: "assistant",
+                    content: "Sorry, something went wrong. Please try again.",
+                };
+                setMessages((prev) => [...prev, errorMessage]);
+            } finally {
+                setIsLoading(false);
             }
-        ]
-    });
+        },
+        [input, isLoading, messages]
+    );
 
-    // Auto-scroll logic is handled by ChatMessageList internally now
-
-    const handleKeyDown = (e: React.KeyboardEvent) => {
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
-            handleSubmit(e as any);
+            void handleSubmit();
         }
     };
 
@@ -44,10 +120,14 @@ export function AIChatWidget() {
                         <Sparkles className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                        <h3 className="font-bold text-sm text-foreground">Adapty AI</h3>
+                        <h3 className="font-bold text-sm text-foreground">
+                            Adapty AI
+                        </h3>
                         <div className="flex items-center gap-1.5">
                             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                            <p className="text-[11px] font-medium text-muted-foreground">Gemini 3.0 Flash</p>
+                            <p className="text-[11px] font-medium text-muted-foreground">
+                                Gemini 3 Flash
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -55,61 +135,80 @@ export function AIChatWidget() {
 
             <ExpandableChatBody className="bg-transparent p-4 relative flex flex-col">
                 <ChatMessageList>
-                    {messages.map((message: any) => (
-                        <ChatBubble
-                            key={message.id}
-                            variant={message.role === "user" ? "sent" : "received"}
-                        >
-                            <ChatBubbleAvatar
-                                src={message.role === "user" ? undefined : undefined} // Add user avatar if available
-                                fallback={message.role === "user" ? "US" : "AI"}
-                                className={message.role === "assistant" ? "bg-gradient-to-br from-brand to-violet-600 text-white" : "bg-white text-foreground border border-black/5"}
-                            />
-                            <div className="flex flex-col gap-1 w-full max-w-[85%]">
-                                <ChatBubbleMessage
-                                    variant={message.role === "user" ? "sent" : "received"}
-                                    isLoading={false}
-                                    className={message.role === "user"
-                                        ? "bg-brand text-white shadow-md"
-                                        : "bg-white/80 backdrop-blur-sm shadow-sm border border-black/5 text-foreground"
+                    {messages.map((message) => {
+                        const isUser = message.role === "user";
+                        return (
+                            <ChatBubble
+                                key={message.id}
+                                variant={isUser ? "sent" : "received"}
+                            >
+                                <ChatBubbleAvatar
+                                    fallback={isUser ? "US" : "AI"}
+                                    className={
+                                        isUser
+                                            ? "bg-white text-foreground border border-black/5"
+                                            : "bg-gradient-to-br from-brand to-violet-600 text-white"
                                     }
-                                >
-                                    {message.content}
-                                </ChatBubbleMessage>
+                                />
+                                <div className="flex flex-col gap-1 w-full max-w-[85%]">
+                                    <ChatBubbleMessage
+                                        variant={isUser ? "sent" : "received"}
+                                        className={
+                                            isUser
+                                                ? "bg-brand text-white shadow-md"
+                                                : "bg-white/80 backdrop-blur-sm shadow-sm border border-black/5 text-foreground"
+                                        }
+                                    >
+                                        {message.content}
+                                    </ChatBubbleMessage>
 
-                                {message.role === "assistant" && (
-                                    <ChatBubbleActionWrapper>
-                                        <ChatBubbleAction
-                                            icon={<Copy className="w-3.5 h-3.5" />}
-                                            onClick={() => navigator.clipboard.writeText(message.content)}
-                                        />
-                                        <ChatBubbleAction
-                                            icon={<RefreshCw className="w-3.5 h-3.5" />}
-                                            onClick={() => reload()}
-                                        />
-                                    </ChatBubbleActionWrapper>
-                                )}
-                            </div>
-                        </ChatBubble>
-                    ))}
+                                    {!isUser &&
+                                        message.content &&
+                                        message.id !== "welcome" && (
+                                            <ChatBubbleActionWrapper>
+                                                <ChatBubbleAction
+                                                    icon={
+                                                        <Copy className="w-3.5 h-3.5" />
+                                                    }
+                                                    onClick={() =>
+                                                        navigator.clipboard.writeText(
+                                                            message.content
+                                                        )
+                                                    }
+                                                />
+                                            </ChatBubbleActionWrapper>
+                                        )}
+                                </div>
+                            </ChatBubble>
+                        );
+                    })}
 
                     {isLoading && (
                         <ChatBubble variant="received">
-                            <ChatBubbleAvatar fallback="AI" className="bg-brand/10 text-brand" />
-                            <ChatBubbleMessage isLoading />
+                            <ChatBubbleAvatar
+                                fallback="AI"
+                                className="bg-gradient-to-br from-brand to-violet-600 text-white"
+                            />
+                            <ChatBubbleMessage
+                                isLoading
+                                className="bg-white/80 border border-black/5"
+                            />
                         </ChatBubble>
                     )}
                 </ChatMessageList>
             </ExpandableChatBody>
 
             <ExpandableChatFooter className="bg-white/50 backdrop-blur-md p-3 border-t border-black/5">
-                <form onSubmit={handleSubmit} className="relative flex items-end gap-2 pt-2">
+                <form
+                    onSubmit={handleSubmit}
+                    className="relative flex items-end gap-2 pt-2"
+                >
                     <div className="relative flex-1 rounded-2xl border border-black/5 bg-white/80 focus-within:ring-2 focus-within:ring-brand/20 p-1 shadow-sm transition-all focus-within:shadow-md focus-within:bg-white">
                         <ChatInput
                             value={input}
-                            onChange={handleInputChange}
+                            onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Ask Gemini 3.0..."
+                            placeholder="Ask anything…"
                             className="min-h-12 resize-none rounded-xl bg-transparent border-0 p-3 shadow-none focus-visible:ring-0 placeholder:text-muted-foreground/50"
                         />
                         <div className="flex items-center p-2 px-3 justify-between">
@@ -119,6 +218,8 @@ export function AIChatWidget() {
                                     size="icon"
                                     type="button"
                                     className="h-8 w-8 text-muted-foreground hover:bg-black/5 rounded-full"
+                                    disabled={isLoading}
+                                    aria-label="Attach file"
                                 >
                                     <Paperclip className="size-4" />
                                 </Button>
@@ -129,8 +230,9 @@ export function AIChatWidget() {
                     <Button
                         type="submit"
                         size="icon"
-                        className="h-11 w-11 bg-brand hover:bg-brand-600 text-white rounded-full shrink-0 mb-1 shadow-lg hover:shadow-brand/25 transition-all"
+                        className="h-11 w-11 bg-brand hover:bg-brand-hover text-white rounded-full shrink-0 mb-1 shadow-lg hover:shadow-brand/25 transition-all"
                         disabled={isLoading || !input.trim()}
+                        aria-label="Send message"
                     >
                         <Send className="w-5 h-5 ml-0.5" />
                     </Button>

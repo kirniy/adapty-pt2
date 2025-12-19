@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 import { cn } from '@/lib/utils';
 
 type WavePathProps = React.ComponentProps<'div'>;
@@ -13,7 +13,7 @@ export function WavePath({ className, ...props }: WavePathProps) {
     const reqId = useRef<number | null>(null);
 
     // Define setPath outside useEffect to be accessible to event handlers
-    const setPath = (prog: number) => {
+    const setPath = useCallback((prog: number) => {
         // Use window.innerWidth safely
         const width = typeof window !== 'undefined' ? window.innerWidth * 0.7 : 800;
         if (path.current) {
@@ -23,13 +23,11 @@ export function WavePath({ className, ...props }: WavePathProps) {
                 `M0 100 Q${width * x.current} ${100 + prog * 0.6}, ${width} 100`,
             );
         }
-    };
+    }, []);
 
     useEffect(() => {
         setPath(progress.current);
-        // No dependency array needed for this initial set
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [setPath]);
 
     const lerp = (x: number, y: number, a: number) => x * (1 - a) + y * a;
 

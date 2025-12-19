@@ -13,9 +13,9 @@ const INTEGRATIONS = [
 
 export const IntegrationsMarquee = () => {
     return (
-        <Section className="py-16 overflow-hidden bg-bg-primary">
+        <Section className="py-16 overflow-hidden bg-background">
             <div className="text-center mb-10">
-                <p className="text-text-secondary text-sm uppercase tracking-wider font-medium">Integrations</p>
+                <p className="text-foreground-secondary text-sm uppercase tracking-wider font-medium">Integrations</p>
                 <h2 className="text-2xl md:text-3xl font-semibold mt-2">Works with your favorite tools</h2>
             </div>
 

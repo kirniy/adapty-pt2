@@ -8,7 +8,7 @@ interface BlogCardProps {
         title: string;
         excerpt: string;
         slug: { current: string };
-        mainImage?: any;
+        mainImage?: unknown;
         category?: { name: string; color?: string };
         publishedAt: string;
         readTime?: number;
@@ -38,14 +38,14 @@ export function BlogCard({ post, className, featured = false }: BlogCardProps) {
                 "relative overflow-hidden bg-background-tertiary",
                 featured ? "aspect-[16/9] md:aspect-[3/2] w-full rounded-2xl shadow-card" : "aspect-[16/9] w-full"
             )}>
-                {post.mainImage && (
+                {post.mainImage ? (
                     <Image
                         src={urlFor(post.mainImage).width(800).height(500).url()}
                         alt={post.title}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                )}
+                ) : null}
             </div>
 
             {/* Content */}

@@ -43,7 +43,7 @@ export const CaseStudies = () => {
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-8">
-                    {cases.map((study, index) => (
+                    {cases.map((study) => (
                         <div
                             key={study.company}
                             className="group flex flex-col p-8 rounded-3xl bg-background-tertiary border border-transparent hover:border-border-subtle hover:bg-white hover:shadow-card hover:-translate-y-1 transition-all duration-300 ease-smooth cursor-pointer"

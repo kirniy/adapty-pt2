@@ -5,10 +5,22 @@ import { client, urlFor } from "@/lib/sanity";
 import Link from "next/link";
 import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { formatDate } from "@/lib/utils"; // Assuming utils has this or I will create it/inline it
+import { formatDate } from "@/lib/utils";
 
-async function getPosts() {
-    return client.fetch(`
+type BlogPostListItem = {
+    _id: string;
+    title: string;
+    slug: { current: string };
+    excerpt?: string;
+    mainImage?: unknown;
+    publishedAt?: string;
+    readTime?: number;
+    author?: { name?: string; image?: unknown };
+    category?: { title?: string };
+};
+
+async function getPosts(): Promise<BlogPostListItem[]> {
+    return client.fetch<BlogPostListItem[]>(`
     *[_type == "blogPost"] | order(publishedAt desc) {
       _id,
       title,
@@ -42,7 +54,7 @@ export default async function BlogPage() {
                     </FadeIn>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {posts.map((post: any, index: number) => (
+                        {posts.map((post, index) => (
                             <FadeIn key={post._id} delay={index * 0.1}>
                                 <Link
                                     href={`/blog/${post.slug.current}`}
@@ -71,7 +83,7 @@ export default async function BlogPage() {
                                         <div className="flex items-center gap-2 text-xs text-foreground-secondary mb-3 font-medium">
                                             {post.publishedAt && (
                                                 <time dateTime={post.publishedAt}>
-                                                    {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                                                    {formatDate(post.publishedAt)}
                                                 </time>
                                             )}
                                             <span>•</span>
@@ -87,7 +99,7 @@ export default async function BlogPage() {
                                             {post.author?.image ? (
                                                 <Image
                                                     src={urlFor(post.author.image).url()}
-                                                    alt={post.author.name}
+                                                    alt={post.author.name || 'Author'}
                                                     width={24}
                                                     height={24}
                                                     className="rounded-full"

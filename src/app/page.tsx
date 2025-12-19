@@ -2,17 +2,12 @@ import { Container } from "@/components/ui/Container";
 import { BorderBeam } from "@/components/ui/BorderBeam";
 import { FeatureScrollStack } from "@/components/sections/FeatureScrollStack";
 import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/CustomButton";
 import { AIChatWidget } from "@/components/ui/AIChatWidget";
-import { FeatureCard } from "@/components/ui/FeatureCard";
-import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { RoleCards } from "@/components/sections/RoleCards";
-import { SDKGrid } from "@/components/sections/SDKGrid";
 import { IntegrationsMarquee } from "@/components/sections/IntegrationsMarquee";
 import Image from "next/image";
 import Link from "next/link";
-import { AnimatedPill } from "@/components/ui/AnimatedPill";
-import { ArrowRight, Check, BarChart2, Smartphone, DollarSign, Layers } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { EmailCTA } from "@/components/ui/EmailCTA";
 import { Marquee } from "@/components/ui/Marquee";
 import { Stats } from "@/components/sections/Stats";
@@ -20,13 +15,8 @@ import { SDKCodeSnippet } from "@/components/sections/SDKCodeSnippet";
 import { G2Badges } from "@/components/sections/G2Badges";
 import { CaseStudies } from "@/components/sections/CaseStudies";
 import { Enterprise } from "@/components/sections/Enterprise";
-import { AnimatedCheck } from "@/components/ui/AnimatedCheck";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { AuroraBackground } from "@/components/ui/AuroraBackground";
 import { AttioBadge } from "@/components/ui/AttioBadge";
-import { GridSpotlight } from "@/components/ui/GridSpotlight";
-import { StickyScrollFixed as StickyScroll } from "@/components/ui/StickyScrollFixed";
-import { NumberTicker } from "@/components/ui/NumberTicker";
 import { ContainerScroll } from "@/components/ui/ContainerScroll";
 import { KaraokeText } from "@/components/ui/KaraokeText";
 import { TheInfiniteGrid } from "@/components/ui/TheInfiniteGrid";
@@ -85,7 +75,6 @@ const trustedByLogos = [
   { name: 'almus', file: 'almus.svg' },
   { name: 'impala-studios', file: 'impala-studios.svg' },
   { name: 'hubx', file: 'hubx.svg' },
-  { name: 'bickster', file: 'bickster.png' },
 ];
 
 export default function Home() {
@@ -349,6 +338,7 @@ export default function Home() {
           </Container>
         </Section>
       </div>
+      <AIChatWidget />
     </>
   );
 }

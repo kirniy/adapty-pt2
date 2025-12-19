@@ -1,8 +1,7 @@
+import fs from "node:fs";
+import path from "node:path";
 
-const fs = require('fs');
-const path = require('path');
-
-const OUTPUT_FILE = path.join(__dirname, '../blog-data.ndjson');
+const OUTPUT_FILE = path.resolve(process.cwd(), "blog-data.ndjson");
 
 const AUTHORS = [
     {
@@ -127,9 +126,13 @@ const POSTS = [
 
 const stream = fs.createWriteStream(OUTPUT_FILE);
 
-[...AUTHORS, ...CATEGORIES, ...POSTS].forEach(doc => {
-    stream.write(JSON.stringify(doc) + '\n');
+[...AUTHORS, ...CATEGORIES, ...POSTS].forEach((doc) => {
+    stream.write(JSON.stringify(doc) + "\n");
 });
 
 stream.end();
-console.log(`Generated ${AUTHORS.length + CATEGORIES.length + POSTS.length} documents to ${OUTPUT_FILE}`);
+console.log(
+    `Generated ${
+        AUTHORS.length + CATEGORIES.length + POSTS.length
+    } documents to ${OUTPUT_FILE}`
+);

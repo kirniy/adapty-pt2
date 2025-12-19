@@ -1,4 +1,7 @@
 import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
+import tailwindcssAnimate from "tailwindcss-animate";
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
 const config: Config = {
   content: [
@@ -25,11 +28,33 @@ const config: Config = {
           hover: '#5519CC',
           light: '#F5F3FF',
         },
+        primary: {
+          DEFAULT: '#6720FF',
+          foreground: '#FFFFFF',
+        },
+        secondary: {
+          DEFAULT: '#FAFAFA',
+          foreground: '#181818',
+        },
+        muted: {
+          DEFAULT: '#EEEFF1',
+          foreground: '#75777C',
+        },
+        accent: {
+          DEFAULT: '#F4F5F6',
+          foreground: '#181818',
+        },
+        destructive: {
+          DEFAULT: '#EF4444',
+          foreground: '#FFFFFF',
+        },
         border: {
           DEFAULT: '#E6E7EA',
           subtle: '#F0F0F0',
           focus: '#266DF0',
         },
+        input: '#E6E7EA',
+        ring: '#266DF0',
       },
       fontFamily: {
         sans: ['var(--font-gilroy)', 'system-ui', 'sans-serif'],
@@ -76,22 +101,24 @@ const config: Config = {
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
-    require("@tailwindcss/typography"),
+    tailwindcssAnimate,
+    typography,
     addVariablesForColors,
   ],
 };
 export default config;
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
-function addVariablesForColors({ addBase, theme }: any) {
-  const {
-    default: flattenColorPalette,
-  } = require("tailwindcss/lib/util/flattenColorPalette");
+type TailwindPluginApi = {
+  addBase: (base: Record<string, Record<string, string>>) => void;
+  theme: (path: string) => unknown;
+};
 
-  const allColors = flattenColorPalette(theme("colors"));
+function addVariablesForColors({ addBase, theme }: TailwindPluginApi) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const allColors = flattenColorPalette(theme("colors") as any);
   const newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, String(val)])
   );
 
   addBase({

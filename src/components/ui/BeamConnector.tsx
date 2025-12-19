@@ -14,8 +14,6 @@ interface BeamConnectorProps {
 export function BeamConnector({ startX = 0, startY = 50, endX = 100, endY = 50, curvature = 50 }: BeamConnectorProps) {
     // Logic to calculate a smooth Curvier path
     // Since we assume simple container usage for now, let's just make a generic S-curve
-    const path = `M 0 50 C 50 50, 50 50, 100 50`;
-
     // Dynamic path based on props (if we were passing absolute coords)
     const d = `M ${startX} ${startY} C ${startX + curvature} ${startY}, ${endX - curvature} ${endY}, ${endX} ${endY}`;
 

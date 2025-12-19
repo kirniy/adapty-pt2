@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/CustomButton";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -44,7 +43,6 @@ const NAV_ITEMS = [
 export function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {

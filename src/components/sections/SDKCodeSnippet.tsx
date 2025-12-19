@@ -189,17 +189,6 @@ export const SDKCodeSnippet = () => {
 
 // Simple syntax highlighter for the demo
 function highlightSyntax(code: string) {
-    // Basic rules
-    const rules = [
-        { regex: /\/\/.*/g, color: '#565f89' }, // Comments
-        { regex: /"(.*?)"/g, color: '#9ECE6A' }, // Strings
-        { regex: /\b(import|try|await|if|let|var|const|final|val|fun|return)\b/g, color: '#BB9AF7' }, // Keywords
-        { regex: /\b(Adapty|adapty)\b/g, color: '#7AA2F7' }, // Classes/Objects
-        { regex: /\b(activate|getPaywall|makePurchase)\b/g, color: '#7DCFFF' }, // Functions
-    ];
-
-    let parts = [{ text: code, color: '' }];
-
     // Very naive implementation for visual demo only
     // In production we'd use PrismJS or similar
 
@@ -215,11 +204,15 @@ function highlightSyntax(code: string) {
     const words = code.split(' ');
     return words.map((word, i) => {
         let color = '#CDD6F4';
-        if (['import', 'try', 'await', 'if', 'let', 'val', 'const', 'final', 'catch', 'final'].includes(word)) color = '#BB9AF7';
+        if (['import', 'try', 'await', 'if', 'let', 'val', 'const', 'final', 'catch'].includes(word)) color = '#BB9AF7';
         if (word.includes('"') || word.includes("'")) color = '#9ECE6A';
         if (word.includes('Adapty') || word.includes('adapty')) color = '#7AA2F7';
         if (word.includes('activate') || word.includes('getPaywall') || word.includes('makePurchase')) color = '#7DCFFF';
 
-        return <span key={i} style={{ color }}>{word} </span>
+        return (
+            <span key={i} style={{ color }}>
+                {word}{" "}
+            </span>
+        );
     });
 }

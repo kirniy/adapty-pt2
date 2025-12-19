@@ -9,7 +9,6 @@ interface FadeInProps {
     className?: string;
     delay?: number;
     direction?: "up" | "down" | "left" | "right";
-    fullWidth?: boolean;
 }
 
 export function FadeIn({
@@ -17,7 +16,6 @@ export function FadeIn({
     delay = 0,
     className,
     direction = "up",
-    fullWidth = false
 }: FadeInProps) {
     const { ref, isVisible } = useScrollAnimation(0.1);
 

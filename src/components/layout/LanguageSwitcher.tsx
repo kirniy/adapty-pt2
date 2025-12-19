@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from 'react';
+import Image from "next/image";
 import styles from './LanguageSwitcher.module.css';
 
 const LANGUAGES = [
@@ -51,10 +52,12 @@ export const LanguageSwitcher: React.FC = () => {
                 aria-expanded={isOpen}
                 aria-label={currentLang.label}
             >
-                <img
+                <Image
                     src={currentLang.flag}
                     alt=""
                     className={styles.flag}
+                    width={16}
+                    height={16}
                 />
                 <span className={styles.code}>{currentLang.code}</span>
                 <span className={styles.label}>{currentLang.label}</span>
@@ -71,10 +74,12 @@ export const LanguageSwitcher: React.FC = () => {
                                 handleLanguageSelect(lang);
                             }}
                         >
-                            <img
+                            <Image
                                 src={lang.flag}
                                 alt=""
                                 className={styles.flag}
+                                width={16}
+                                height={16}
                             />
                             <span className={styles.optionLabel}>{lang.label}</span>
                         </a>

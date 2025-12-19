@@ -31,7 +31,7 @@ export const SDKGrid = () => {
                     <h2 className="text-5xl font-bold tracking-tight mb-6">
                         Get the SDK for your platform
                     </h2>
-                    <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+                    <p className="text-xl text-foreground-secondary max-w-2xl mx-auto">
                         Hard to pronounce, easy to use. Open-source, lightweight, and native SDKs for every major platform.
                     </p>
                 </div>
@@ -42,7 +42,7 @@ export const SDKGrid = () => {
                             key={sdk.name}
                             className={cn(
                                 "group flex flex-col items-center justify-center p-8",
-                                "bg-bg-secondary rounded-2xl border border-transparent",
+                                "bg-background-secondary rounded-2xl border border-transparent",
                                 "hover:bg-white hover:border-border-subtle hover:shadow-card",
                                 "transition-all duration-300 ease-smooth cursor-pointer"
                             )}
@@ -53,9 +53,9 @@ export const SDKGrid = () => {
                                     alt={sdk.name}
                                     fill
                                     className="object-contain"
-                                />
-                            </div>
-                            <span className="font-semibold text-text-primary text-lg">
+                            />
+                        </div>
+                            <span className="font-semibold text-foreground text-lg">
                                 {sdk.name}
                             </span>
                         </div>

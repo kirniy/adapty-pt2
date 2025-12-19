@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import { X, MessageCircle, Sparkles } from "lucide-react";
+import { X, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/CustomButton";
 import { AnimatePresence, motion } from "framer-motion";
@@ -119,11 +119,11 @@ const ExpandableChatFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 
 ExpandableChatFooter.displayName = "ExpandableChatFooter";
 
-interface ExpandableChatToggleProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ExpandableChatToggleProps {
     icon?: React.ReactNode;
     isOpen: boolean;
     toggleChat: () => void;
+    className?: string;
 }
 
 const ExpandableChatToggle: React.FC<ExpandableChatToggleProps> = ({
@@ -131,7 +131,6 @@ const ExpandableChatToggle: React.FC<ExpandableChatToggleProps> = ({
     icon,
     isOpen,
     toggleChat,
-    ...props
 }) => (
     <motion.button
         onClick={toggleChat}
@@ -144,7 +143,6 @@ const ExpandableChatToggle: React.FC<ExpandableChatToggleProps> = ({
         style={{
             background: "linear-gradient(135deg, #6720FF 0%, #3D10AA 100%)",
         }}
-        {...props}
     >
         {/* Glow effect */}
         <div className="absolute inset-0 rounded-full bg-brand blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-300" />

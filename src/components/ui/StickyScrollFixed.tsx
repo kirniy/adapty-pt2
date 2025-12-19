@@ -8,7 +8,7 @@ interface StickyScrollProps {
     content: {
         title: string;
         description: string;
-        content?: React.ReactNode | any;
+        content?: React.ReactNode;
     }[];
     contentClassName?: string;
 }
@@ -106,7 +106,14 @@ const DesktopLayout = ({ content, contentClassName }: StickyScrollProps) => {
 };
 
 // Scroll Spy Helper
-function TextSection({ title, description, index, setActiveCard }: any) {
+interface TextSectionProps {
+    title: string;
+    description: string;
+    index: number;
+    setActiveCard: React.Dispatch<React.SetStateAction<number>>;
+}
+
+function TextSection({ title, description, index, setActiveCard }: TextSectionProps) {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

@@ -5,11 +5,12 @@ import { Section } from "@/components/ui/Section";
 import { NumberTicker } from "@/components/ui/NumberTicker";
 import React from "react";
 
+// Authentic stats from adapty.io
 const stats = [
-    { value: 1, prefix: "$", suffix: "B+", label: "Revenue tracked" },
-    { value: 15000, suffix: "+", label: "Apps powered" },
-    { value: 99.9, suffix: "%", label: "Uptime SLA", decimalPlaces: 1 },
-    { value: 50, prefix: "<", suffix: "ms", label: "API response" },
+    { value: 2, prefix: "$", suffix: "B+", label: "Revenue tracked" },
+    { value: 99.99, suffix: "%", label: "Historical uptime", decimalPlaces: 2 },
+    { value: 2.5, suffix: "B+", label: "Users served", decimalPlaces: 1 },
+    { value: 60, suffix: "B+", label: "API calls/month" },
 ];
 
 export const Stats = () => {
@@ -27,9 +28,10 @@ export const Stats = () => {
                                 <NumberTicker
                                     value={stat.value}
                                     prefix={stat.prefix}
+                                    suffix={stat.suffix}
                                     decimalPlaces={stat.decimalPlaces || 0}
                                     delay={0.2 + i * 0.1}
-                                    className="!text-black" // Force black text strictly
+                                    className="!text-black"
                                 />
                             </div>
                             <div className="text-foreground-secondary mt-2 font-medium">{stat.label}</div>

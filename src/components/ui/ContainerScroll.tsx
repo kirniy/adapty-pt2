@@ -1,16 +1,18 @@
 "use client";
 
 import React, { useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+
+interface ContainerScrollProps {
+    children: React.ReactNode;
+    titleComponent: React.ReactNode;
+}
 
 export const ContainerScroll = ({
     children,
     titleComponent,
-}: {
-    children: React.ReactNode;
-    titleComponent: string | React.ReactNode;
-}) => {
-    const containerRef = useRef<any>(null);
+}: ContainerScrollProps) => {
+    const containerRef = useRef<HTMLDivElement | null>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end start"],
@@ -29,17 +31,15 @@ export const ContainerScroll = ({
         };
     }, []);
 
-    const scaleDimensions = () => {
-        return isMobile ? [0.7, 0.9] : [1.05, 1];
-    };
+    const scaleDimensions: [number, number] = isMobile ? [0.7, 0.9] : [1.05, 1];
 
     const rotate = useTransform(scrollYProgress, [0, 1], [0, 20]);
-    const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
+    const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions);
     const translate = useTransform(scrollYProgress, [0, 1], [-100, 0]);
 
     return (
         <div
-            className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 md:p-20" // Tall container for scroll space
+            className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 pt-20 md:p-20" // Tall container for scroll space, pt-20 for mobile header clearance
             ref={containerRef}
         >
             <div
@@ -49,7 +49,7 @@ export const ContainerScroll = ({
                 }}
             >
                 <Header translate={translate} titleComponent={titleComponent} />
-                <Card rotate={rotate} translate={translate} scale={scale}>
+                <Card rotate={rotate} scale={scale}>
                     {children}
                 </Card>
             </div>
@@ -57,7 +57,12 @@ export const ContainerScroll = ({
     );
 };
 
-export const Header = ({ translate, titleComponent }: any) => {
+interface HeaderProps {
+    translate: MotionValue<number>;
+    titleComponent: React.ReactNode;
+}
+
+export const Header = ({ translate, titleComponent }: HeaderProps) => {
     return (
         <motion.div
             style={{
@@ -70,16 +75,17 @@ export const Header = ({ translate, titleComponent }: any) => {
     );
 };
 
+interface CardProps {
+    rotate: MotionValue<number>;
+    scale: MotionValue<number>;
+    children: React.ReactNode;
+}
+
 export const Card = ({
     rotate,
     scale,
     children,
-}: {
-    rotate: any;
-    scale: any;
-    translate: any;
-    children: React.ReactNode;
-}) => {
+}: CardProps) => {
     return (
         <motion.div
             style={{

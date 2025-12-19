@@ -37,8 +37,10 @@ export function BorderBeam({
                 )}
             >
                 <motion.div
-                    className="absolute top-1/2 left-1/2 aspect-square w-[200%] -translate-x-1/2 -translate-y-1/2 bg-transparent"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-transparent"
                     style={{
+                        width: size,
+                        height: size,
                         background: `conic-gradient(from 0deg, transparent 0 300deg, ${colorFrom} 340deg, ${colorTo} 360deg)`
                     }}
                     animate={{ rotate: 360 }}

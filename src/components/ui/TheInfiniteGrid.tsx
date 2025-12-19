@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import {
     motion,
     useMotionValue,
     useMotionTemplate,
-    useAnimationFrame
+    useAnimationFrame,
+    type MotionValue
 } from "framer-motion";
 
 interface TheInfiniteGridProps {
@@ -22,7 +23,6 @@ export const TheInfiniteGrid = ({
     className,
     children
 }: TheInfiniteGridProps) => {
-    const [count, setCount] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
 
     const mouseX = useMotionValue(0);
@@ -113,7 +113,15 @@ export const TheInfiniteGrid = ({
     );
 };
 
-const GridPattern = ({ offsetX, offsetY, className }: { offsetX: any, offsetY: any, className?: string }) => {
+const GridPattern = ({
+    offsetX,
+    offsetY,
+    className,
+}: {
+    offsetX: MotionValue<number>;
+    offsetY: MotionValue<number>;
+    className?: string;
+}) => {
     return (
         <svg className={cn("w-full h-full", className)}>
             <defs>

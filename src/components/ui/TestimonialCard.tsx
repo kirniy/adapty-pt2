@@ -20,7 +20,7 @@ export function TestimonialCard({ quote, author, className }: TestimonialCardPro
         )}>
             <div className="flex flex-col gap-4">
                 <p className="text-[15px] leading-relaxed text-foreground font-medium">
-                    "{quote}"
+                    “{quote}”
                 </p>
                 <div className="flex items-center gap-3">
                     {author.avatar ? (

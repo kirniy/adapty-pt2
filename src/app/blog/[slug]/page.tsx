@@ -1,4 +1,4 @@
-
+import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { client, urlFor } from "@/lib/sanity";
@@ -9,6 +9,56 @@ import { PortableText, PortableTextComponents } from "next-sanity";
 import type { PortableTextBlock } from "@portabletext/types";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { BlogCodeBlock } from "@/components/blog/BlogCodeBlock";
+
+type PostMetadata = {
+    title: string;
+    excerpt?: string;
+    mainImage?: { asset: { _ref: string } };
+};
+
+async function getPostMetadata(slug: string): Promise<PostMetadata | null> {
+    return client.fetch(`
+        *[_type == "blogPost" && slug.current == $slug][0] {
+            title,
+            excerpt,
+            mainImage
+        }
+    `, { slug });
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+    const { slug } = await params;
+    const post = await getPostMetadata(slug);
+
+    if (!post) {
+        return {
+            title: "Post Not Found",
+        };
+    }
+
+    const ogImage = post.mainImage ? urlFor(post.mainImage).width(1200).height(630).url() : undefined;
+
+    return {
+        title: post.title,
+        description: post.excerpt || `Read ${post.title} on the Adapty blog.`,
+        openGraph: {
+            title: post.title,
+            description: post.excerpt || `Read ${post.title} on the Adapty blog.`,
+            url: `https://adapty-pt2.vercel.app/blog/${slug}`,
+            type: "article",
+            images: ogImage ? [{ url: ogImage, width: 1200, height: 630 }] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: post.title,
+            description: post.excerpt || `Read ${post.title} on the Adapty blog.`,
+            images: ogImage ? [ogImage] : undefined,
+        },
+        alternates: {
+            canonical: `https://adapty-pt2.vercel.app/blog/${slug}`,
+        },
+    };
+}
 
 const TABLE_DIVIDER_RE = /\|\s*-{3,}\s*\|/;
 

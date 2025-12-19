@@ -171,7 +171,7 @@ export function BlogCodeBlock({ code, language, className }: BlogCodeBlockProps)
                     {copied ? "Copied" : "Copy"}
                 </button>
             </div>
-            <pre className="blog-code-block overflow-x-auto rounded-b-2xl border border-t-0 border-border-subtle bg-[#0F0F1A] px-5 py-4 text-sm leading-relaxed">
+            <pre className="blog-code-block overflow-x-auto rounded-b-2xl border border-t-0 border-border-subtle bg-[#0F0F1A] px-5 py-4 text-sm leading-relaxed text-[#E6E8F0]">
                 <code
                     className={`language-${prismLanguage}`}
                     dangerouslySetInnerHTML={{ __html: highlighted }}

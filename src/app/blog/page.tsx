@@ -1,4 +1,4 @@
-
+import { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { client, urlFor } from "@/lib/sanity";
@@ -6,6 +6,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { formatDate } from "@/lib/utils";
+
+export const metadata: Metadata = {
+    title: "Blog",
+    description: "Insights on in-app subscriptions, mobile monetization, paywall optimization, and A/B testing. Learn from industry experts and successful app developers.",
+    openGraph: {
+        title: "Adapty Blog – In-App Subscription Insights",
+        description: "Insights on in-app subscriptions, mobile monetization, paywall optimization, and A/B testing.",
+        url: "https://adapty-pt2.vercel.app/blog",
+    },
+    alternates: {
+        canonical: "https://adapty-pt2.vercel.app/blog",
+    },
+};
 
 type BlogPostListItem = {
     _id: string;

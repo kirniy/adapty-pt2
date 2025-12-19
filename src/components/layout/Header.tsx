@@ -277,14 +277,22 @@ export function Header() {
                 {/* Logo */}
                 <div className="flex items-center gap-12">
                     <div className="flex items-center gap-4">
-                        <Link href="/" className="flex items-center gap-2 z-50">
+                        <Link href="/" className="relative z-50 group block w-[110px] h-6">
                             <Image
                                 src="/logos/adapty-logo-black.svg"
                                 alt="Adapty"
                                 width={110}
                                 height={24}
-                                className="h-6 w-auto"
-                                style={{ width: "auto" }}
+                                className="h-6 w-auto absolute inset-0 transition-opacity duration-300 group-hover:opacity-0"
+                                priority
+                            />
+                            <Image
+                                src="/logos/adapty-logo-color.svg"
+                                alt="Adapty"
+                                width={110}
+                                height={24}
+                                className="h-6 w-auto absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                                priority
                             />
                         </Link>
                         <LanguageSwitcher />
@@ -484,18 +492,18 @@ export function Header() {
                                                 </div>
                                             )}
 
-                                                {/* Sections */}
-                                                {MOBILE_MENU_DATA[expandedMobileMenu]?.sections?.map((section) => (
-                                                    <div key={section.title} className="mb-6">
-                                                        <h3 className="text-xs font-semibold text-foreground-muted tracking-wider mb-3">
-                                                            {section.title}
-                                                        </h3>
-                                                        {section.items.map((item) => (
-                                                            <Link
-                                                                key={item.title}
-                                                                href={item.href}
-                                                                target={item.href.startsWith("http") ? "_blank" : undefined}
-                                                                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                            {/* Sections */}
+                                            {MOBILE_MENU_DATA[expandedMobileMenu]?.sections?.map((section) => (
+                                                <div key={section.title} className="mb-6">
+                                                    <h3 className="text-xs font-semibold text-foreground-muted tracking-wider mb-3">
+                                                        {section.title}
+                                                    </h3>
+                                                    {section.items.map((item) => (
+                                                        <Link
+                                                            key={item.title}
+                                                            href={item.href}
+                                                            target={item.href.startsWith("http") ? "_blank" : undefined}
+                                                            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                                                             onClick={() => {
                                                                 setMobileMenuOpen(false);
                                                                 setExpandedMobileMenu(null);

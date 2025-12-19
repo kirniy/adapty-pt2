@@ -1,105 +1,72 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const ROLES = [
     {
-        id: "developers",
-        label: "Developers",
-        title: "Implement in minutes, not months",
-        description: "Open-source SDKs for every platform. Complete documentation and support.",
-        image: "/images/role-developers.webp",
-        features: ["iOS, Android, Flutter, RN, Unity", "99.99% uptime SLA", "Sandbox testing environment"]
+        title: "For developers",
+        image: "/images/role-developers-new.webp",
+        link: "https://adapty.io/for-developers/", // Linking to real site for now as per instructions or placeholder
+        tags: ["Subscriptions SDK", "Refund Saver", "Remote config", "Fallback paywalls"]
     },
     {
-        id: "marketers",
-        label: "Marketers",
-        title: "Run experiments without updates",
-        description: "Test paywalls, prices, and offers on the fly. No app releases required.",
-        image: "/images/role-marketers.webp",
-        features: ["Visual paywall builder", "A/B testing engine", "Real-time personalization"]
+        title: "For app owners",
+        image: "/images/role-owners-new.webp",
+        link: "https://adapty.io/for-app-owners/",
+        tags: ["Revenue analytics", "LTV analytics", "AI LTV and revenue predictions"]
     },
     {
-        id: "owners",
-        label: "App Owners",
-        title: "Maximize your LTV",
-        description: "Get accurate revenue data and insights to scale your subscription business.",
-        image: "/images/role-app-owners.webp",
-        features: ["Cohort analysis", "Revenue predictions", "Subscription analytics"]
+        title: "For marketers",
+        image: "/images/role-marketers-new.webp",
+        link: "https://adapty.io/for-marketers/",
+        tags: ["A/B testing", "No-code Builder", "Localizations", "Targeting"]
     }
 ];
 
 export function RoleCards() {
-    const [activeRole, setActiveRole] = useState(ROLES[0]);
-
     return (
-        <div className="flex flex-col items-center">
-            {/* Tabs */}
-            <div className="flex p-1 bg-background-tertiary rounded-xl mb-12 relative">
-                {ROLES.map((role) => (
-                    <button
-                        key={role.id}
-                        onClick={() => setActiveRole(role)}
-                        className={cn(
-                            "relative px-6 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 z-10",
-                            activeRole.id === role.id
-                                ? "text-foreground"
-                                : "text-foreground-secondary hover:text-foreground"
-                        )}
-                    >
-                        {activeRole.id === role.id && (
-                            <motion.div
-                                layoutId="activeRole"
-                                className="absolute inset-0 bg-white shadow-sm rounded-lg -z-10"
-                                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                            />
-                        )}
-                        {role.label}
-                    </button>
-                ))}
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-[1240px] mx-auto">
+            {ROLES.map((role) => (
+                <Link
+                    key={role.title}
+                    href={role.link}
+                    className="flex flex-col bg-background-secondary hover:shadow-lg transition-all duration-300 rounded-[32px] overflow-hidden group border border-border-subtle h-full"
+                >
+                    {/* Image Area */}
+                    <div className="relative h-[240px] w-full bg-[#F3F4F6] p-4 flex items-center justify-center overflow-hidden">
+                        <Image
+                            src={role.image}
+                            alt={role.title}
+                            width={400}
+                            height={300}
+                            className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-500"
+                        />
+                    </div>
 
-            {/* Content */}
-            <div className="w-full">
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeRole.id}
-                        initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        exit={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
-                        className="grid lg:grid-cols-2 gap-12 items-center w-full"
-                    >
-                        <div>
-                            <h3 className="text-3xl md:text-4xl font-bold mb-4">{activeRole.title}</h3>
-                            <p className="text-lg text-foreground-secondary mb-8 leading-relaxed">
-                                {activeRole.description}
-                            </p>
-                            <ul className="space-y-3 mb-8">
-                                {activeRole.features.map(feature => (
-                                    <li key={feature} className="flex items-center gap-3 text-foreground font-medium">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-brand" />
-                                        {feature}
-                                    </li>
-                                ))}
-                            </ul>
+                    {/* Content Area */}
+                    <div className="p-8 flex flex-col flex-1 bg-background-secondary relative z-20">
+                        <div className="flex items-center justify-between mb-8 group-hover:translate-x-1 transition-transform">
+                            <h3 className="text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-brand flex items-center gap-1.5">
+                                {role.title}
+                            </h3>
+                            <ArrowRight className="w-5 h-5 text-foreground/50 group-hover:text-foreground transition-colors" />
                         </div>
 
-                        <div className="rounded-2xl overflow-hidden shadow-elevated border border-border-subtle bg-background-secondary group">
-                            <Image
-                                src={activeRole.image}
-                                alt={activeRole.label}
-                                width={800}
-                                height={600}
-                                className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105"
-                            />
+                        <div className="flex flex-wrap gap-2 mt-auto">
+                            {role.tags.map((tag) => (
+                                <span
+                                    key={tag}
+                                    className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground-secondary border border-black/5 shadow-sm whitespace-nowrap"
+                                >
+                                    {tag}
+                                </span>
+                            ))}
                         </div>
-                    </motion.div>
-                </AnimatePresence>
-            </div>
+                    </div>
+                </Link>
+            ))}
         </div>
     );
 }

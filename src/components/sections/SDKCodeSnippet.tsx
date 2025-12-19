@@ -7,6 +7,8 @@ import React, { useState } from "react";
 import { Check, Copy, CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+import Link from "next/link";
+
 type Tab = 'swift' | 'kotlin' | 'flutter' | 'react-native';
 
 const CODE_EXAMPLES: Record<Tab, string> = {
@@ -84,106 +86,156 @@ export const SDKCodeSnippet = () => {
     };
 
     return (
-        <Section className="py-24 bg-background-secondary border-y border-border-subtle overflow-hidden">
-            <Container>
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    <div className="order-2 lg:order-1">
-                        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-                            10 lines of code <br /> to get started
-                        </h2>
-                        <p className="text-xl text-foreground-secondary mb-8 leading-relaxed">
-                            Our SDK is open-source, lightweight, and designed for developers.
-                            It handles everything from subscription state to receipt validation.
-                        </p>
-                        <ul className="space-y-4 mb-8">
-                            {[
-                                'Automatic receipt validation',
-                                'Real-time subscription status',
-                                'Paywall A/B testing built-in',
-                                'Offline mode support'
-                            ].map((item) => (
-                                <li key={item} className="flex items-center gap-3">
-                                    <div className="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center text-brand flex-shrink-0">
-                                        <Check className="w-3.5 h-3.5" />
+        <div className="bg-background-secondary border-y border-border-subtle overflow-hidden">
+            <Section className="py-24">
+                <Container>
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <div className="order-2 lg:order-1">
+                            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+                                10 lines of code <br /> to get started
+                            </h2>
+                            <p className="text-xl text-foreground-secondary mb-8 leading-relaxed">
+                                Our SDK is open-source, lightweight, and designed for developers.
+                                It handles everything from subscription state to receipt validation.
+                            </p>
+                            <ul className="space-y-4 mb-8">
+                                {[
+                                    'Automatic receipt validation',
+                                    'Real-time subscription status',
+                                    'Paywall A/B testing built-in',
+                                    'Offline mode support'
+                                ].map((item) => (
+                                    <li key={item} className="flex items-center gap-3">
+                                        <div className="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center text-brand flex-shrink-0">
+                                            <Check className="w-3.5 h-3.5" />
+                                        </div>
+                                        <span className="text-foreground font-medium">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                            <div className="flex gap-4">
+                                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
+                                    <Image src="/sdks/swift.svg" alt="Swift" width={24} height={24} />
+                                    <span className="font-semibold">iOS</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
+                                    <Image src="/sdks/kotlin.svg" alt="Kotlin" width={24} height={24} />
+                                    <span className="font-semibold">Android</span>
+                                </div>
+                                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
+                                    <Image src="/sdks/flutter.svg" alt="Flutter" width={24} height={24} />
+                                    <span className="font-semibold">Flutter</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="order-1 lg:order-2 relative group perspective-1000 min-w-0">
+                            {/* Abstract glow */}
+                            <div className="absolute inset-0 bg-brand/20 blur-[100px] rounded-full -z-10 group-hover:bg-brand/30 transition-colors duration-500" />
+
+                            <div className="bg-[#1E1E2E] rounded-xl shadow-2xl border border-white/10 overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
+                                {/* Window Actions + Tabs */}
+                                <div className="flex items-center justify-between px-3 md:px-4 py-3 border-b border-white/5 bg-[#252535] gap-3">
+                                    <div className="flex gap-2 flex-shrink-0">
+                                        <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+                                        <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                                        <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
                                     </div>
-                                    <span className="text-foreground font-medium">{item}</span>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className="flex gap-4">
-                            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
-                                <Image src="/sdks/swift.svg" alt="Swift" width={24} height={24} />
-                                <span className="font-semibold">iOS</span>
-                            </div>
-                            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
-                                <Image src="/sdks/kotlin.svg" alt="Kotlin" width={24} height={24} />
-                                <span className="font-semibold">Android</span>
-                            </div>
-                            <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
-                                <Image src="/sdks/flutter.svg" alt="Flutter" width={24} height={24} />
-                                <span className="font-semibold">Flutter</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="order-1 lg:order-2 relative group perspective-1000 min-w-0">
-                        {/* Abstract glow */}
-                        <div className="absolute inset-0 bg-brand/20 blur-[100px] rounded-full -z-10 group-hover:bg-brand/30 transition-colors duration-500" />
-
-                        <div className="bg-[#1E1E2E] rounded-xl shadow-2xl border border-white/10 overflow-hidden transform transition-all duration-500 hover:scale-[1.01]">
-                            {/* Window Actions + Tabs */}
-                            <div className="flex items-center justify-between px-3 md:px-4 py-3 border-b border-white/5 bg-[#252535] gap-3">
-                                <div className="flex gap-2 flex-shrink-0">
-                                    <div className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                                    <div className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                                    <div className="w-3 h-3 rounded-full bg-[#27C93F]" />
-                                </div>
-                                <div className="flex gap-1 bg-black/20 p-1 rounded-lg overflow-x-auto scrollbar-hide">
-                                    {(['swift', 'kotlin', 'flutter', 'react-native'] as Tab[]).map((tab) => (
-                                        <button
-                                            key={tab}
-                                            onClick={() => setActiveTab(tab)}
-                                            className={cn(
-                                                "px-2 md:px-3 py-1 rounded-md text-[10px] md:text-xs font-medium transition-all duration-200 capitalize whitespace-nowrap flex-shrink-0",
-                                                activeTab === tab
-                                                    ? "bg-white/10 text-white shadow-sm"
-                                                    : "text-white/40 hover:text-white/70 hover:bg-white/5"
-                                            )}
-                                        >
-                                            {tab.replace('-', ' ')}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Code Area */}
-                            <div className="p-4 md:p-6 overflow-x-auto relative group/code">
-                                <button
-                                    onClick={handleCopy}
-                                    className="absolute top-4 right-4 p-2 rounded-lg bg-white/5 text-white/40 hover:text-white hover:bg-white/10 transition-all opacity-0 group-hover/code:opacity-100"
-                                    title="Copy code"
-                                >
-                                    {copied ? <CheckCircle2 className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
-                                </button>
-
-                                <pre className="font-mono text-[11px] md:text-sm leading-relaxed text-[#CDD6F4] min-w-0">
-                                    <code className="block">
-                                        {CODE_EXAMPLES[activeTab].split('\n').map((line, i) => (
-                                            <div key={i} className="table-row">
-                                                <span className="table-cell select-none text-right pr-2 md:pr-4 text-white/20 w-6 md:w-8">{i + 1}</span>
-                                                <span className="table-cell whitespace-pre-wrap break-words">
-                                                    {highlightSyntax(line)}
-                                                </span>
-                                            </div>
+                                    <div className="flex gap-1 bg-black/20 p-1 rounded-lg overflow-x-auto scrollbar-hide">
+                                        {(['swift', 'kotlin', 'flutter', 'react-native'] as Tab[]).map((tab) => (
+                                            <button
+                                                key={tab}
+                                                onClick={() => setActiveTab(tab)}
+                                                className={cn(
+                                                    "px-2 md:px-3 py-1 rounded-md text-[10px] md:text-xs font-medium transition-all duration-200 capitalize whitespace-nowrap flex-shrink-0",
+                                                    activeTab === tab
+                                                        ? "bg-white/10 text-white shadow-sm"
+                                                        : "text-white/40 hover:text-white/70 hover:bg-white/5"
+                                                )}
+                                            >
+                                                {tab.replace('-', ' ')}
+                                            </button>
                                         ))}
-                                    </code>
-                                </pre>
+                                    </div>
+                                </div>
+
+                                {/* Code Area */}
+                                <div className="p-4 md:p-6 overflow-x-auto relative group/code">
+                                    <button
+                                        onClick={handleCopy}
+                                        className="absolute top-4 right-4 p-2 rounded-lg bg-white/5 text-white/40 hover:text-white hover:bg-white/10 transition-all opacity-0 group-hover/code:opacity-100"
+                                        title="Copy code"
+                                    >
+                                        {copied ? <CheckCircle2 className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
+                                    </button>
+
+                                    <pre className="font-mono text-[11px] md:text-sm leading-relaxed text-[#CDD6F4] min-w-0">
+                                        <code className="block">
+                                            {CODE_EXAMPLES[activeTab].split('\n').map((line, i) => (
+                                                <div key={i} className="table-row">
+                                                    <span className="table-cell select-none text-right pr-2 md:pr-4 text-white/20 w-6 md:w-8">{i + 1}</span>
+                                                    <span className="table-cell whitespace-pre-wrap break-words">
+                                                        {highlightSyntax(line)}
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </code>
+                                    </pre>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </Container>
-        </Section>
+                </Container>
+            </Section>
+
+            {/* SDK Grid Section */}
+            <Section className="pb-32 pt-8">
+                <Container>
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
+                            Get the SDK for your platform
+                        </h2>
+                    </div>
+
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        {[
+                            { name: 'Swift SDK', icon: '/sdks/swift.svg', link: 'https://adapty.io/sdk/ios/' },
+                            { name: 'Kotlin SDK', icon: '/sdks/kotlin.svg', link: 'https://adapty.io/sdk/android/' },
+                            { name: 'React Native SDK', icon: '/sdks/react-native.svg', link: 'https://adapty.io/sdk/react-native/' },
+                            { name: 'Unity SDK', icon: '/sdks/unity.svg', link: 'https://adapty.io/sdk/unity/' },
+                            { name: 'Flutter SDK', icon: '/sdks/flutter.svg', link: 'https://adapty.io/sdk/flutter/' },
+                            { name: 'Capacitor SDK', icon: '/sdks/capacitor.svg', link: 'https://adapty.io/sdk/capacitor/' },
+                            { name: 'Kotlin Multiplatform', icon: '/sdks/kmp.svg', link: 'https://adapty.io/sdk/kmp/' },
+                            { name: 'FlutterFlow', icon: '/sdks/flutterflow.svg', link: 'https://adapty.io/sdk/flutterflow/' },
+                            { name: 'Web API', icon: '/sdks/web-api.svg', link: 'https://adapty.io/sdk/web/' },
+                            { name: 'Stripe', icon: '/sdks/stripe.svg', link: 'https://adapty.io/integrations/stripe/' },
+                        ].map((sdk) => (
+                            <Link
+                                key={sdk.name}
+                                href={sdk.link}
+                                className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-border-subtle hover:border-brand/50 hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-brand/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+
+                                <div className="h-12 w-12 relative mb-4 transition-transform group-hover:scale-110 duration-300">
+                                    <Image
+                                        src={sdk.icon}
+                                        alt={sdk.name}
+                                        fill
+                                        className="object-contain"
+                                    />
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <span className="font-semibold text-sm text-center text-foreground group-hover:text-brand transition-colors">
+                                        {sdk.name}
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </Container>
+            </Section>
+        </div>
     );
 };
 

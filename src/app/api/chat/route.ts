@@ -1,6 +1,11 @@
 import { google } from "@ai-sdk/google";
-import { streamText, convertToCoreMessages } from "ai";
+import { streamText } from "ai";
 import { NextResponse } from "next/server";
+
+interface ChatMessage {
+    role: "user" | "assistant" | "system";
+    content: string;
+}
 
 const systemInstruction = `You are Adapty AI, the official AI assistant for Adapty.io - the leading in-app subscription management platform.
 
@@ -215,16 +220,16 @@ export async function POST(req: Request) {
     }
 
     try {
-        const body = (await req.json()) as { messages?: unknown };
-        const messages = Array.isArray(body.messages) ? body.messages : [];
+        const body = (await req.json()) as { messages?: ChatMessage[] };
+        const messages: ChatMessage[] = Array.isArray(body.messages) ? body.messages : [];
 
-        const result = await streamText({
+        const result = streamText({
             model: google("gemini-3-flash-preview"),
             tools: {
                 google_search: google.tools.googleSearch({}),
             },
             system: systemInstruction,
-            messages: convertToCoreMessages(messages),
+            messages: messages,
         });
 
         return result.toTextStreamResponse();

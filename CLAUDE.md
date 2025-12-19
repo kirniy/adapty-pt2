@@ -64,22 +64,30 @@ adapty-pt2/
 │   ├── DESIGN_SYSTEM.md   # Colors, typography, components
 │   ├── CONTENT_STRUCTURE.md # Content for all sections
 │   ├── CMS_SETUP.md       # Sanity.io setup guide
-│   ├── ASSETS_INVENTORY.md # Asset inventory
-│   └── screenshots/       # Visual references
-│       ├── reference/     # Attio, Linear, Vercel, Polar
-│       └── adapty/        # Current Adapty site
+│   └── ASSETS_INVENTORY.md # Asset inventory
 ├── public/                # Static assets
 │   ├── fonts/             # Gilroy font files (81)
-│   ├── icons/             # UI and social icons
-│   ├── flags/             # Language flags
-│   ├── logos/             # Adapty + partner logos
-│   ├── images/            # Feature images, testimonials
-│   └── assets/            # Integrations, case studies
-├── src/                   # (To create) Next.js app
+│   ├── icons/             # UI, social, and SDK icons
+│   ├── images/            # Feature images, case studies, testimonials
+│   │   ├── case-studies/  # App icons for case studies (9)
+│   │   ├── hero/          # Hero section images
+│   │   └── features/      # Feature section images
+│   └── logos/             # Adapty + partner/integration logos
+├── src/                   # Next.js application
 │   ├── app/               # App Router pages
-│   ├── components/        # React components
+│   │   ├── page.tsx       # Homepage (complete)
+│   │   ├── blog/          # Blog listing & detail pages
+│   │   ├── api/           # API routes (chat)
+│   │   └── studio/        # Sanity Studio embed
+│   ├── components/
+│   │   ├── sections/      # Homepage sections (9 components)
+│   │   ├── layout/        # Header, Footer, Navigation
+│   │   ├── ui/            # Base UI components
+│   │   └── animations/    # Animation components
+│   ├── hooks/             # Custom React hooks
 │   └── lib/               # Utilities, Sanity client
-└── sanity/                # (To create) CMS schemas
+└── sanity/                # CMS configuration
+    └── schemas/           # blogPost, author, category schemas
 ```
 
 ---
@@ -109,34 +117,45 @@ adapty-pt2/
 
 ---
 
-## Implementation Priority
+## Implementation Status
 
-### Phase 1: Foundation
-1. `npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir`
-2. Configure Tailwind with design tokens
-3. Set up Gilroy font
-4. Create base components (Button, Card, Container)
+### ✅ Phase 1: Foundation (COMPLETE)
+- [x] Next.js 15 with TypeScript, Tailwind, ESLint, App Router
+- [x] Tailwind configured with design tokens
+- [x] Gilroy font self-hosted
+- [x] Base UI components (Button, Card, Container, Section)
 
-### Phase 2: Homepage
-1. Navigation (logo, links, CTAs)
-2. Hero section (headline, email input, trusted-by)
-3. Feature sections (SDK, Paywall, A/B Testing, Analytics)
-4. Testimonials
-5. CTA section
-6. Footer
+### ✅ Phase 2: Homepage (COMPLETE)
+- [x] Navigation with dropdown menus
+- [x] Hero section with email input, trust badges
+- [x] Ebook promotional badge
+- [x] Role cards (Developers, Marketers, App Owners)
+- [x] SDK grid (10 platforms including Capacitor, KMP)
+- [x] Feature scroll stack (Paywall, A/B Testing, Analytics)
+- [x] Case studies (9 real Adapty cases with metrics)
+- [x] G2 badges (Winter 2025)
+- [x] Integrations marquee (24 integrations)
+- [x] Enterprise section
+- [x] Stats section (15,000+ apps)
+- [x] Footer with all links
 
-### Phase 3: Blog
-1. Initialize Sanity: `npx sanity@latest init --env`
-2. Create schemas (blogPost, category, author)
-3. Add sample content
-4. Build blog listing page
-5. Category filter
+### ✅ Phase 3: Blog Infrastructure (COMPLETE)
+- [x] Sanity Studio initialized and configured
+- [x] Schemas created (blogPost, author, category)
+- [x] Blog listing page with category filters
+- [x] Blog detail page with Portable Text
+- [x] Sanity client and queries set up
 
-### Phase 4: Polish
-1. Mobile responsiveness
-2. Animations
-3. SEO meta tags
-4. Verify SSG (view-source test)
+### 🔄 Phase 4: Blog Content (IN PROGRESS)
+- [ ] Import 50 most recent blog posts from Adapty
+- [ ] Download and host blog images locally
+- [ ] Create authors and categories in Sanity
+
+### ✅ Phase 5: Polish (COMPLETE)
+- [x] Mobile responsive design
+- [x] Framer Motion animations
+- [x] SEO meta tags
+- [x] SSG verified
 
 ---
 
@@ -178,11 +197,12 @@ NEXT_PUBLIC_SANITY_DATASET=production
 
 - [x] GitHub repository (public)
 - [x] Vercel project linked (adapty-pt2)
-- [ ] Sanity Studio accessible
-- [ ] Homepage complete
-- [ ] Blog page complete
-- [ ] Mobile responsive
-- [ ] SSG verified (view-source shows content)
+- [x] Sanity Studio accessible (embedded at /studio)
+- [x] Homepage complete (all sections with real Adapty content)
+- [x] Blog page complete (listing + detail pages)
+- [x] Mobile responsive (tested on all breakpoints)
+- [x] SSG verified (view-source shows content)
+- [ ] Blog content imported (50 posts from Adapty)
 
 ---
 

@@ -5,26 +5,79 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 
 export const CaseStudies = () => {
+    // Real case studies from adapty.io
     const cases = [
         {
-            company: "Bumble",
-            logo: "/logos/trusted-by/bumble.svg",
-            metric: "+15%",
-            description: "Increase in subscription revenue",
+            company: "Productivity app",
+            category: "Productivity",
+            logo: "/images/case-studies/productivity-app.webp",
+            metric: "+50%",
+            description: "How pricing tests unlocked app's potential",
+            href: "https://adapty.io/case-studies/productivity-app-and-autopilot/",
         },
         {
-            company: "PhotoRoom",
-            // Fallback/placeholder if no logo exists, but we have some. Let's use what we have or generic text.
-            // Actually I should check what logos I have. I know I have 'bumble', 'feeld', 'hubx', 'almus', 'weewoo' from page.tsx.
-            logo: "/logos/trusted-by/feeld.svg",
-            metric: "2.5x",
-            description: "Faster paywall iteration speed",
+            company: "Text on Pic",
+            category: "Photo & Video",
+            logo: "/images/case-studies/text-on-pic.webp",
+            metric: "+30%",
+            description: "How to boost revenue with the right experiments",
+            href: "https://adapty.io/case-studies/photo-editing-app-and-autopilot/",
         },
         {
-            company: "HubX",
-            logo: "/logos/trusted-by/hubx.svg",
-            metric: "-20%",
-            description: "Reduction in churn rate",
+            company: "Trip planning",
+            category: "Travel",
+            logo: "/images/case-studies/trip-planning.webp",
+            metric: "+102%",
+            description: "New onboarding and pricing strategy doubled revenue per user",
+            href: "https://adapty.io/case-studies/travel-app/",
+        },
+        {
+            company: "Going Merry",
+            category: "App publisher",
+            logo: "/images/case-studies/going-merry.webp",
+            metric: "5x",
+            description: "How to scale subscription revenue with Paywall Builder",
+            href: "https://adapty.io/case-studies/going-merry/",
+        },
+        {
+            company: "Shmoody",
+            category: "Mental health",
+            logo: "/images/case-studies/shmoody.webp",
+            metric: "$2M",
+            description: "How to grow from a free app to $2M ARR with Adapty",
+            href: "https://adapty.io/case-studies/shmoody/",
+        },
+        {
+            company: "Lively",
+            category: "Health & Fitness",
+            logo: "/images/case-studies/lively.png",
+            metric: "-83%",
+            description: "Saved 82% of potentially lost revenue",
+            href: "https://adapty.io/case-studies/lively/",
+        },
+        {
+            company: "Glam AI",
+            category: "Makeup & Beauty",
+            logo: "/images/case-studies/glam-ai.webp",
+            metric: "108%",
+            description: "How to scale to $1.2M ARR in 3 months",
+            href: "https://adapty.io/case-studies/glam-ai/",
+        },
+        {
+            company: "Pepapp",
+            category: "Health & Fitness",
+            logo: "/images/case-studies/pepapp.webp",
+            metric: "400%",
+            description: "How to make Adapty free with Refund Saver",
+            href: "https://adapty.io/case-studies/pepapp/",
+        },
+        {
+            company: "Fotorama",
+            category: "Photo & Video",
+            logo: "/images/case-studies/fotorama.webp",
+            metric: "-40%",
+            description: "How to decrease the refund rate with Adapty",
+            href: "https://adapty.io/case-studies/fotorama/",
         },
     ];
 
@@ -44,18 +97,26 @@ export const CaseStudies = () => {
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {cases.map((study) => (
-                        <div
+                        <a
                             key={study.company}
-                            className="group flex flex-col p-8 rounded-3xl bg-background-tertiary border border-transparent hover:border-border-subtle hover:bg-white hover:shadow-card hover:-translate-y-1 transition-all duration-300 ease-smooth cursor-pointer"
+                            href={study.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex flex-col p-8 rounded-3xl bg-background-tertiary border border-transparent hover:border-border-subtle hover:bg-white hover:shadow-card hover:-translate-y-1 transition-all duration-300 ease-smooth"
                         >
-                            <div className="h-10 mb-8 opacity-70 group-hover:opacity-100 transition-opacity">
-                                <Image
-                                    src={study.logo}
-                                    alt={study.company}
-                                    width={120}
-                                    height={40}
-                                    className="h-full w-auto object-contain object-left"
-                                />
+                            <div className="flex items-center justify-between mb-6">
+                                <div className="h-10 opacity-70 group-hover:opacity-100 transition-opacity">
+                                    <Image
+                                        src={study.logo}
+                                        alt={study.company}
+                                        width={120}
+                                        height={40}
+                                        className="h-full w-auto object-contain object-left"
+                                    />
+                                </div>
+                                <span className="text-xs font-medium text-foreground-tertiary bg-background-secondary px-3 py-1 rounded-full">
+                                    {study.category}
+                                </span>
                             </div>
                             <div className="text-5xl font-bold text-foreground mb-4 tracking-tight">
                                 {study.metric}
@@ -66,7 +127,7 @@ export const CaseStudies = () => {
                             <div className="mt-auto flex items-center gap-2 font-medium text-foreground group-hover:text-brand transition-colors">
                                 Read story <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                             </div>
-                        </div>
+                        </a>
                     ))}
                 </div>
             </Container>

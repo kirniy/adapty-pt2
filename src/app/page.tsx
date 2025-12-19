@@ -220,7 +220,7 @@ export default function Home() {
                   <div className="text-foreground-secondary text-sm">Founder and CEO, Bickster</div>
                 </div>
                 <Image
-                  src="/images/testimonials/logos/bickster.png"
+                  src="/images/testimonials/logos/logo-bickster.png"
                   alt="Bickster"
                   width={80}
                   height={24}

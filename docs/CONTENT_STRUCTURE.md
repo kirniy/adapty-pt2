@@ -54,7 +54,7 @@ This document outlines all content sections for the homepage and blog, with actu
 - Placeholder: "Enter your work email"
 - Button: "Get started"
 
-**Social Proof**: "Trusted by 8,000+ apps worldwide"
+**Social Proof**: "Trusted by 15,000+ apps worldwide"
 
 ---
 
@@ -250,24 +250,30 @@ Adapty.getProfile { result in
 
 ### 9. Case Studies Section
 
-**Section Title**: "Real results from real apps"
+**Section Title**: "Trusted by thousands of scaling apps"
 
-**Case Study Cards** (3-4):
+**Case Study Cards** (9 real Adapty case studies):
 
-| App | Metric | Result |
-|-----|--------|--------|
-| Wave | Revenue Growth | $0 to $4M ARR in 8 months |
-| Glam AI | Revenue | 3x revenue, same installs |
-| Shmoody | ARR | $0 to $2M ARR |
-| Lively | Refund Recovery | Saved 82% of lost revenue |
-| Going Merry | Revenue | 5x growth with Paywall Builder |
+| App | Category | Metric | Description | URL |
+|-----|----------|--------|-------------|-----|
+| Productivity app | Productivity | +50% | How pricing tests unlocked app's potential | adapty.io/case-studies/productivity-app-and-autopilot/ |
+| Text on Pic | Photo & Video | +30% | How to boost revenue with the right experiments | adapty.io/case-studies/photo-editing-app-and-autopilot/ |
+| Trip planning | Travel | +102% | New onboarding and pricing strategy doubled revenue per user | adapty.io/case-studies/travel-app/ |
+| Going Merry | App publisher | 5x | How to scale subscription revenue with Paywall Builder | adapty.io/case-studies/going-merry/ |
+| Shmoody | Mental health | $2M | How to grow from a free app to $2M ARR with Adapty | adapty.io/case-studies/shmoody/ |
+| Lively | Health & Fitness | -83% | Saved 82% of potentially lost revenue | adapty.io/case-studies/lively/ |
+| Glam AI | Makeup & Beauty | 108% | How to scale to $1.2M ARR in 3 months | adapty.io/case-studies/glam-ai/ |
+| Pepapp | Health & Fitness | 400% | How to make Adapty free with Refund Saver | adapty.io/case-studies/pepapp/ |
+| Fotorama | Photo & Video | -40% | How to decrease the refund rate with Adapty | adapty.io/case-studies/fotorama/ |
 
 **Card Structure**:
-- App icon
-- App name
-- Key metric headline
+- App logo/icon (stored in /public/images/case-studies/)
+- Category badge
+- Key metric headline (large, bold)
 - Brief description
-- "Read case study" link
+- "Read story" link (opens external Adapty case study)
+
+**Assets**: All app logos downloaded to `/public/images/case-studies/`
 
 ---
 

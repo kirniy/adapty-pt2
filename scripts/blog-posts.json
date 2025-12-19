@@ -1,0 +1,654 @@
+{
+  "posts": [
+    {
+      "title": "What does \"Restore purchase\" mean?",
+      "slug": "what-does-restore-purchase-mean",
+      "category": "General",
+      "date": "December 5, 2025",
+      "readTime": "4 min",
+      "excerpt": "Imagine this: a user buys a subscription, switches devices, reinstalls your app, and suddenly loses access. That's exactly why the \"Restore purchase\" exists.",
+      "image": "https://adapty.io/assets/uploads/2025/12/NameWhat-Does-Restore-Purchase-Mean.png",
+      "url": "https://adapty.io/blog/what-does-restore-purchase-mean/",
+      "author": "Victoria Kharlan",
+      "imageLocal": "/blog/what-does-restore-purchase-mean.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/12/NameWhat-Does-Restore-Purchase-Mean.png"
+    },
+    {
+      "title": "Why 45% of users delete your app in 24 hours — and how onboarding can save you",
+      "slug": "why-users-delete-your-app-in-24-hours",
+      "category": "General",
+      "date": "December 1, 2025",
+      "readTime": "9 min",
+      "excerpt": "First impressions matter. Learn how to build onboarding flows that convert and retain users.",
+      "image": "https://adapty.io/assets/uploads/2025/11/Why-45-of-users-delete-your-app-within-24-hours-1.webp",
+      "url": "https://adapty.io/blog/why-users-delete-your-app-in-24-hours/",
+      "imageLocal": "/blog/why-users-delete-your-app-in-24-hours.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/Why-45-of-users-delete-your-app-within-24-hours-1.webp"
+    },
+    {
+      "title": "How to fix your app onboarding flow (Real A/B test data inside)",
+      "slug": "how-to-fix-your-onboarding-flow",
+      "category": "General",
+      "date": "November 25, 2025",
+      "readTime": "13 min",
+      "excerpt": "Data-driven insights on optimizing your app's onboarding experience.",
+      "image": "https://adapty.io/assets/uploads/2025/11/How-to-fix-your-app-onboarding-flow.webp",
+      "url": "https://adapty.io/blog/how-to-fix-your-onboarding-flow/",
+      "imageLocal": "/blog/how-to-fix-your-onboarding-flow.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/How-to-fix-your-app-onboarding-flow.webp"
+    },
+    {
+      "title": "How to build app onboarding flows that convert?",
+      "slug": "how-to-build-app-onboarding-flows-that-convert",
+      "category": "General",
+      "date": "November 25, 2025",
+      "readTime": "11 min",
+      "excerpt": "Best practices for creating engaging onboarding experiences.",
+      "image": "https://adapty.io/assets/uploads/2025/11/How-to-build-onboarding-flows-that-convert.webp",
+      "url": "https://adapty.io/blog/how-to-build-app-onboarding-flows-that-convert/",
+      "imageLocal": "/blog/how-to-build-app-onboarding-flows-that-convert.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/11/How-to-build-onboarding-flows-that-convert.webp"
+    },
+    {
+      "title": "Mobile app analytics stack: UA, monetization & product metrics explained",
+      "slug": "app-analytics-stack-explained",
+      "category": "Analytics",
+      "date": "November 4, 2025",
+      "readTime": "4 min",
+      "excerpt": "Understanding the complete analytics stack for mobile apps.",
+      "image": "https://adapty.io/assets/uploads/2025/10/metrics-explained.webp",
+      "url": "https://adapty.io/blog/app-analytics-stack-explained/",
+      "imageLocal": "/blog/app-analytics-stack-explained.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/metrics-explained.webp"
+    },
+    {
+      "title": "Going from $10K to $100K MRR: 7 questions that unlock app growth",
+      "slug": "unlocking-growth-to-100k-mrr",
+      "category": "General",
+      "date": "October 22, 2025",
+      "readTime": "9 min",
+      "excerpt": "Most subscription apps hit a wall at $10K monthly recurring revenue. Learn how to break through.",
+      "image": "https://adapty.io/assets/uploads/2025/10/Nameebook_10k_100k_MRR.webp",
+      "url": "https://adapty.io/blog/unlocking-growth-to-100k-mrr/",
+      "author": "Dmitry Shestoperov",
+      "imageLocal": "/blog/unlocking-growth-to-100k-mrr.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/Nameebook_10k_100k_MRR.webp"
+    },
+    {
+      "title": "How Adapty keeps running when (almost) nothing else does",
+      "slug": "how-adapty-keeps-running",
+      "category": "General",
+      "date": "October 21, 2025",
+      "readTime": "4 min",
+      "excerpt": "On Monday, October 20th, Amazon's US-East-1 data center cluster had a very bad day. Here's how Adapty stayed online.",
+      "image": "https://adapty.io/assets/uploads/2025/10/covers-2025.webp",
+      "url": "https://adapty.io/blog/how-adapty-keeps-running/",
+      "author": "Kirill Potekhin",
+      "imageLocal": "/blog/how-adapty-keeps-running.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/covers-2025.webp"
+    },
+    {
+      "title": "Paywall Newsletter #26: Smart paywalls from plant apps",
+      "slug": "paywall-newsletter-26",
+      "category": "Paywall Newsletter",
+      "date": "October 1, 2025",
+      "readTime": "3 min",
+      "excerpt": "This week we peeked into paywalls from plant care apps.",
+      "image": "https://adapty.io/assets/uploads/2025/10/opengraph_newsletter%E2%80%A8-26-1.webp",
+      "url": "https://adapty.io/blog/paywall-newsletter-26/",
+      "author": "Dmitry Shestoperov",
+      "imageLocal": "/blog/paywall-newsletter-26.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/10/opengraph_newsletter%E2%80%A8-26-1.webp"
+    },
+    {
+      "title": "Turn tomorrow's revenue into today's growth: Introducing Adapty Finance",
+      "slug": "introducing-adapty-finance",
+      "category": "General",
+      "date": "September 18, 2025",
+      "readTime": "4 min",
+      "excerpt": "Apple pays you 45 days late. Google takes 30. Adapty Finance unlocks up to 85% of your earned revenue within 1-2 days.",
+      "image": "https://adapty.io/assets/uploads/2025/09/adapty_finance_cover@1x.jpg",
+      "url": "https://adapty.io/blog/introducing-adapty-finance/",
+      "author": "Victoria Kharlan",
+      "imageLocal": "/blog/introducing-adapty-finance.jpg",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/adapty_finance_cover@1x.jpg"
+    },
+    {
+      "title": "Paywall Newsletter #25: Cloudy with a chance of conversions",
+      "slug": "paywall-newsletter-25",
+      "category": "Paywall Newsletter",
+      "date": "September 17, 2025",
+      "readTime": "3 min",
+      "excerpt": "Weather app paywalls and conversion strategies.",
+      "image": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter25.png",
+      "url": "https://adapty.io/blog/paywall-newsletter-25/",
+      "imageLocal": "/blog/paywall-newsletter-25.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter25.png"
+    },
+    {
+      "title": "Paywall Newsletter #24: Keeping your focus",
+      "slug": "paywall-newsletter-24",
+      "category": "Paywall Newsletter",
+      "date": "September 3, 2025",
+      "readTime": "2 min",
+      "excerpt": "Focus app paywalls and user retention strategies.",
+      "image": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter24.webp",
+      "url": "https://adapty.io/blog/paywall-newsletter-24/",
+      "imageLocal": "/blog/paywall-newsletter-24.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/09/opengraph_newsletter24.webp"
+    },
+    {
+      "title": "How adding onboarding friction before your app's paywall can grow your revenue",
+      "slug": "how-friction-can-grow-your-apps-revenue",
+      "category": "Tutorial",
+      "date": "August 27, 2025",
+      "readTime": "9 min",
+      "excerpt": "Counterintuitive strategies for increasing conversion rates.",
+      "image": "https://adapty.io/assets/uploads/2025/08/revenuethroughfriction.webp",
+      "url": "https://adapty.io/blog/how-friction-can-grow-your-apps-revenue/",
+      "imageLocal": "/blog/how-friction-can-grow-your-apps-revenue.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/revenuethroughfriction.webp"
+    },
+    {
+      "title": "Paywall Newsletter #23: Education made profitable",
+      "slug": "paywall-newsletter-23",
+      "category": "Paywall Newsletter",
+      "date": "August 20, 2025",
+      "readTime": "4 min",
+      "excerpt": "Education app monetization strategies.",
+      "image": "https://adapty.io/assets/uploads/2025/08/newsletter23updated.webp",
+      "url": "https://adapty.io/blog/paywall-newsletter-23/",
+      "imageLocal": "/blog/paywall-newsletter-23.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/newsletter23updated.webp"
+    },
+    {
+      "title": "How to analyze and optimize Apple Search Ads in 2025?",
+      "slug": "how-to-analyze-and-optimize-apple-ads",
+      "category": "Tutorial",
+      "date": "August 13, 2025",
+      "readTime": "11 min",
+      "excerpt": "Complete guide to Apple Search Ads optimization.",
+      "image": "https://adapty.io/assets/uploads/2025/08/How-to-analyze-and-optimize-Apple-Ads.webp",
+      "url": "https://adapty.io/blog/how-to-analyze-and-optimize-apple-ads/",
+      "imageLocal": "/blog/how-to-analyze-and-optimize-apple-ads.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/How-to-analyze-and-optimize-Apple-Ads.webp"
+    },
+    {
+      "title": "Apple Search Ads guide for 2025: Best practices from beginner to expert",
+      "slug": "apple-ads-best-practices",
+      "category": "Tutorial",
+      "date": "August 8, 2025",
+      "readTime": "9 min",
+      "excerpt": "From beginner to expert: Master Apple Search Ads.",
+      "image": "https://adapty.io/assets/uploads/2025/08/NameApple-Ads_-Tips-best-practices-1.webp",
+      "url": "https://adapty.io/blog/apple-ads-best-practices/",
+      "imageLocal": "/blog/apple-ads-best-practices.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/NameApple-Ads_-Tips-best-practices-1.webp"
+    },
+    {
+      "title": "Paywall Newsletter #22: From calories to conversions",
+      "slug": "paywall-newsletter-22",
+      "category": "Paywall Newsletter",
+      "date": "August 7, 2025",
+      "readTime": "5 min",
+      "excerpt": "Health and fitness app paywall strategies.",
+      "image": "https://adapty.io/assets/uploads/2025/08/opengraph_newsletter22.webp",
+      "url": "https://adapty.io/blog/paywall-newsletter-22/",
+      "imageLocal": "/blog/paywall-newsletter-22.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/opengraph_newsletter22.webp"
+    },
+    {
+      "title": "The art of conversion: How Health & Fitness apps nail upselling on iOS",
+      "slug": "how-health-and-fitness-apps-nail-upselling-on-ios",
+      "category": "Tutorial",
+      "date": "August 4, 2025",
+      "readTime": "7 min",
+      "excerpt": "Learn upselling strategies from top health apps.",
+      "image": "https://adapty.io/assets/uploads/2025/08/How-Health-Fitness-Apps-Nail-Upselling-on-iOS.webp",
+      "url": "https://adapty.io/blog/how-health-and-fitness-apps-nail-upselling-on-ios/",
+      "imageLocal": "/blog/how-health-and-fitness-apps-nail-upselling-on-ios.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/How-Health-Fitness-Apps-Nail-Upselling-on-iOS.webp"
+    },
+    {
+      "title": "Apple Search Ads beginner's guide: From setup to revenue optimization",
+      "slug": "apple-search-ads",
+      "category": "Tutorial",
+      "date": "August 1, 2025",
+      "readTime": "15 min",
+      "excerpt": "Complete beginner's guide to Apple Search Ads.",
+      "image": "https://adapty.io/assets/uploads/2025/08/The-complete-guide-to-Apple-Ads.webp",
+      "url": "https://adapty.io/blog/apple-search-ads/",
+      "imageLocal": "/blog/apple-search-ads.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/08/The-complete-guide-to-Apple-Ads.webp"
+    },
+    {
+      "title": "How to sell your app for maximum value: Insights into what buyers want",
+      "slug": "selling-your-app-for-maximum-value",
+      "category": "Tutorial",
+      "date": "July 29, 2025",
+      "readTime": "6 min",
+      "excerpt": "What buyers look for when acquiring mobile apps.",
+      "image": "https://adapty.io/assets/uploads/2025/07/howtosellanapp.webp",
+      "url": "https://adapty.io/blog/selling-your-app-for-maximum-value/",
+      "imageLocal": "/blog/selling-your-app-for-maximum-value.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/howtosellanapp.webp"
+    },
+    {
+      "title": "9 subscription economy trends dominating 2025: The complete strategy guide",
+      "slug": "9-subscription-trends-dominating-2025",
+      "category": "Trends-insights",
+      "date": "July 28, 2025",
+      "readTime": "6 min",
+      "excerpt": "Key trends shaping the subscription economy in 2025.",
+      "image": "https://adapty.io/assets/uploads/2025/07/9-subscription-trends-dominating-2025.webp",
+      "url": "https://adapty.io/blog/9-subscription-trends-dominating-2025/",
+      "imageLocal": "/blog/9-subscription-trends-dominating-2025.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/9-subscription-trends-dominating-2025.webp"
+    },
+    {
+      "title": "Paywall Newsletter #21: How travel apps convert users",
+      "slug": "paywall-newsletter-21",
+      "category": "Paywall Newsletter",
+      "date": "July 22, 2025",
+      "readTime": "5 min",
+      "excerpt": "Travel app monetization and conversion strategies.",
+      "image": "https://adapty.io/assets/uploads/2025/07/opengraph_newsletter21-new.webp",
+      "url": "https://adapty.io/blog/paywall-newsletter-21/",
+      "imageLocal": "/blog/paywall-newsletter-21.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/opengraph_newsletter21-new.webp"
+    },
+    {
+      "title": "How to feed ad platforms the best signals and reduce your CAC",
+      "slug": "how-to-lower-cac-with-ad-platform-signals",
+      "category": "Tutorial",
+      "date": "July 17, 2025",
+      "readTime": "10 min",
+      "excerpt": "Optimize your ad platform signals for lower acquisition costs.",
+      "image": "https://adapty.io/assets/uploads/2025/06/NameName32.webp",
+      "url": "https://adapty.io/blog/how-to-lower-cac-with-ad-platform-signals/",
+      "imageLocal": "/blog/how-to-lower-cac-with-ad-platform-signals.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/NameName32.webp"
+    },
+    {
+      "title": "State of in-app subscriptions 2025: everything you need to know in 10 minutes",
+      "slug": "state-of-in-app-subscriptions-2025-in-10-minutes",
+      "category": "Trends-insights",
+      "date": "July 16, 2025",
+      "readTime": "8 min",
+      "excerpt": "Complete overview of in-app subscription trends for 2025.",
+      "image": "https://adapty.io/assets/uploads/2025/06/SOIAS-cover.webp",
+      "url": "https://adapty.io/blog/state-of-in-app-subscriptions-2025-in-10-minutes/",
+      "imageLocal": "/blog/state-of-in-app-subscriptions-2025-in-10-minutes.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/SOIAS-cover.webp"
+    },
+    {
+      "title": "Is Apple's new EU in-app purchase fee system more complex than ever?",
+      "slug": "apple-eu-in-app-purchase-fee-system-2025",
+      "category": "Trends-insights",
+      "date": "June 27, 2025",
+      "readTime": "10 min",
+      "excerpt": "Breaking down Apple's new EU fee structure for developers.",
+      "image": "https://adapty.io/assets/uploads/2025/06/fee-system-in-app-purchase-preview-1.webp",
+      "url": "https://adapty.io/blog/apple-eu-in-app-purchase-fee-system-2025/",
+      "imageLocal": "/blog/apple-eu-in-app-purchase-fee-system-2025.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/fee-system-in-app-purchase-preview-1.webp"
+    },
+    {
+      "title": "How to go from product-market fit to profit in your subscription app",
+      "slug": "from-pmf-to-profit-in-subscription-app",
+      "category": "Tutorial",
+      "date": "June 17, 2025",
+      "readTime": "13 min",
+      "excerpt": "From product-market fit to sustainable profitability.",
+      "image": "https://adapty.io/assets/uploads/2025/06/CP-PMF-to-profit-preview-1.webp",
+      "url": "https://adapty.io/blog/from-pmf-to-profit-in-subscription-app/",
+      "imageLocal": "/blog/from-pmf-to-profit-in-subscription-app.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/CP-PMF-to-profit-preview-1.webp"
+    },
+    {
+      "title": "Quickstart Adapty setup guide: React Native with Expo",
+      "slug": "quickstart-adapty-setup-guide-react-native-with-expo",
+      "category": "Tutorial",
+      "date": "June 16, 2025",
+      "readTime": "6 min",
+      "excerpt": "Quick setup guide for React Native with Expo.",
+      "image": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_React-Native.png",
+      "url": "https://adapty.io/blog/quickstart-adapty-setup-guide-react-native-with-expo/",
+      "imageLocal": "/blog/quickstart-adapty-setup-guide-react-native-with-expo.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_React-Native.png"
+    },
+    {
+      "title": "WWDC25 summary: What Apple announced and what does it mean for app developers?",
+      "slug": "wwdc25-what-apple-announced",
+      "category": "Trends-insights",
+      "date": "June 10, 2025",
+      "readTime": "14 min",
+      "excerpt": "Key announcements from WWDC25 for app developers.",
+      "image": "https://adapty.io/assets/uploads/2025/06/WWDC25_-What-Apple-announced-and-what-does-it-mean-for-app-developers-preview-1.webp",
+      "url": "https://adapty.io/blog/wwdc25-what-apple-announced/",
+      "imageLocal": "/blog/wwdc25-what-apple-announced.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/WWDC25_-What-Apple-announced-and-what-does-it-mean-for-app-developers-preview-1.webp"
+    },
+    {
+      "title": "How to build personalized paywalls with user attributes and Adapty segments",
+      "slug": "how-to-build-personalized-paywalls",
+      "category": "Tutorial",
+      "date": "June 10, 2025",
+      "readTime": "7 min",
+      "excerpt": "Build personalized paywalls using user segmentation.",
+      "image": "https://adapty.io/assets/uploads/2025/06/How-to-build-personalized-paywalls-with-user-attributes-and-Adapty-segments-1-preview-1.webp",
+      "url": "https://adapty.io/blog/how-to-build-personalized-paywalls/",
+      "imageLocal": "/blog/how-to-build-personalized-paywalls.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/How-to-build-personalized-paywalls-with-user-attributes-and-Adapty-segments-1-preview-1.webp"
+    },
+    {
+      "title": "How to add Android in-app purchases to your app in 10 minutes",
+      "slug": "add-android-in-app-purchases-to-your-app",
+      "category": "Tutorial",
+      "date": "June 4, 2025",
+      "readTime": "17 min",
+      "excerpt": "Step-by-step guide to implementing in-app purchases on Android.",
+      "image": "https://adapty.io/assets/uploads/2025/06/Add-Subscriptions-to-Your-Android-App-with-Adapty-in-10-Minutes-2025-Guide-preview-1.webp",
+      "url": "https://adapty.io/blog/add-android-in-app-purchases-to-your-app/",
+      "imageLocal": "/blog/add-android-in-app-purchases-to-your-app.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Add-Subscriptions-to-Your-Android-App-with-Adapty-in-10-Minutes-2025-Guide-preview-1.webp"
+    },
+    {
+      "title": "Quickstart Adapty setup guide: iOS with SwiftUI",
+      "slug": "quickstart-adapty-setupguide-ios-with-swiftui",
+      "category": "Tutorial",
+      "date": "June 3, 2025",
+      "readTime": "7 min",
+      "excerpt": "Quick setup guide for iOS with SwiftUI.",
+      "image": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp",
+      "url": "https://adapty.io/blog/quickstart-adapty-setupguide-ios-with-swiftui/",
+      "imageLocal": "/blog/quickstart-adapty-setupguide-ios-with-swiftui.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp"
+    },
+    {
+      "title": "How to increase app revenue: Push notifications and targeted messaging",
+      "slug": "how-to-use-push-notifications-to-increase-app-revenue",
+      "category": "Tutorial",
+      "date": "June 3, 2025",
+      "readTime": "9 min",
+      "excerpt": "Use push notifications to boost revenue.",
+      "image": "https://adapty.io/assets/uploads/2025/06/How-to-message-cohorts-correctly-preview-1.webp",
+      "url": "https://adapty.io/blog/how-to-use-push-notifications-to-increase-app-revenue/",
+      "imageLocal": "/blog/how-to-use-push-notifications-to-increase-app-revenue.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/How-to-message-cohorts-correctly-preview-1.webp"
+    },
+    {
+      "title": "Quickstart Adapty Setup Guide: iOS with UIKit",
+      "slug": "quickstart-adapty-setup-guide-ios-with-uikit",
+      "category": "Tutorial",
+      "date": "June 3, 2025",
+      "readTime": "7 min",
+      "excerpt": "Quick setup guide for iOS with UIKit.",
+      "image": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp",
+      "url": "https://adapty.io/blog/quickstart-adapty-setup-guide-ios-with-uikit/",
+      "imageLocal": "/blog/quickstart-adapty-setup-guide-ios-with-uikit.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/06/Quickstart-Guide_-iOS-with-SwiftUI-2-preview-1.webp"
+    },
+    {
+      "title": "Guide to ad testing: How to test and scale ads for web-to-app in 2025",
+      "slug": "guide-to-ad-testing",
+      "category": "General",
+      "date": "May 21, 2025",
+      "readTime": "9 min",
+      "excerpt": "Complete guide to testing and scaling web-to-app ads.",
+      "image": "https://adapty.io/assets/uploads/2025/07/Cover-Ad-testing.webp",
+      "url": "https://adapty.io/blog/guide-to-ad-testing/",
+      "imageLocal": "/blog/guide-to-ad-testing.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/Cover-Ad-testing.webp"
+    },
+    {
+      "title": "How to validate server-side transactions with Apple's App Store Server API",
+      "slug": "validating-iap-with-app-store-server-api",
+      "category": "General",
+      "date": "May 20, 2025",
+      "readTime": "9 min",
+      "excerpt": "Server-side transaction validation guide for Apple.",
+      "image": "https://adapty.io/assets/uploads/2025/07/cover-app-store-server-api.webp",
+      "url": "https://adapty.io/blog/validating-iap-with-app-store-server-api/",
+      "imageLocal": "/blog/validating-iap-with-app-store-server-api.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/07/cover-app-store-server-api.webp"
+    },
+    {
+      "title": "RevenueCat alternatives: Why I switched to Adapty for my indie weather app",
+      "slug": "revenuecat-alternatives-why-i-switched-to-adapty",
+      "category": "Tutorial",
+      "date": "May 12, 2025",
+      "readTime": "9 min",
+      "excerpt": "A developer's journey from RevenueCat to Adapty.",
+      "image": "https://adapty.io/assets/uploads/2025/05/cover-StoreKit-to-Adapty.webp",
+      "url": "https://adapty.io/blog/revenuecat-alternatives-why-i-switched-to-adapty/",
+      "imageLocal": "/blog/revenuecat-alternatives-why-i-switched-to-adapty.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-StoreKit-to-Adapty.webp"
+    },
+    {
+      "title": "Top 9 ways to monetize your app in 2025 and beyond",
+      "slug": "mobile-app-monetization-strategies",
+      "category": "Money",
+      "date": "May 9, 2025",
+      "readTime": "21 min",
+      "excerpt": "Comprehensive guide to app monetization strategies.",
+      "image": "https://adapty.io/assets/uploads/2025/05/Mobile-app-monetization.png",
+      "url": "https://adapty.io/blog/mobile-app-monetization-strategies/",
+      "imageLocal": "/blog/mobile-app-monetization-strategies.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Mobile-app-monetization.png"
+    },
+    {
+      "title": "Can you use Stripe for in-app purchases in 2025?",
+      "slug": "can-you-use-stripe-for-in-app-purchases",
+      "category": "Tutorial",
+      "date": "May 9, 2025",
+      "readTime": "13 min",
+      "excerpt": "Exploring Stripe as an alternative payment method for apps.",
+      "image": "https://adapty.io/assets/uploads/2025/05/Stripe-for-in-app-purchases.webp",
+      "url": "https://adapty.io/blog/can-you-use-stripe-for-in-app-purchases/",
+      "imageLocal": "/blog/can-you-use-stripe-for-in-app-purchases.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Stripe-for-in-app-purchases.webp"
+    },
+    {
+      "title": "Google App Campaigns playbook 2025: Setup, optimization, reporting & best practices",
+      "slug": "google-app-campaigns-playbook-2025",
+      "category": "Tutorial",
+      "date": "May 5, 2025",
+      "readTime": "10 min",
+      "excerpt": "Complete playbook for Google App Campaigns.",
+      "image": "https://adapty.io/assets/uploads/2025/05/cover-google-app-campaigns-playbook-2025.webp",
+      "url": "https://adapty.io/blog/google-app-campaigns-playbook-2025/",
+      "imageLocal": "/blog/google-app-campaigns-playbook-2025.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-google-app-campaigns-playbook-2025.webp"
+    },
+    {
+      "title": "New U.S. ruling on external iOS payments",
+      "slug": "new-us-ruling-on-external-ios-payments",
+      "category": "Trends-insights",
+      "date": "May 2, 2025",
+      "readTime": "8 min",
+      "excerpt": "Understanding the new US ruling on external payments.",
+      "image": "https://adapty.io/assets/uploads/2025/05/New-US-Ruling-on-iOS-Payments.webp",
+      "url": "https://adapty.io/blog/new-us-ruling-on-external-ios-payments/",
+      "imageLocal": "/blog/new-us-ruling-on-external-ios-payments.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/New-US-Ruling-on-iOS-Payments.webp"
+    },
+    {
+      "title": "How to A/B test free trials on iOS",
+      "slug": "how-to-ab-test-free-trials-on-ios",
+      "category": "Tutorial",
+      "date": "April 30, 2025",
+      "readTime": "9 min",
+      "excerpt": "Best practices for A/B testing free trials.",
+      "image": "https://adapty.io/assets/uploads/2025/05/cover-how-to-ab-test-free-trials-on-ois.webp",
+      "url": "https://adapty.io/blog/how-to-ab-test-free-trials-on-ios/",
+      "imageLocal": "/blog/how-to-ab-test-free-trials-on-ios.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/cover-how-to-ab-test-free-trials-on-ois.webp"
+    },
+    {
+      "title": "Why Japanese ASO creatives need a different strategy",
+      "slug": "why-japanese-aso-creatives-need-different-strategy",
+      "category": "Trends-insights",
+      "date": "April 28, 2025",
+      "readTime": "4 min",
+      "excerpt": "Cultural nuances in Japanese App Store Optimization.",
+      "image": "https://adapty.io/assets/uploads/2025/05/Japanese-ASO-Creatives.webp",
+      "url": "https://adapty.io/blog/why-japanese-aso-creatives-need-different-strategy/",
+      "imageLocal": "/blog/why-japanese-aso-creatives-need-different-strategy.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Japanese-ASO-Creatives.webp"
+    },
+    {
+      "title": "How to reduce early churn and activate the second session",
+      "slug": "how-to-reduce-early-churn",
+      "category": "Tutorial",
+      "date": "April 18, 2025",
+      "readTime": "10 min",
+      "excerpt": "Strategies to reduce churn in the first 24 hours.",
+      "image": "https://adapty.io/assets/uploads/2025/05/Overcoming-Death-Valley-Guide.png",
+      "url": "https://adapty.io/blog/how-to-reduce-early-churn/",
+      "imageLocal": "/blog/how-to-reduce-early-churn.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Overcoming-Death-Valley-Guide.png"
+    },
+    {
+      "title": "Why your web-to-app funnel is broken and how to fix it",
+      "slug": "why-your-web-to-app-funnel-is-broken-and-how-to-fix-it",
+      "category": "Tutorial",
+      "date": "April 14, 2025",
+      "readTime": "9 min",
+      "excerpt": "Common web-to-app funnel mistakes and solutions.",
+      "image": "https://adapty.io/assets/uploads/2025/05/Why-your-web-to-app-funnel-is-broken-and-how-to-fix-it.png",
+      "url": "https://adapty.io/blog/why-your-web-to-app-funnel-is-broken-and-how-to-fix-it/",
+      "imageLocal": "/blog/why-your-web-to-app-funnel-is-broken-and-how-to-fix-it.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Why-your-web-to-app-funnel-is-broken-and-how-to-fix-it.png"
+    },
+    {
+      "title": "Paywall Newsletter #20: Apps built by women, loved by thousands",
+      "slug": "paywall-newsletter-20",
+      "category": "Paywall Newsletter",
+      "date": "March 24, 2025",
+      "readTime": "4 min",
+      "excerpt": "Celebrating women-built apps and their monetization.",
+      "image": "https://adapty.io/assets/uploads/2025/05/opengraph_newsletter20_16x9.webp",
+      "url": "https://adapty.io/blog/paywall-newsletter-20/",
+      "imageLocal": "/blog/paywall-newsletter-20.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/opengraph_newsletter20_16x9.webp"
+    },
+    {
+      "title": "How to optimize ASO for Japan and why direct translations won't work",
+      "slug": "how-to-optimize-aso-for-japan",
+      "category": "Trends-insights",
+      "date": "March 24, 2025",
+      "readTime": "7 min",
+      "excerpt": "Japanese ASO optimization strategies.",
+      "image": "https://adapty.io/assets/uploads/2025/05/How-to-optimize-ASO-for-Japan.png",
+      "url": "https://adapty.io/blog/how-to-optimize-aso-for-japan/",
+      "imageLocal": "/blog/how-to-optimize-aso-for-japan.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/How-to-optimize-ASO-for-Japan.png"
+    },
+    {
+      "title": "What is web-to-app and how does it work",
+      "slug": "what-is-web-to-app-and-how-does-it-work",
+      "category": "Tutorial",
+      "date": "March 19, 2025",
+      "readTime": "10 min",
+      "excerpt": "Understanding web-to-app funnels and strategies.",
+      "image": "https://adapty.io/assets/uploads/2025/05/w2a-1-featurePic.png",
+      "url": "https://adapty.io/blog/what-is-web-to-app-and-how-does-it-work/",
+      "imageLocal": "/blog/what-is-web-to-app-and-how-does-it-work.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/w2a-1-featurePic.png"
+    },
+    {
+      "title": "February Adapty updates: Rich text, smarter taxes, and more",
+      "slug": "february-adapty-updates-rich-text-smarter-taxes-and-more",
+      "category": "Product-releases",
+      "date": "March 11, 2025",
+      "readTime": "2 min",
+      "excerpt": "February 2025 product updates from Adapty.",
+      "image": "https://adapty.io/assets/uploads/2025/05/adapty-february-updates.png",
+      "url": "https://adapty.io/blog/february-adapty-updates-rich-text-smarter-taxes-and-more/",
+      "imageLocal": "/blog/february-adapty-updates-rich-text-smarter-taxes-and-more.png",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/adapty-february-updates.png"
+    },
+    {
+      "title": "What Japanese paywalls look like and why Western strategies won't work",
+      "slug": "what-japanese-paywalls-look-like-and-why-western-strategies-wont-work",
+      "category": "Trends-insights",
+      "date": "March 6, 2025",
+      "readTime": "4 min",
+      "excerpt": "Japanese paywall design and cultural considerations.",
+      "image": "https://adapty.io/assets/uploads/2025/05/Property-1covers-2024-Property-2Property-24-1.webp",
+      "url": "https://adapty.io/blog/what-japanese-paywalls-look-like-and-why-western-strategies-wont-work/",
+      "imageLocal": "/blog/what-japanese-paywalls-look-like-and-why-western-strategies-wont-work.webp",
+      "imageOriginal": "https://adapty.io/assets/uploads/2025/05/Property-1covers-2024-Property-2Property-24-1.webp"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Analytics",
+      "slug": "analytics",
+      "count": 26
+    },
+    {
+      "name": "Android",
+      "slug": "android",
+      "count": 18
+    },
+    {
+      "name": "General",
+      "slug": "general",
+      "count": 13
+    },
+    {
+      "name": "iOS",
+      "slug": "ios",
+      "count": 41
+    },
+    {
+      "name": "Money",
+      "slug": "money",
+      "count": 43
+    },
+    {
+      "name": "Paywall Newsletter",
+      "slug": "paywall-newsletter",
+      "count": 27
+    },
+    {
+      "name": "Podcast",
+      "slug": "podcast",
+      "count": 18
+    },
+    {
+      "name": "Product-releases",
+      "slug": "product-releases",
+      "count": 60
+    },
+    {
+      "name": "Trends-insights",
+      "slug": "trends-insights",
+      "count": 65
+    },
+    {
+      "name": "Tutorial",
+      "slug": "tutorial",
+      "count": 105
+    }
+  ],
+  "authors": [
+    {
+      "name": "Victoria Kharlan",
+      "slug": "vkharlan",
+      "bio": "Lessons I wish I had. Now yours."
+    },
+    {
+      "name": "Dmitry Shestoperov",
+      "slug": "dshestoperov",
+      "bio": "I write @ Adapty"
+    },
+    {
+      "name": "Kirill Potekhin",
+      "slug": "kirill-potekhin",
+      "bio": "CPO, co-founder, and product development expert"
+    }
+  ]
+}

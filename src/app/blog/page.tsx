@@ -16,7 +16,7 @@ type BlogPostListItem = {
     publishedAt?: string;
     readTime?: number;
     author?: { name?: string; image?: unknown };
-    category?: { title?: string };
+    category?: { name?: string };
 };
 
 async function getPosts(): Promise<BlogPostListItem[]> {
@@ -30,7 +30,7 @@ async function getPosts(): Promise<BlogPostListItem[]> {
       publishedAt,
       readTime,
       "author": author->{name, image},
-      "category": category->{title}
+      "category": category->{name}
     }
   `);
 }
@@ -75,7 +75,7 @@ export default async function BlogPage() {
                                         )}
                                         {post.category && (
                                             <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold text-foreground">
-                                                {post.category.title}
+                                                {post.category.name}
                                             </div>
                                         )}
                                     </div>

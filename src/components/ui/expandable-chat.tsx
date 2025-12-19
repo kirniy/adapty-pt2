@@ -134,20 +134,31 @@ const ExpandableChatToggle: React.FC<ExpandableChatToggleProps> = ({
 }) => (
     <motion.button
         onClick={toggleChat}
+        animate={isOpen ? { y: 0 } : { y: [0, -5, 0] }}
+        transition={{
+            y: {
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+            }
+        }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className={cn(
-            "w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 relative group",
+            "w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 relative group z-50 overflow-hidden",
+            "bg-white text-foreground border border-border-subtle",
+            "hover:text-white hover:border-transparent",
             className,
         )}
-        style={{
-            background: "linear-gradient(135deg, #6720FF 0%, #3D10AA 100%)",
-        }}
     >
-        {/* Glow effect */}
-        <div className="absolute inset-0 rounded-full bg-brand blur-md opacity-40 group-hover:opacity-70 transition-opacity duration-300" />
+        {/* Gradient Hover Effect Layer */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand to-violet-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out" />
 
-        <div className="relative z-10 text-white">
+        {/* Glow Effect (Hover) */}
+        <div className="absolute inset-0 bg-brand blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+
+        {/* Content */}
+        <div className="relative z-10">
             <AnimatePresence mode="wait">
                 {isOpen ? (
                     <motion.div
@@ -167,10 +178,13 @@ const ExpandableChatToggle: React.FC<ExpandableChatToggleProps> = ({
                         exit={{ scale: 0.5, opacity: 0 }}
                         transition={{ duration: 0.2 }}
                     >
-                        {icon || <div className="relative">
-                            <MessageCircle className="h-6 w-6" />
-                            <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-brand" />
-                        </div>}
+                        {icon || (
+                            <div className="relative">
+                                <MessageCircle className="h-6 w-6" />
+                                {/* Status Dot - Only show on white background (default), hide on hover (purple bg) */}
+                                <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white group-hover:border-transparent transition-colors duration-300" />
+                            </div>
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>

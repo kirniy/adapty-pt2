@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useCallback } from "react";
+import ReactMarkdown from "react-markdown";
 import {
     ExpandableChat,
     ExpandableChatHeader,
@@ -10,14 +11,13 @@ import {
 import { ChatMessageList } from "@/components/ui/chat-message-list";
 import {
     ChatBubble,
-    ChatBubbleAvatar,
     ChatBubbleMessage,
     ChatBubbleActionWrapper,
     ChatBubbleAction,
 } from "@/components/ui/chat-bubble";
 import { ChatInput } from "@/components/ui/chat-input";
 import { Button } from "@/components/ui/CustomButton";
-import { Send, Paperclip, Copy, Sparkles } from "lucide-react";
+import { Send, Paperclip, Copy, Sparkles, User } from "lucide-react";
 
 interface Message {
     id: string;
@@ -113,7 +113,17 @@ export function AIChatWidget() {
     };
 
     return (
-        <ExpandableChat size="lg" position="bottom-right" className="font-sans">
+        <ExpandableChat
+            size="lg"
+            position="bottom-right"
+            className="font-sans"
+            icon={
+                <div className="relative">
+                    <Sparkles className="h-6 w-6" />
+                    <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 rounded-full border-2 border-white group-hover:border-transparent transition-colors duration-300 animate-pulse" />
+                </div>
+            }
+        >
             <ExpandableChatHeader className="bg-white/50 backdrop-blur-md border-b border-black/5">
                 <div className="flex items-center gap-3">
                     <div className="w-9 h-9 rounded-full bg-gradient-to-br from-brand to-violet-600 flex items-center justify-center shadow-inner">
@@ -142,24 +152,71 @@ export function AIChatWidget() {
                                 key={message.id}
                                 variant={isUser ? "sent" : "received"}
                             >
-                                <ChatBubbleAvatar
-                                    fallback={isUser ? "US" : "AI"}
-                                    className={
+                                {/* Custom Avatar */}
+                                <div
+                                    className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${
                                         isUser
-                                            ? "bg-white text-foreground border border-black/5"
+                                            ? "bg-zinc-100 text-zinc-600 border border-zinc-200"
                                             : "bg-gradient-to-br from-brand to-violet-600 text-white"
-                                    }
-                                />
+                                    }`}
+                                >
+                                    {isUser ? (
+                                        <User className="w-4 h-4" />
+                                    ) : (
+                                        <Sparkles className="w-4 h-4" />
+                                    )}
+                                </div>
                                 <div className="flex flex-col gap-1 w-full max-w-[85%]">
                                     <ChatBubbleMessage
                                         variant={isUser ? "sent" : "received"}
                                         className={
                                             isUser
-                                                ? "bg-brand text-white shadow-md"
-                                                : "bg-white/80 backdrop-blur-sm shadow-sm border border-black/5 text-foreground"
+                                                ? "bg-brand shadow-md"
+                                                : "bg-white/80 backdrop-blur-sm shadow-sm border border-black/5"
                                         }
+                                        style={isUser ? { color: "#ffffff" } : undefined}
                                     >
-                                        {message.content}
+                                        {isUser ? (
+                                            <span className="text-white">{message.content}</span>
+                                        ) : (
+                                            <div className="prose prose-sm prose-zinc max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
+                                                <ReactMarkdown
+                                                    components={{
+                                                        a: ({ ...props }) => (
+                                                            <a
+                                                                {...props}
+                                                                className="text-brand hover:underline"
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                            />
+                                                        ),
+                                                        strong: ({ ...props }) => (
+                                                            <strong {...props} className="font-semibold text-zinc-900" />
+                                                        ),
+                                                        ul: ({ ...props }) => (
+                                                            <ul {...props} className="list-disc pl-4 my-2 space-y-1" />
+                                                        ),
+                                                        ol: ({ ...props }) => (
+                                                            <ol {...props} className="list-decimal pl-4 my-2 space-y-1" />
+                                                        ),
+                                                        li: ({ ...props }) => (
+                                                            <li {...props} className="text-zinc-700" />
+                                                        ),
+                                                        p: ({ ...props }) => (
+                                                            <p {...props} className="text-zinc-700 my-2" />
+                                                        ),
+                                                        h3: ({ ...props }) => (
+                                                            <h3 {...props} className="text-base font-semibold text-zinc-900 mt-3 mb-1" />
+                                                        ),
+                                                        code: ({ ...props }) => (
+                                                            <code {...props} className="bg-zinc-100 px-1.5 py-0.5 rounded text-sm font-mono text-zinc-800" />
+                                                        ),
+                                                    }}
+                                                >
+                                                    {message.content}
+                                                </ReactMarkdown>
+                                            </div>
+                                        )}
                                     </ChatBubbleMessage>
 
                                     {!isUser &&
@@ -185,10 +242,9 @@ export function AIChatWidget() {
 
                     {isLoading && (
                         <ChatBubble variant="received">
-                            <ChatBubbleAvatar
-                                fallback="AI"
-                                className="bg-gradient-to-br from-brand to-violet-600 text-white"
-                            />
+                            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-brand to-violet-600 flex items-center justify-center shrink-0">
+                                <Sparkles className="w-4 h-4 text-white" />
+                            </div>
                             <ChatBubbleMessage
                                 isLoading
                                 className="bg-white/80 border border-black/5"

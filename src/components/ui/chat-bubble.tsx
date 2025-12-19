@@ -39,6 +39,7 @@ interface ChatBubbleMessageProps {
     variant?: "sent" | "received"
     isLoading?: boolean
     className?: string
+    style?: React.CSSProperties
     children?: React.ReactNode
 }
 
@@ -46,6 +47,7 @@ export function ChatBubbleMessage({
     variant = "received",
     isLoading,
     className,
+    style,
     children,
 }: ChatBubbleMessageProps) {
     return (
@@ -55,6 +57,7 @@ export function ChatBubbleMessage({
                 variant === "sent" ? "bg-primary" : "bg-muted text-foreground",
                 className
             )}
+            style={style}
         >
             {isLoading ? (
                 <div className="flex items-center space-x-2">

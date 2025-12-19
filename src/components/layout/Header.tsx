@@ -267,9 +267,10 @@ export function Header() {
         <header
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-smooth h-[80px] flex items-center",
-                isScrolled || hoveredNav
+                (isScrolled || hoveredNav) && !mobileMenuOpen
                     ? "bg-white/95 backdrop-blur-md border-b border-border-subtle"
-                    : "bg-transparent"
+                    : "bg-transparent",
+                mobileMenuOpen && "bg-transparent"
             )}
             onMouseLeave={() => setHoveredNav(null)}
         >

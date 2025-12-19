@@ -13,18 +13,21 @@ export const G2Badges = () => {
     ];
 
     return (
-        <Section className="py-12 border-b border-border-subtle bg-background-secondary/50">
+        <Section className="py-16 border-b border-border-subtle bg-gradient-to-b from-background-secondary/30 to-white">
             <Container>
-                <div className="text-center mb-10">
+                <div className="text-center mb-12">
                     <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
                         Trusted for usability and customer service
                     </h2>
+                    <p className="text-foreground-secondary mt-2">
+                        Recognized by G2 in Winter 2025 reports
+                    </p>
                 </div>
-                <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+                <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
                     {badges.map((badge, index) => (
                         <div
                             key={badge}
-                            className="opacity-0 animate-fade-in fill-mode-forwards hover:scale-105 transition-transform duration-300"
+                            className="group opacity-0 animate-fade-in fill-mode-forwards p-4 rounded-2xl hover:bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                             style={{ animationDelay: `${0.2 + index * 0.1}s` }}
                         >
                             <Image
@@ -32,7 +35,7 @@ export const G2Badges = () => {
                                 alt="G2 Badge"
                                 width={100}
                                 height={120}
-                                className="h-20 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                                className="h-24 w-auto object-contain opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
                             />
                         </div>
                     ))}

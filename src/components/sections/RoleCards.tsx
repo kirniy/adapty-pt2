@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { ShineBeam } from "@/components/ui/ShineBeam";
 
 const ROLES = [
     {
@@ -33,15 +32,13 @@ export function RoleCards() {
                 <Link
                     key={role.title}
                     href={role.link}
-                    className="flex flex-col bg-background-secondary relative hover:shadow-2xl transition-all duration-300 rounded-[32px] overflow-hidden group border border-border-subtle h-full"
+                    className="flex flex-col bg-white relative hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-[32px] overflow-hidden group border border-border-subtle hover:border-brand/20 h-full"
                 >
-                    {/* Hover Beam Effect */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0 overflow-hidden rounded-[32px]">
-                        <ShineBeam size={800} duration={5} color="#6720FF" className="opacity-60" />
-                    </div>
+                    {/* Subtle gradient accent on hover */}
+                    <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand/0 via-brand to-brand/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                     {/* Image Area */}
-                    <div className="relative h-[240px] w-full bg-[#F3F4F6] p-4 flex items-center justify-center overflow-hidden z-10">
+                    <div className="relative h-[240px] w-full bg-gradient-to-b from-zinc-100 to-zinc-50 p-4 flex items-center justify-center overflow-hidden">
                         <Image
                             src={role.image}
                             alt={role.title}
@@ -52,19 +49,21 @@ export function RoleCards() {
                     </div>
 
                     {/* Content Area */}
-                    <div className="p-8 flex flex-col flex-1 bg-background-secondary relative z-20">
-                        <div className="flex items-center justify-between mb-8 group-hover:translate-x-1 transition-transform">
-                            <h3 className="text-xl font-bold tracking-tight text-foreground transition-colors group-hover:text-brand flex items-center gap-1.5">
+                    <div className="p-8 flex flex-col flex-1 bg-white relative">
+                        <div className="flex items-center justify-between mb-8">
+                            <h3 className="text-xl font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-brand flex items-center gap-1.5">
                                 {role.title}
                             </h3>
-                            <ArrowRight className="w-5 h-5 text-foreground/50 group-hover:text-foreground transition-colors" />
+                            <div className="h-8 w-8 rounded-full bg-zinc-100 group-hover:bg-brand flex items-center justify-center transition-colors duration-300">
+                                <ArrowRight className="w-4 h-4 text-foreground/50 group-hover:text-white transition-all duration-300 group-hover:translate-x-0.5" />
+                            </div>
                         </div>
 
                         <div className="flex flex-wrap gap-2 mt-auto">
                             {role.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground-secondary border border-black/5 shadow-sm text-center leading-snug whitespace-normal"
+                                    className="px-4 py-2 bg-zinc-50 group-hover:bg-brand/5 rounded-full text-sm font-medium text-foreground-secondary group-hover:text-foreground border border-black/5 transition-colors duration-300 text-center leading-snug whitespace-normal"
                                 >
                                     {tag}
                                 </span>

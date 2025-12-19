@@ -49,7 +49,7 @@ export const SDKGrid = () => {
                             )}
                         >
                             {/* Beam Effect */}
-                            <ShineBeam size={300} duration={3} color="#6720FF" className="opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+                            <ShineBeam duration={3} color="#6720FF" className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" borderWidth={1.5} />
 
                             <div className="relative z-10 flex flex-col items-center">
                                 <div className="relative w-16 h-16 mb-4 transition-transform duration-300 group-hover:scale-110">
@@ -64,8 +64,9 @@ export const SDKGrid = () => {
                                     {sdk.name}
                                 </span>
                             </div>
-                    ))}
                         </div>
+                    ))}
+                </div>
             </Container>
         </Section>
     );

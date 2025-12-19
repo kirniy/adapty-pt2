@@ -100,17 +100,20 @@ export const CaseStudies = () => {
                     </div>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-3 gap-6">
                     {cases.map((study) => (
                         <a
                             key={study.company}
                             href={study.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group flex flex-col p-8 rounded-3xl bg-background-tertiary border border-transparent hover:border-border-subtle hover:bg-white hover:shadow-card hover:-translate-y-1 transition-all duration-300 ease-smooth"
+                            className="group relative flex flex-col p-8 rounded-3xl bg-background-tertiary border border-transparent hover:border-border-subtle hover:bg-white hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ease-out overflow-hidden"
                         >
+                            {/* Subtle gradient accent on hover */}
+                            <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-brand/0 via-brand to-brand/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                             <div className="flex items-center justify-between mb-6">
-                                <div className="h-10 opacity-70 group-hover:opacity-100 transition-opacity">
+                                <div className="h-10 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
                                     <Image
                                         src={study.logo}
                                         alt={study.company}
@@ -119,18 +122,18 @@ export const CaseStudies = () => {
                                         className="h-full w-auto object-contain object-left"
                                     />
                                 </div>
-                                <span className="text-xs font-medium text-foreground-tertiary bg-background-secondary px-3 py-1 rounded-full">
+                                <span className="text-xs font-medium text-foreground-tertiary bg-white/60 group-hover:bg-brand/10 group-hover:text-brand px-3 py-1.5 rounded-full transition-colors duration-300">
                                     {study.category}
                                 </span>
                             </div>
-                            <div className="text-5xl font-bold text-foreground mb-4 tracking-tight">
+                            <div className="text-5xl font-bold text-foreground mb-4 tracking-tight group-hover:text-brand transition-colors duration-300">
                                 {study.metric}
                             </div>
-                            <div className="text-xl text-foreground-secondary leading-relaxed mb-8">
+                            <div className="text-lg text-foreground-secondary leading-relaxed mb-8">
                                 {study.description}
                             </div>
-                            <div className="mt-auto flex items-center gap-2 font-medium text-foreground group-hover:text-brand transition-colors">
-                                Read story <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                            <div className="mt-auto flex items-center gap-2 font-medium text-foreground group-hover:text-brand transition-colors duration-300">
+                                Read story <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                             </div>
                         </a>
                     ))}

@@ -8,32 +8,42 @@ interface ShineBeamProps {
     size?: number;      // Size of the rotating gradient square (needs to be large enough to cover the container)
     duration?: number;  // Rotation duration in seconds
     color?: string;     // Beam color (defaults to #407FF2)
-    borderWidth?: number; // Visual border width (simulated by mask padding)
+    borderWidth?: number; // Width of the beam border
 }
 
 export function ShineBeam({
     className,
     size = 400,
-    duration = 5,
-    color = "#6720FF",
+    duration = 4,
+    color = "#407FF2",
+    borderWidth = 1.5,
 }: ShineBeamProps) {
     return (
-        <div className={cn("absolute inset-0 z-0 pointer-events-none overflow-hidden rounded-[inherit]", className)}>
-            <motion.div
-                className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 opacity-40 blur-[60px]"
+        <div className={cn("absolute inset-0 pointer-events-none rounded-[inherit] overflow-hidden z-20", className)}>
+            <div
+                className="absolute inset-0 rounded-[inherit]"
                 style={{
-                    width: size,
-                    height: size,
-                    // A wide, soft beam ("Laser" spotlight)
-                    background: `conic-gradient(from 0deg, transparent 0deg, transparent 320deg, ${color} 360deg)`
+                    // Mask the center to leave only the border
+                    mask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
+                    maskComposite: "exclude",
+                    WebkitMaskComposite: "xor",
+                    padding: borderWidth,
                 }}
-                animate={{ rotate: 360 }}
-                transition={{
-                    duration: duration,
-                    ease: "linear",
-                    repeat: Infinity,
-                }}
-            />
+            >
+                <motion.div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-square"
+                    style={{
+                        width: "200%", // Ensure it covers the corners when rotating
+                        background: `conic-gradient(from 0deg, transparent 0deg, transparent 300deg, ${color} 360deg)`
+                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{
+                        duration: duration,
+                        ease: "linear",
+                        repeat: Infinity,
+                    }}
+                />
+            </div>
         </div>
     );
 }

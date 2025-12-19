@@ -6,67 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { PortableText, PortableTextComponents } from "next-sanity";
-import { ArrowLeft } from "lucide-react";
-import type { ReactNode } from "react";
-
-const LANGUAGE_ALIASES: Record<string, string> = {
-    "objective c": "Objective-C",
-    "objective-c": "Objective-C",
-    "react native": "React Native",
-    "c#": "C#",
-    "csharp": "C#",
-    "js": "JavaScript",
-    "ts": "TypeScript",
-};
-
-const KNOWN_LANGUAGES = new Set([
-    "Swift",
-    "Kotlin",
-    "Objective-C",
-    "Java",
-    "JavaScript",
-    "TypeScript",
-    "React Native",
-    "Flutter",
-    "Dart",
-    "C#",
-    "Python",
-    "Ruby",
-    "PHP",
-    "Go",
-    "Rust",
-    "SQL",
-    "Bash",
-    "Shell",
-    "JSON",
-    "HTML",
-    "CSS",
-]);
-
-const normalizeCodeBlock = (code: string, language?: string) => {
-    let label = language && language !== "text" ? language : "";
-    let normalized = code;
-
-    if (!label) {
-        const lines = code.split("\n");
-        const firstLineIndex = lines.findIndex((line) => line.trim() !== "");
-        if (firstLineIndex >= 0) {
-            const raw = lines[firstLineIndex].trim();
-            const lower = raw.toLowerCase();
-            const mapped = LANGUAGE_ALIASES[lower] || raw;
-            if (KNOWN_LANGUAGES.has(mapped)) {
-                label = mapped;
-                lines.splice(0, firstLineIndex + 1);
-                if (lines[0] === "") {
-                    lines.shift();
-                }
-                normalized = lines.join("\n");
-            }
-        }
-    }
-
-    return { code: normalized, label };
-};
+import { ArrowLeft, ChevronDown } from "lucide-react";
+import { BlogCodeBlock } from "@/components/blog/BlogCodeBlock";
 
 const TABLE_DIVIDER_RE = /\|\s*-{3,}\s*\|/;
 
@@ -108,24 +49,24 @@ const extractTableCode = (block: { _type?: string; style?: string; listItem?: st
 };
 
 const normalizeBody = (body: Array<{ _type?: string; code?: string; language?: string; _key?: string }>) => {
-    const converted = body.map((block) => {
+    const converted = body.map((block, index) => {
         const code = extractTableCode(block as { _type?: string; style?: string; listItem?: string; children?: Array<{ text?: string }> });
         if (!code) {
-            return block;
+            return { ...block, _type: block._type || "block" };
         }
         return {
-            _key: (block as { _key?: string })._key,
-            _type: "codeBlock",
+            _key: (block as { _key?: string })._key || `code-${index}`,
+            _type: "codeBlock" as const,
             code,
             language: "text",
         };
     });
 
-    return dedupeCodeBlocks(converted);
+    return extractFaqGroups(dedupeCodeBlocks(converted));
 };
 
-const dedupeCodeBlocks = (body: Array<{ _type?: string; code?: string }>) => {
-    const cleaned: Array<{ _type?: string; code?: string }> = [];
+const dedupeCodeBlocks = (body: Array<{ _type: string; code?: string; _key?: string }>) => {
+    const cleaned: Array<{ _type: string; code?: string; _key?: string }> = [];
     for (const block of body) {
         const prev = cleaned[cleaned.length - 1];
         if (block?._type === "codeBlock" && prev?._type === "codeBlock" && prev.code === block.code) {
@@ -136,35 +77,17 @@ const dedupeCodeBlocks = (body: Array<{ _type?: string; code?: string }>) => {
     return cleaned;
 };
 
-const CodeBlock = ({ code, language }: { code: ReactNode; language?: string }) => {
-    const normalized = typeof code === "string" ? normalizeCodeBlock(code, language) : { code, label: "" };
-    const label = normalized.label;
-    const classLanguage = label || (language && language !== "text" ? language : "text");
-
-    return (
-        <div className="my-6">
-            {label && (
-                <div className="text-xs font-semibold text-foreground-secondary uppercase tracking-wider mb-2">
-                    {label}
-                </div>
-            )}
-            <pre className="bg-zinc-900 text-zinc-100 rounded-lg p-4 overflow-x-auto text-sm leading-relaxed font-mono">
-                <code className={`language-${classLanguage} whitespace-pre`}>
-                    {normalized.code}
-                </code>
-            </pre>
-        </div>
-    );
-};
-
 // Custom components for PortableText rendering
 const portableTextComponents: PortableTextComponents = {
     types: {
         codeBlock: ({ value }: { value: { code?: string; language?: string } }) => (
-            <CodeBlock code={value.code || ''} language={value.language} />
+            <BlogCodeBlock code={value.code || ""} language={value.language} />
         ),
         code: ({ value }: { value: { code?: string; language?: string } }) => (
-            <CodeBlock code={value.code || ''} language={value.language} />
+            <BlogCodeBlock code={value.code || ""} language={value.language} />
+        ),
+        faqGroup: ({ value }: { value: { title?: string; items?: { question: string; answer: Array<unknown> }[] } }) => (
+            <FaqGroup value={value} />
         ),
         image: ({ value }: { value: { asset: { _ref: string }; alt?: string } }) => (
             <div className="my-8">
@@ -173,7 +96,8 @@ const portableTextComponents: PortableTextComponents = {
                     alt={value.alt || 'Blog image'}
                     width={800}
                     height={450}
-                    className="rounded-2xl"
+                    sizes="(min-width: 1024px) 768px, (min-width: 768px) 640px, 100vw"
+                    className="rounded-2xl w-full h-auto shadow-sm"
                 />
             </div>
         ),
@@ -195,7 +119,7 @@ const portableTextComponents: PortableTextComponents = {
         h2: ({ children }) => <h2 className="text-3xl font-bold mt-10 mb-4">{children}</h2>,
         h3: ({ children }) => <h3 className="text-2xl font-bold mt-8 mb-3">{children}</h3>,
         h4: ({ children }) => <h4 className="text-xl font-bold mt-6 mb-2">{children}</h4>,
-        code: ({ children }) => <CodeBlock code={children} />,
+        code: ({ children }) => <BlogCodeBlock code={typeof children === "string" ? children : ""} />,
         blockquote: ({ children }) => (
             <blockquote className="border-l-4 border-brand pl-4 italic my-6 text-foreground-secondary">
                 {children}
@@ -204,7 +128,7 @@ const portableTextComponents: PortableTextComponents = {
         normal: ({ children, value }) => {
             const code = extractTableCode(value as { _type?: string; style?: string; listItem?: string; children?: Array<{ text?: string }> });
             if (code) {
-                return <CodeBlock code={code} />;
+                return <BlogCodeBlock code={code} />;
             }
             return <p className="my-4 leading-relaxed">{children}</p>;
         },
@@ -218,6 +142,109 @@ const portableTextComponents: PortableTextComponents = {
         number: ({ children }) => <li className="leading-relaxed">{children}</li>,
     },
 };
+
+function extractFaqGroups(
+    body: Array<{ _type?: string; style?: string; listItem?: string; children?: Array<{ text?: string }> }>
+) {
+    const getText = (block: { children?: Array<{ text?: string }> }) =>
+        (block.children || []).map((child) => child.text || "").join("").trim();
+
+    const isFaqHeading = (block: { _type?: string; style?: string; children?: Array<{ text?: string }> }) => {
+        if (block._type !== "block" || block.style !== "h2") return false;
+        const text = getText(block).toLowerCase();
+        return text === "faq" || text === "faqs";
+    };
+
+    const isSectionBoundary = (block: { _type?: string; style?: string }) =>
+        block._type === "block" && (block.style === "h1" || block.style === "h2");
+
+    const transformed: Array<unknown> = [];
+
+    for (let i = 0; i < body.length; i += 1) {
+        const block = body[i];
+        if (!isFaqHeading(block)) {
+            transformed.push(block);
+            continue;
+        }
+
+        const items: { question: string; answer: Array<unknown> }[] = [];
+        let currentQuestion = "";
+        let currentAnswer: Array<unknown> = [];
+        let j = i + 1;
+
+        for (; j < body.length; j += 1) {
+            const next = body[j];
+            if (isSectionBoundary(next)) {
+                break;
+            }
+            if (next?._type === "block" && next.style === "h3") {
+                if (currentQuestion) {
+                    items.push({ question: currentQuestion, answer: currentAnswer });
+                }
+                currentQuestion = getText(next);
+                currentAnswer = [];
+                continue;
+            }
+            if (currentQuestion) {
+                currentAnswer.push(next);
+            }
+        }
+
+        if (currentQuestion) {
+            items.push({ question: currentQuestion, answer: currentAnswer });
+        }
+
+        if (items.length > 0) {
+            transformed.push({
+                _type: "faqGroup",
+                _key: (block as { _key?: string })._key,
+                title: getText(block) || "FAQs",
+                items,
+            });
+        } else {
+            transformed.push(block);
+        }
+
+        i = j - 1;
+    }
+
+    return transformed as Array<{ _type?: string; code?: string; language?: string; _key?: string }>;
+}
+
+function FaqGroup({ value }: { value: { title?: string; items?: { question: string; answer: Array<unknown> }[] } }) {
+    const items = Array.isArray(value?.items) ? value.items : [];
+    if (!items.length) return null;
+
+    const faqComponents: PortableTextComponents = {
+        ...portableTextComponents,
+        types: {
+            ...portableTextComponents.types,
+            faqGroup: undefined,
+        },
+    };
+
+    return (
+        <div className="my-12">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">{value.title || "FAQs"}</h2>
+            <div className="space-y-4">
+                {items.map((item, index) => (
+                    <details
+                        key={`${item.question}-${index}`}
+                        className="group rounded-2xl border border-border-subtle bg-white shadow-sm overflow-hidden"
+                    >
+                        <summary className="faq-summary flex items-center justify-between gap-6 px-6 py-5 cursor-pointer text-lg font-semibold text-foreground">
+                            {item.question}
+                            <ChevronDown className="h-5 w-5 text-foreground-secondary transition-transform duration-200 group-open:rotate-180" />
+                        </summary>
+                        <div className="px-6 pb-6 text-foreground-secondary">
+                            <PortableText value={item.answer} components={faqComponents} />
+                        </div>
+                    </details>
+                ))}
+            </div>
+        </div>
+    );
+}
 
 async function getPost(slug: string) {
     return client.fetch(`
@@ -313,15 +340,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* Hero Image */}
             {post.mainImage && (
-                <div className="w-full h-[400px] md:h-[600px] relative mb-16 bg-background-secondary">
-                    <Image
-                        src={urlFor(post.mainImage).url()}
-                        alt={post.title}
-                        fill
-                        className="object-cover"
-                        priority
-                    />
-                </div>
+                <Section className="pt-0">
+                    <Container className="max-w-5xl">
+                        <div className="relative w-full aspect-[16/9] overflow-hidden rounded-3xl border border-border-subtle bg-background-secondary shadow-lg">
+                            <Image
+                                src={urlFor(post.mainImage).url()}
+                                alt={post.title}
+                                fill
+                                sizes="(min-width: 1024px) 960px, (min-width: 768px) 700px, 100vw"
+                                className="object-cover"
+                                priority
+                            />
+                        </div>
+                    </Container>
+                </Section>
             )}
 
             {/* Content */}

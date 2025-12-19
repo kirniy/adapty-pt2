@@ -4,6 +4,15 @@ This file contains essential project configuration and context for AI agents wor
 
 ---
 
+## Version
+
+**Current Version**: `0.9.0-beta`
+**Status**: Production-ready beta - All test task requirements met
+
+See [CHANGELOG.md](./CHANGELOG.md) for full version history.
+
+---
+
 ## Project Overview
 
 **Project Name**: adapty-pt2

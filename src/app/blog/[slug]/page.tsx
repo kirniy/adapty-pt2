@@ -201,7 +201,13 @@ const portableTextComponents: PortableTextComponents = {
                 {children}
             </blockquote>
         ),
-        normal: ({ children }) => <p className="my-4 leading-relaxed">{children}</p>,
+        normal: ({ children, value }) => {
+            const code = extractTableCode(value as { _type?: string; style?: string; listItem?: string; children?: Array<{ text?: string }> });
+            if (code) {
+                return <CodeBlock code={code} />;
+            }
+            return <p className="my-4 leading-relaxed">{children}</p>;
+        },
     },
     list: {
         bullet: ({ children }) => <ul className="list-disc pl-6 my-4 space-y-2">{children}</ul>,

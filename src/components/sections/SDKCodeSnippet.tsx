@@ -172,7 +172,7 @@ export const SDKCodeSnippet = () => {
                                 <div className="p-4 md:p-6 overflow-x-auto relative group/code">
                                     <button
                                         onClick={handleCopy}
-                                        className="absolute top-4 right-4 p-2 rounded-lg bg-white/5 text-white/40 hover:text-white hover:bg-white/10 transition-all opacity-0 group-hover/code:opacity-100"
+                                        className="absolute top-4 right-4 p-2 rounded-lg bg-white/5 text-white/40 hover:text-white hover:bg-white/10 transition-all opacity-100 md:opacity-0 md:group-hover/code:opacity-100"
                                         title="Copy code"
                                     >
                                         {copied ? <CheckCircle2 className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
@@ -198,7 +198,7 @@ export const SDKCodeSnippet = () => {
             </Section>
 
             {/* SDK Grid Section */}
-            <Section className="pb-32 pt-8">
+            <Section className="pb-32 pt-8 relative">
                 <Container>
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
@@ -208,37 +208,78 @@ export const SDKCodeSnippet = () => {
 
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                         {[
-                            { name: 'Swift SDK', icon: '/sdks/swift.svg', link: 'https://adapty.io/sdk/ios/' },
-                            { name: 'Kotlin SDK', icon: '/sdks/kotlin.svg', link: 'https://adapty.io/sdk/android/' },
-                            { name: 'React Native SDK', icon: '/sdks/react-native.svg', link: 'https://adapty.io/sdk/react-native/' },
-                            { name: 'Unity SDK', icon: '/sdks/unity.svg', link: 'https://adapty.io/sdk/unity/' },
-                            { name: 'Flutter SDK', icon: '/sdks/flutter.svg', link: 'https://adapty.io/sdk/flutter/' },
-                            { name: 'Capacitor SDK', icon: '/sdks/capacitor.svg', link: 'https://adapty.io/sdk/capacitor/' },
-                            { name: 'Kotlin Multiplatform', icon: '/sdks/kmp.svg', link: 'https://adapty.io/sdk/kmp/' },
-                            { name: 'FlutterFlow', icon: '/sdks/flutterflow.svg', link: 'https://adapty.io/sdk/flutterflow/' },
-                            { name: 'Web API', icon: '/sdks/web-api.svg', link: 'https://adapty.io/sdk/web/' },
-                            { name: 'Stripe', icon: '/sdks/stripe.svg', link: 'https://adapty.io/integrations/stripe/' },
-                        ].map((sdk) => (
+                            { name: 'Swift SDK', icon: '/sdks/swift.svg', link: 'https://adapty.io/sdk/ios/', color: '#F05138' },
+                            { name: 'Kotlin SDK', icon: '/sdks/kotlin.svg', link: 'https://adapty.io/sdk/android/', color: '#7F52FF' },
+                            { name: 'React Native SDK', icon: '/sdks/react-native.svg', link: 'https://adapty.io/sdk/react-native/', color: '#61DAFB' },
+                            { name: 'Unity SDK', icon: '/sdks/unity.svg', link: 'https://adapty.io/sdk/unity/', color: '#000000' },
+                            { name: 'Flutter SDK', icon: '/sdks/flutter.svg', link: 'https://adapty.io/sdk/flutter/', color: '#02569B' },
+                            { name: 'Capacitor SDK', icon: '/sdks/capacitor.svg', link: 'https://adapty.io/sdk/capacitor/', color: '#53B9FF' },
+                            { name: 'Kotlin Multiplatform', icon: '/sdks/kmp.svg', link: 'https://adapty.io/sdk/kmp/', color: '#7F52FF' },
+                            { name: 'FlutterFlow', icon: '/sdks/flutterflow.svg', link: 'https://adapty.io/sdk/flutterflow/', color: '#6E40C9' },
+                            { name: 'Web API', icon: '/sdks/web-api.svg', link: 'https://adapty.io/sdk/web/', color: '#3B82F6' },
+                            { name: 'Stripe', icon: '/sdks/stripe.svg', link: 'https://adapty.io/integrations/stripe/', color: '#635BFF' },
+                        ].map((sdk, index) => (
                             <Link
                                 key={sdk.name}
                                 href={sdk.link}
-                                className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-border-subtle hover:border-brand/50 hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+                                className="group flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-border-subtle hover:border-transparent hover:shadow-xl transition-all duration-500 relative overflow-hidden"
+                                style={{
+                                    animationDelay: `${index * 50}ms`,
+                                }}
                             >
-                                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-brand/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                {/* Animated dot grid background */}
+                                <div
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                    style={{
+                                        backgroundImage: `radial-gradient(${sdk.color}20 1px, transparent 1px)`,
+                                        backgroundSize: '16px 16px',
+                                    }}
+                                />
 
-                                <div className="h-12 w-12 relative mb-4 transition-transform group-hover:scale-110 duration-300">
+                                {/* Gradient glow on hover */}
+                                <div
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                    style={{
+                                        background: `radial-gradient(circle at 50% 0%, ${sdk.color}15 0%, transparent 70%)`,
+                                    }}
+                                />
+
+                                {/* Bottom gradient line */}
+                                <div
+                                    className="absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-1 group-hover:translate-y-0"
+                                    style={{
+                                        background: `linear-gradient(90deg, transparent, ${sdk.color}, transparent)`,
+                                    }}
+                                />
+
+                                {/* Icon with enhanced hover */}
+                                <div className="h-12 w-12 relative mb-4 transition-all duration-500 group-hover:scale-110 group-hover:-translate-y-1">
+                                    <div
+                                        className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500"
+                                        style={{ backgroundColor: sdk.color }}
+                                    />
                                     <Image
                                         src={sdk.icon}
                                         alt={sdk.name}
                                         fill
-                                        className="object-contain"
+                                        className="object-contain relative z-10"
                                     />
                                 </div>
-                                <div className="flex items-center gap-1">
-                                    <span className="font-semibold text-sm text-center text-foreground group-hover:text-brand transition-colors">
+
+                                {/* Text */}
+                                <div className="flex items-center gap-1 relative z-10">
+                                    <span className="font-semibold text-sm text-center text-foreground group-hover:text-foreground transition-colors duration-300">
                                         {sdk.name}
                                     </span>
                                 </div>
+
+                                {/* Corner accent */}
+                                <div
+                                    className="absolute top-0 right-0 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                    style={{
+                                        background: `radial-gradient(circle at 100% 0%, ${sdk.color}10 0%, transparent 70%)`,
+                                    }}
+                                />
                             </Link>
                         ))}
                     </div>

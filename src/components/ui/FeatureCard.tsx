@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { SpotlightCard } from "@/components/ui/SpotlightCard"
 import { SnakeBorder } from "@/components/ui/SnakeBorder"
+import { ShineBeam } from "@/components/ui/ShineBeam"
 
 interface FeatureCardProps {
     title: string
@@ -17,7 +18,8 @@ export function FeatureCard({ title, description, icon, image, className, href, 
     const Wrapper = href ? Link : 'div'
 
     return (
-        <SnakeBorder className={cn("h-full rounded-3xl", className)} visible="hover" color="#6720FF">
+        <div className={cn("h-full rounded-3xl relative group overflow-hidden", className)}>
+            <ShineBeam size={600} duration={4} color="#6720FF" className="opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
             <SpotlightCard
                 className={cn(
                     "group relative overflow-hidden bg-white rounded-[inherit] shadow-sm transition-all duration-300 ease-smooth hover:shadow-card hover:translate-y-[-4px] flex flex-col h-full border border-border/50",
@@ -50,6 +52,6 @@ export function FeatureCard({ title, description, icon, image, className, href, 
                     </div>
                 </Wrapper>
             </SpotlightCard>
-        </SnakeBorder>
+        </div>
     )
 }

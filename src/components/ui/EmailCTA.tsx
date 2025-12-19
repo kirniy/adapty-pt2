@@ -45,7 +45,7 @@ export function EmailCTA({
       <form onSubmit={handleSubmit} className="relative flex items-center w-full sm:w-auto">
         <div
           className={cn(
-            "flex items-center rounded-full border overflow-hidden transition-all duration-200",
+            "flex items-center w-full rounded-full border overflow-hidden transition-all duration-200",
             "focus-within:ring-2 focus-within:ring-brand/20",
             isLight
               ? "bg-white border-border hover:border-foreground-muted"
@@ -58,7 +58,7 @@ export function EmailCTA({
             onChange={(e) => setEmail(e.target.value)}
             placeholder={placeholder}
             className={cn(
-              "w-[200px] sm:w-[240px] px-5 py-3.5 text-[15px] bg-transparent outline-none",
+              "flex-1 min-w-0 px-5 py-3.5 text-[15px] bg-transparent outline-none",
               isLight
                 ? "text-foreground placeholder:text-foreground-muted"
                 : "text-white placeholder:text-white/50"
@@ -68,7 +68,7 @@ export function EmailCTA({
           <button
             type="submit"
             className={cn(
-              "flex items-center gap-2 px-5 py-3 mr-1.5 rounded-full font-medium text-[15px] transition-all duration-200",
+              "flex items-center gap-2 px-4 sm:px-5 py-3 mr-1.5 rounded-full font-medium text-[14px] sm:text-[15px] transition-all duration-200 whitespace-nowrap",
               "hover:translate-x-0.5 active:scale-95",
               isLight
                 ? "bg-brand text-white hover:bg-brand-hover"

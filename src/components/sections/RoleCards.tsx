@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { ShineBeam } from "@/components/ui/ShineBeam";
 
 const ROLES = [
     {
@@ -32,10 +33,15 @@ export function RoleCards() {
                 <Link
                     key={role.title}
                     href={role.link}
-                    className="flex flex-col bg-background-secondary hover:shadow-xl hover:shadow-brand/5 hover:border-brand/40 transition-all duration-300 rounded-[32px] overflow-hidden group border border-border-subtle h-full"
+                    className="flex flex-col bg-background-secondary relative hover:shadow-2xl transition-all duration-300 rounded-[32px] overflow-hidden group border border-border-subtle h-full"
                 >
+                    {/* Hover Beam Effect */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0 overflow-hidden rounded-[32px]">
+                        <ShineBeam size={800} duration={5} color="#6720FF" className="opacity-60" />
+                    </div>
+
                     {/* Image Area */}
-                    <div className="relative h-[240px] w-full bg-[#F3F4F6] p-4 flex items-center justify-center overflow-hidden">
+                    <div className="relative h-[240px] w-full bg-[#F3F4F6] p-4 flex items-center justify-center overflow-hidden z-10">
                         <Image
                             src={role.image}
                             alt={role.title}

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -151,7 +151,7 @@ export const TestimonialsCarousel = () => {
                                         <div className="font-semibold text-foreground">{active.name}</div>
                                         <div className="text-sm text-foreground-secondary">{active.position}</div>
                                     </div>
-                                    <div className="ml-auto rounded-xl bg-foreground p-2">
+                                    <div className="ml-0 md:ml-auto rounded-xl bg-foreground p-2">
                                         <Image
                                             src={active.logo}
                                             alt={active.name}

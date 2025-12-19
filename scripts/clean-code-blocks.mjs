@@ -77,11 +77,11 @@ function extractTableCode(block) {
   }
 
   const normalized = rawText
-    .replace(/<br\\s*\\/?>/gi, "\n")
+    .replace(/<br\s*\/?>/gi, "\n")
     .replace(/&nbsp;/gi, " ")
-    .replace(/\\u00a0/g, " ")
-    .replace(/\\r\\n/g, "\n")
-    .replace(/\\r/g, "\n");
+    .replace(/\u00a0/g, " ")
+    .replace(/\r\n/g, "\n")
+    .replace(/\r/g, "\n");
 
   const segments = normalized
     .split("|")

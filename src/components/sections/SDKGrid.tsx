@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { Section } from '@/components/ui/Section';
 import { cn } from '@/lib/utils';
+import { ShineBeam } from '@/components/ui/ShineBeam';
 
 interface SDKItem {
     name: string;
@@ -44,23 +45,27 @@ export const SDKGrid = () => {
                                 "group flex flex-col items-center justify-center p-8",
                                 "bg-background-secondary rounded-2xl border border-transparent",
                                 "hover:bg-white hover:border-border-subtle hover:shadow-card",
-                                "transition-all duration-300 ease-smooth cursor-pointer"
+                                "transition-all duration-300 ease-smooth cursor-pointer relative overflow-hidden"
                             )}
                         >
-                            <div className="relative w-16 h-16 mb-4 transition-transform duration-300 group-hover:scale-110">
-                                <Image
-                                    src={sdk.icon}
-                                    alt={sdk.name}
-                                    fill
-                                    className="object-contain"
-                            />
-                        </div>
-                            <span className="font-semibold text-foreground text-lg">
-                                {sdk.name}
-                            </span>
-                        </div>
+                            {/* Beam Effect */}
+                            <ShineBeam size={300} duration={3} color="#6720FF" className="opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
+
+                            <div className="relative z-10 flex flex-col items-center">
+                                <div className="relative w-16 h-16 mb-4 transition-transform duration-300 group-hover:scale-110">
+                                    <Image
+                                        src={sdk.icon}
+                                        alt={sdk.name}
+                                        fill
+                                        className="object-contain"
+                                    />
+                                </div>
+                                <span className="font-semibold text-foreground text-lg">
+                                    {sdk.name}
+                                </span>
+                            </div>
                     ))}
-                </div>
+                        </div>
             </Container>
         </Section>
     );

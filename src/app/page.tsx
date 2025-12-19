@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 import { Section } from "@/components/ui/Section";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/CustomButton";
 import { FeatureCard } from "@/components/ui/FeatureCard";
 import { TestimonialCard } from "@/components/ui/TestimonialCard";
 import { RoleCards } from "@/components/sections/RoleCards";
@@ -26,6 +27,7 @@ import { StickyScrollFixed as StickyScroll } from "@/components/ui/StickyScrollF
 import { NumberTicker } from "@/components/ui/NumberTicker";
 import { ContainerScroll } from "@/components/ui/ContainerScroll";
 import { KaraokeText } from "@/components/ui/KaraokeText";
+import { TheInfiniteGrid } from "@/components/ui/TheInfiniteGrid";
 
 // Authentic content from adapty.io
 const stickyContent = [
@@ -81,6 +83,7 @@ const trustedByLogos = [
   { name: 'almus', file: 'almus.svg' },
   { name: 'impala-studios', file: 'impala-studios.svg' },
   { name: 'hubx', file: 'hubx.svg' },
+  { name: 'bickster', file: 'bickster.png' },
 ];
 
 export default function Home() {
@@ -89,16 +92,11 @@ export default function Home() {
       {/* Container Scroll Hero */}
       <div className="min-h-screen bg-background relative">
         {/* Hero Section */}
-        <div className="bg-gradient-to-b from-white to-background-tertiary/30 relative overflow-hidden bg-noise">
-          {/* Dotted Pattern */}
-          <div
-            className="absolute inset-0 pointer-events-none opacity-40"
-            style={{
-              backgroundImage: `repeating-linear-gradient(125deg, transparent, transparent 6px, #dee2e6 6px, #dee2e6 7px)`
-            }}
-          />
-          {/* Attio Grid Spotlight Background */}
-          <GridSpotlight className="opacity-60" />
+        <div className="bg-gradient-to-b from-white to-background-tertiary/30 relative overflow-hidden">
+          {/* Replaced bg-noise/dotted/spotlight with TheInfiniteGrid */}
+          <div className="absolute inset-0 z-0 opacity-40 mix-blend-multiply pointer-events-none">
+            <TheInfiniteGrid className="!fixed inset-0 h-full w-full pointer-events-none" />
+          </div>
 
           <ContainerScroll
             titleComponent={
@@ -157,6 +155,7 @@ export default function Home() {
                       width={120}
                       height={40}
                       className="h-8 md:h-10 w-auto object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-300"
+                      style={{ width: "auto" }}
                     />
                   ))}
                 </Marquee>
@@ -179,7 +178,12 @@ export default function Home() {
 
         <Stats />
 
-        <div className="py-24 bg-white relative">
+        <div className="py-24 bg-white relative overflow-hidden">
+          {/* Subtly reuse infinite grid for consistency */}
+          <div className="absolute inset-x-0 top-0 h-[600px] pointer-events-none select-none opacity-[0.4] mask-fade-sides">
+            <TheInfiniteGrid className="!static w-full h-full text-foreground/5" />
+          </div>
+
           <Container>
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 tracking-tight">
               Everything you need <br /> to grow your app
@@ -305,32 +309,41 @@ export default function Home() {
         <CaseStudies />
         <Enterprise />
 
-        {/* Final CTA - Authentic from adapty.io */}
+        {/* Final CTA - Premium Dark Card Design */}
         <Section className="py-24 md:py-32">
           <Container>
-            <div className="rounded-[32px] overflow-hidden relative shadow-2xl">
-              <AuroraBackground className="h-[500px] !bg-zinc-900">
-                <div className="relative z-10 text-center px-4">
-                  <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">
-                    Get started today or schedule a demo for your personal onboarding
-                  </h2>
+            <div className="rounded-[32px] bg-[#0A0A0A] overflow-hidden relative shadow-2xl border border-white/10 p-12 md:p-24 text-center group">
+              {/* Effects Layers */}
+              <BorderBeam size={400} duration={10} colorFrom="#6720FF" colorTo="#FF5B59" className="opacity-100" />
 
-                  <div className="flex flex-col sm:flex-row justify-center gap-4 mt-12">
-                    <Link
-                      href="https://app.adapty.io/registration"
-                      className="inline-flex items-center justify-center px-8 py-4 bg-white text-foreground font-semibold rounded-xl hover:bg-gray-100 transition-colors"
-                    >
-                      START FOR FREE
-                    </Link>
-                    <Link
-                      href="https://adapty.io/schedule-demo/"
-                      className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white font-semibold rounded-xl hover:bg-white/10 transition-colors"
-                    >
-                      SCHEDULE A DEMO
-                    </Link>
-                  </div>
+              <div className="absolute inset-0 opacity-20 pointer-events-none">
+                <TheInfiniteGrid className="!static w-full h-full text-white/20" />
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+                <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight leading-[1.1]">
+                  Get started today or schedule a demo for your personal onboarding
+                </h2>
+
+                <div className="mt-12 flex flex-col items-center gap-6 w-full max-w-lg">
+                  {/* Using Hero-style EmailCTA in dark mode */}
+                  <EmailCTA
+                    variant="dark"
+                    className="w-full justify-center scale-110"
+                    buttonText="Start for free"
+                    showBookDemo={false} // We will render it manually below for better styling control
+                  />
+
+                  <Link
+                    href="https://adapty.io/schedule-demo/"
+                    className="text-white/60 hover:text-white font-medium text-sm transition-colors flex items-center gap-1 group/link"
+                  >
+                    Or schedule a demo
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                  </Link>
                 </div>
-              </AuroraBackground>
+              </div>
             </div>
           </Container>
         </Section>

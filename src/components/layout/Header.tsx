@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/CustomButton";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -67,7 +67,14 @@ export function Header() {
                 {/* Logo */}
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center gap-2 z-50">
-                        <Image src="/logos/adapty-logo-black.svg" alt="Adapty" width={110} height={24} className="h-6 w-auto" />
+                        <Image
+                            src="/logos/adapty-logo-black.svg"
+                            alt="Adapty"
+                            width={110}
+                            height={24}
+                            className="h-6 w-auto"
+                            style={{ width: "auto" }}
+                        />
                     </Link>
                     <LanguageSwitcher />
                 </div>

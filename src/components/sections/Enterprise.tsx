@@ -2,7 +2,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import React from "react";
 import { Shield, Lock, Server } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/CustomButton";
 
 export const Enterprise = () => {
     return (

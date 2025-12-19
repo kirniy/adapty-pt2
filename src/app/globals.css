@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+/* @theme {
   --font-gilroy: var(--font-gilroy);
 
   --color-background: #FFFFFF;
@@ -27,7 +27,7 @@
   --radius-2xl: 24px;
 
   --animate-smooth: cubic-bezier(0.2, 0, 0, 1);
-}
+} */
 
 :root {
   /* Design Tokens as CSS Variables for utility usage if needed */

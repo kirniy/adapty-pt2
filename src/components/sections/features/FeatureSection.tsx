@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { ShineBeam } from "@/components/ui/ShineBeam";
 
 export interface FeatureSectionProps {
     flipped?: boolean;

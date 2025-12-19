@@ -119,7 +119,11 @@ const portableTextComponents: PortableTextComponents = {
         h2: ({ children }) => <h2 className="text-3xl font-bold mt-10 mb-4">{children}</h2>,
         h3: ({ children }) => <h3 className="text-2xl font-bold mt-8 mb-3">{children}</h3>,
         h4: ({ children }) => <h4 className="text-xl font-bold mt-6 mb-2">{children}</h4>,
-        code: ({ children }) => <BlogCodeBlock code={typeof children === "string" ? children : ""} />,
+        code: ({ children }) => (
+            <BlogCodeBlock
+                code={Array.isArray(children) ? children.join("") : typeof children === "string" ? children : ""}
+            />
+        ),
         blockquote: ({ children }) => (
             <blockquote className="border-l-4 border-brand pl-4 italic my-6 text-foreground-secondary">
                 {children}

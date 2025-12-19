@@ -208,6 +208,7 @@ export function FeatureSection({
                             "relative rounded-3xl overflow-hidden shadow-2xl border border-border-subtle bg-background-secondary",
                             image.className // Allow custom aspect ratios or sizing
                         )}>
+                            <ShineBeam duration={8} color="#6720FF" className="opacity-0 group-hover:opacity-100 transition-opacity duration-700" borderWidth={2} />
                             <Image
                                 src={image.src}
                                 alt={image.alt}

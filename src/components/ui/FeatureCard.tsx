@@ -19,7 +19,7 @@ export function FeatureCard({ title, description, icon, image, className, href, 
 
     return (
         <div className={cn("h-full rounded-3xl relative group overflow-hidden", className)}>
-            <ShineBeam size={600} duration={4} color="#6720FF" className="opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
+            <ShineBeam duration={4} color="#6720FF" className="opacity-0 group-hover:opacity-100 transition-opacity duration-500" borderWidth={2} />
             <SpotlightCard
                 className={cn(
                     "group relative overflow-hidden bg-white rounded-[inherit] shadow-sm transition-all duration-300 ease-smooth hover:shadow-card hover:translate-y-[-4px] flex flex-col h-full border border-border/50",

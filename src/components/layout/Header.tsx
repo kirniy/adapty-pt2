@@ -36,7 +36,7 @@ const NAV_ITEMS = [
             { label: "Case Studies", href: "/case-studies" },
         ]
     },
-    { label: "Pricing", href: "/pricing" },
+    { label: "Pricing", href: "https://adapty.io/pricing", external: true },
     { label: "Blog", href: "/blog" },
 ];
 
@@ -86,6 +86,15 @@ export function Header() {
                                     {item.label}
                                     <ChevronDown className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                                 </button>
+                            ) : item.external ? (
+                                <a
+                                    href={item.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-[15px] font-medium text-foreground-secondary hover:text-foreground transition-all duration-300 ease-smooth"
+                                >
+                                    {item.label}
+                                </a>
                             ) : (
                                 <Link
                                     href={item.href}
@@ -99,9 +108,14 @@ export function Header() {
                 </nav>
 
                 <div className="hidden md:flex items-center gap-4">
-                    <Link href="/login" className="text-[15px] font-medium text-foreground hover:text-brand transition-all duration-300 ease-smooth whitespace-nowrap">
+                    <a
+                        href="https://app.adapty.io"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[15px] font-medium text-foreground hover:text-brand transition-all duration-300 ease-smooth whitespace-nowrap"
+                    >
                         Log in
-                    </Link>
+                    </a>
                     <Button>Sign up</Button>
                 </div>
 
@@ -117,11 +131,17 @@ export function Header() {
                 {mobileMenuOpen && (
                     <div className="absolute inset-0 top-0 h-screen w-full bg-white flex flex-col pt-32 px-6 gap-6 md:hidden">
                         {NAV_ITEMS.map(item => (
-                            <Link key={item.label} href={item.href} className="text-2xl font-semibold">{item.label}</Link>
+                            item.external ? (
+                                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="text-2xl font-semibold">{item.label}</a>
+                            ) : (
+                                <Link key={item.label} href={item.href} className="text-2xl font-semibold">{item.label}</Link>
+                            )
                         ))}
                         <div className="mt-8 flex flex-col gap-4">
                             <Button className="w-full" size="lg">Sign up</Button>
-                            <Button variant="secondary" className="w-full" size="lg">Log in</Button>
+                            <a href="https://app.adapty.io" target="_blank" rel="noopener noreferrer">
+                                <Button variant="secondary" className="w-full" size="lg">Log in</Button>
+                            </a>
                         </div>
                     </div>
                 )}

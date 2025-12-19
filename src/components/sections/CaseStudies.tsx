@@ -89,7 +89,12 @@ export const CaseStudies = () => {
                         Read the real cases <br /> of our customers
                     </h2>
                     <div className="hidden md:block">
-                        <a href="#" className="flex items-center gap-2 font-medium text-brand hover:text-brand-hover transition-colors">
+                        <a
+                            href="https://adapty.io/case-studies/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 font-medium text-brand hover:text-brand-hover transition-colors"
+                        >
                             Read all case studies <ArrowRight className="w-4 h-4" />
                         </a>
                     </div>
@@ -129,6 +134,16 @@ export const CaseStudies = () => {
                             </div>
                         </a>
                     ))}
+                </div>
+                <div className="mt-10 flex md:hidden">
+                    <a
+                        href="https://adapty.io/case-studies/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 font-medium text-brand hover:text-brand-hover transition-colors"
+                    >
+                        Read all case studies <ArrowRight className="w-4 h-4" />
+                    </a>
                 </div>
             </Container>
         </Section>

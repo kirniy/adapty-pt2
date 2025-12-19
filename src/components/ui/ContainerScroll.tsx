@@ -39,11 +39,11 @@ export const ContainerScroll = ({
 
     return (
         <div
-            className="h-[60rem] md:h-[80rem] flex items-center justify-center relative p-2 pt-20 md:p-20" // Tall container for scroll space, pt-20 for mobile header clearance
+            className="h-[50rem] md:h-[80rem] flex items-start md:items-center justify-center relative p-2 pt-8 md:p-20"
             ref={containerRef}
         >
             <div
-                className="py-10 md:py-40 w-full relative"
+                className="py-2 md:py-40 w-full relative"
                 style={{
                     perspective: "1000px",
                 }}

@@ -45,8 +45,8 @@ export const RevenueSync = () => {
             // Turn off after a short duration
             setTimeout(() => {
                 setLitIndex(null);
-            }, 1500);
-        }, 3000);
+            }, 800); // Shorter duration for more "twinkly" feel
+        }, 1200); // Faster frequency
 
         return () => clearInterval(interval);
     }, []);
@@ -56,9 +56,9 @@ export const RevenueSync = () => {
             <Container>
                 <div className="grid lg:grid-cols-2 gap-16 items-center">
                     {/* Visual Side (Mosaic) */}
-                    <div className="relative rounded-[32px] bg-[#4FA6B0] p-8 md:p-10 shadow-2xl overflow-hidden order-last lg:order-first">
+                    <div className="relative rounded-[32px] bg-[#00A3B5] p-8 md:p-10 shadow-2xl overflow-hidden order-last lg:order-first h-[500px] flex flex-col items-center justify-center">
                         {/* Subtle gradient overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent pointer-events-none" />
 
                         <div className="relative z-10 flex flex-col items-center w-full">
                             {/* Top Flow */}

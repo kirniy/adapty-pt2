@@ -51,12 +51,12 @@ export default function Home() {
           <ContainerScroll
             titleComponent={
               <div className="mb-8">
-                <div className="mb-8 flex justify-center relative z-20">
+                <div className="mb-8 flex justify-center relative z-20 px-4">
                   <Link href="https://adapty.io/ebooks/100k-app-playbook/">
                     <AttioBadge className="cursor-pointer">
-                      <span className="text-[13px] font-medium text-foreground-secondary flex items-center gap-1">
+                      <span className="text-[11px] sm:text-[13px] font-medium text-foreground-secondary flex items-center gap-1 whitespace-nowrap">
                         Ebook: $100K playbook | download
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m5.5 4 3 3-3 3" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0"><path d="m5.5 4 3 3-3 3" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" /></svg>
                       </span>
                     </AttioBadge>
                   </Link>
@@ -71,7 +71,7 @@ export default function Home() {
                   Save months on integrating subscriptions and double your app revenue with paywall management.
                 </p>
 
-                <div className="flex justify-center mb-20 relative z-10">
+                <div className="flex justify-center mb-6 md:mb-20 relative z-10">
                   <EmailCTA variant="light" />
                 </div>
               </div>
@@ -137,6 +137,7 @@ export default function Home() {
           <NoCodePaywall />
           <FunnelFox />
           <RevenueSync />
+          <IntegrationsMarquee />
         </div>
 
         {/* Role Cards Section */}

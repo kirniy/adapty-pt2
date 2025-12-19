@@ -58,7 +58,7 @@ export function RoleCards() {
                             {role.tags.map((tag) => (
                                 <span
                                     key={tag}
-                                    className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground-secondary border border-black/5 shadow-sm whitespace-nowrap"
+                                    className="px-4 py-2 bg-white rounded-full text-sm font-medium text-foreground-secondary border border-black/5 shadow-sm text-center leading-snug whitespace-normal"
                                 >
                                     {tag}
                                 </span>

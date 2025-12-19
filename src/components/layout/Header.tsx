@@ -15,33 +15,55 @@ import { ResourcesMenu } from "./menus/ResourcesMenu";
 import { DocsMenu } from "./menus/DocsMenu";
 import { AnimatePresence, motion } from "framer-motion";
 
-// Mobile menu data - matching original Adapty structure with sections
+// Mobile menu data mirrors mega menu content for full coverage on small screens.
+type MobileMenuItem = {
+    title: string;
+    href: string;
+    badge?: string;
+};
+
 type MobileMenuSection = {
     title: string;
-    items: { title: string; href: string }[];
+    items: MobileMenuItem[];
 };
 
 type MobileMenuConfig = {
-    topLinks?: { title: string; href: string }[];
+    topLinks?: MobileMenuItem[];
     sections?: MobileMenuSection[];
 };
 
 const MOBILE_MENU_DATA: Record<string, MobileMenuConfig> = {
     Product: {
         topLinks: [
+            { title: "Product", href: "https://adapty.io/product/" },
+            { title: "Solution", href: "https://adapty.io/solutions/" },
+            { title: "Adapty SDK", href: "https://adapty.io/docs/sdk/" },
+            { title: "Integrations", href: "https://adapty.io/integrations/" },
             { title: "Why Adapty?", href: "https://adapty.io/why-adapty/" },
             { title: "Product changelog", href: "https://adapty.io/changelog/" },
             { title: "System status", href: "https://status.adapty.io/" },
-            { title: "Comparisons", href: "https://adapty.io/compare/" },
         ],
         sections: [
             {
                 title: "TECH",
                 items: [
                     { title: "Subscriptions SDK", href: "https://adapty.io/sdk/" },
-                    { title: "Subscribers sync", href: "https://adapty.io/subscribers-sync/" },
+                    { title: "Subscribers sync", href: "https://adapty.io/subscription-sync/" },
                     { title: "Fallback paywalls", href: "https://adapty.io/fallback-paywalls/" },
                     { title: "Refund saver", href: "https://adapty.io/refund-saver/" },
+                ],
+            },
+            {
+                title: "PAYWALLS",
+                items: [
+                    { title: "Paywall builder", href: "https://adapty.io/paywall-builder/" },
+                    { title: "Onboarding builder", href: "https://adapty.io/onboarding-builder/" },
+                    { title: "AI generator", href: "https://adapty.io/ai-paywall-generator/" },
+                    { title: "A/B testing", href: "https://adapty.io/paywall-ab-testing/" },
+                    { title: "Autopilot", href: "https://adapty.io/autopilot/", badge: "new" },
+                    { title: "Targeting", href: "https://adapty.io/paywall-targeting/" },
+                    { title: "Localizations", href: "https://adapty.io/paywall-localization/" },
+                    { title: "Remote config", href: "https://adapty.io/remote-config/" },
                 ],
             },
             {
@@ -49,16 +71,9 @@ const MOBILE_MENU_DATA: Record<string, MobileMenuConfig> = {
                 items: [
                     { title: "Revenue analytics", href: "https://adapty.io/revenue-analytics/" },
                     { title: "LTV analytics", href: "https://adapty.io/ltv-analytics/" },
-                    { title: "AI LTV and revenue predictions", href: "https://adapty.io/ai-predictions/" },
-                ],
-            },
-            {
-                title: "PAYWALLS",
-                items: [
-                    { title: "Paywall builder", href: "https://adapty.io/paywall-builder/" },
-                    { title: "A/B testing", href: "https://adapty.io/paywall-ab-testing/" },
-                    { title: "Targeting", href: "https://adapty.io/targeting/" },
-                    { title: "Localizations", href: "https://adapty.io/localizations/" },
+                    { title: "AI LTV and revenue predictions", href: "https://adapty.io/predictive-analytics/" },
+                    { title: "LTV prediction model", href: "https://adapty.io/ltv-prediction-model/" },
+                    { title: "Apple ads manager", href: "https://adapty.io/apple-ads-manager/" },
                 ],
             },
         ],
@@ -70,9 +85,15 @@ const MOBILE_MENU_DATA: Record<string, MobileMenuConfig> = {
                 items: [
                     { title: "Productivity app", href: "https://adapty.io/clients/productivity-app/" },
                     { title: "Text on Pic", href: "https://adapty.io/clients/text-on-pic/" },
+                    { title: "Trip planning", href: "https://adapty.io/clients/trip-planning/" },
                     { title: "Going Merry", href: "https://adapty.io/clients/going-merry/" },
                     { title: "Shmoody", href: "https://adapty.io/clients/shmoody/" },
+                    { title: "Lively", href: "https://adapty.io/clients/lively/" },
                     { title: "Glam AI", href: "https://adapty.io/clients/glam-ai/" },
+                    { title: "Pepapp", href: "https://adapty.io/clients/pepapp/" },
+                    { title: "Fotorama", href: "https://adapty.io/clients/fotorama/" },
+                    { title: "Wave", href: "https://adapty.io/clients/wave/" },
+                    { title: "Impala", href: "https://adapty.io/clients/impala-studios/" },
                     { title: "View all case studies", href: "https://adapty.io/clients/" },
                 ],
             },
@@ -85,15 +106,47 @@ const MOBILE_MENU_DATA: Record<string, MobileMenuConfig> = {
                 items: [
                     { title: "Blog", href: "https://adapty.io/blog/" },
                     { title: "Podcasts", href: "https://adapty.io/podcasts/" },
-                    { title: "Webinars", href: "https://adapty.io/webinars/" },
-                    { title: "Ebooks", href: "https://adapty.io/ebooks/" },
+                    { title: "Glossary", href: "https://adapty.io/glossary/" },
                 ],
             },
             {
-                title: "COMMUNITY",
+                title: "CONNECT",
                 items: [
                     { title: "Community", href: "https://adapty.io/community/" },
-                    { title: "Paywall Newsletter", href: "https://adapty.io/paywall-newsletter/" },
+                    { title: "Webinars", href: "https://adapty.io/webinars/" },
+                    { title: "Events", href: "https://adapty.io/events/" },
+                    { title: "Careers", href: "https://adapty.io/careers/" },
+                ],
+            },
+            {
+                title: "DISCOVER",
+                items: [
+                    { title: "Paywall newsletter", href: "https://adapty.io/paywall-newsletter/" },
+                    { title: "Apple receipt validation", href: "https://adapty.io/apple-receipt-validation/" },
+                    { title: "Apple fiscal calendar", href: "https://adapty.io/apple-fiscal-calendar/" },
+                    { title: "Apple ads manager", href: "https://adapty.io/apple-ads-manager/" },
+                    { title: "LTV prediction model", href: "https://adapty.io/ltv-prediction-model/" },
+                    { title: "Subscription calculator", href: "https://adapty.io/subscription-calculator/" },
+                    { title: "Refund calculator", href: "https://adapty.io/refund-calculator/" },
+                    { title: "Paywall library", href: "https://adapty.io/paywall-library/" },
+                    { title: "Comparing alternatives", href: "https://adapty.io/alternative-comparison/" },
+                ],
+            },
+            {
+                title: "EBOOKS",
+                items: [
+                    { title: "Grow your app from $10K to $100K MRR", href: "https://adapty.io/ebooks/10k-100k-mrr/" },
+                    { title: "Turn your weekend app into a $1K/mo business", href: "https://adapty.io/ebooks/weekend-app-1k-mo/" },
+                    { title: "Scale your app from $1K to $10K MRR", href: "https://adapty.io/ebooks/1k-10k-mrr/" },
+                    { title: "A refund guide to saving your app revenue", href: "https://adapty.io/ebooks/refund-guide/" },
+                ],
+            },
+            {
+                title: "RESEARCH",
+                items: [
+                    { title: "Onboarding A/B test ideas checklist", href: "https://adapty.io/ebooks/onboarding-ab-test-ideas/", badge: "new" },
+                    { title: "State of in-app subscriptions 2025", href: "https://adapty.io/ebooks/state-of-in-app-subscriptions-2024/" },
+                    { title: "Adapty pricing index", href: "https://adapty.io/ebooks/pricing-index/" },
                 ],
             },
         ],
@@ -104,6 +157,7 @@ const MOBILE_MENU_DATA: Record<string, MobileMenuConfig> = {
             { title: "Migrate to Adapty", href: "https://adapty.io/docs/migration/" },
             { title: "Platform status page", href: "https://status.adapty.io/" },
             { title: "Support Center", href: "https://adapty.io/support/" },
+            { title: "All docs", href: "https://adapty.io/docs/" },
         ],
         sections: [
             {
@@ -112,14 +166,22 @@ const MOBILE_MENU_DATA: Record<string, MobileMenuConfig> = {
                     { title: "iOS", href: "https://adapty.io/docs/ios-installation/" },
                     { title: "Android", href: "https://adapty.io/docs/android-installation/" },
                     { title: "React Native", href: "https://adapty.io/docs/react-native-installation/" },
-                    { title: "Flutter", href: "https://adapty.io/docs/flutter-installation/" },
                     { title: "Unity", href: "https://adapty.io/docs/unity-installation/" },
+                    { title: "Flutter", href: "https://adapty.io/docs/flutter-installation/" },
+                    { title: "FlutterFlow", href: "https://adapty.io/docs/flutterflow-installation/" },
+                    { title: "Capacitor", href: "https://adapty.io/docs/capacitor-installation/" },
+                    { title: "Kotlin Multiplatform", href: "https://adapty.io/docs/kmp-installation/" },
                 ],
             },
             {
-                title: "WEB",
+                title: "WEB PAYMENTS",
                 items: [
                     { title: "Stripe", href: "https://adapty.io/docs/stripe/" },
+                ],
+            },
+            {
+                title: "WEB API",
+                items: [
                     { title: "Server-side API", href: "https://adapty.io/docs/api/" },
                 ],
             },
@@ -402,18 +464,25 @@ export function Header() {
                                                             key={link.title}
                                                             href={link.href}
                                                             target={link.href.startsWith("http") ? "_blank" : undefined}
-                                                                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                                                onClick={() => {
-                                                                    setMobileMenuOpen(false);
-                                                                    setExpandedMobileMenu(null);
-                                                                }}
-                                                                className="block py-2.5 text-[15px] font-semibold text-foreground hover:text-brand transition-colors"
-                                                            >
+                                                            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                                            onClick={() => {
+                                                                setMobileMenuOpen(false);
+                                                                setExpandedMobileMenu(null);
+                                                            }}
+                                                            className="block py-2.5 text-[15px] font-semibold text-foreground hover:text-brand transition-colors"
+                                                        >
+                                                            <span className="flex items-center gap-2">
                                                                 {link.title}
-                                                            </Link>
-                                                        ))}
-                                                    </div>
-                                                )}
+                                                                {link.badge && (
+                                                                    <span className="bg-[#EBE5FF] text-[#6720FF] text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-[4px] leading-none">
+                                                                        {link.badge}
+                                                                    </span>
+                                                                )}
+                                                            </span>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            )}
 
                                                 {/* Sections */}
                                                 {MOBILE_MENU_DATA[expandedMobileMenu]?.sections?.map((section) => (
@@ -427,17 +496,24 @@ export function Header() {
                                                                 href={item.href}
                                                                 target={item.href.startsWith("http") ? "_blank" : undefined}
                                                                 rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                                                onClick={() => {
-                                                                    setMobileMenuOpen(false);
-                                                                    setExpandedMobileMenu(null);
-                                                                }}
-                                                                className="block py-2.5 text-[15px] text-foreground hover:text-brand transition-colors"
-                                                            >
+                                                            onClick={() => {
+                                                                setMobileMenuOpen(false);
+                                                                setExpandedMobileMenu(null);
+                                                            }}
+                                                            className="block py-2.5 text-[15px] text-foreground hover:text-brand transition-colors"
+                                                        >
+                                                            <span className="flex items-center gap-2">
                                                                 {item.title}
-                                                            </Link>
-                                                        ))}
-                                                    </div>
-                                                ))}
+                                                                {item.badge && (
+                                                                    <span className="bg-[#EBE5FF] text-[#6720FF] text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-[4px] leading-none">
+                                                                        {item.badge}
+                                                                    </span>
+                                                                )}
+                                                            </span>
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            ))}
                                         </div>
                                     )}
                                 </div>

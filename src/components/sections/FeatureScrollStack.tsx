@@ -25,6 +25,19 @@ interface CardProps {
 }
 
 export const FeatureScrollStack = ({ content, className }: FeatureScrollStackProps) => {
+    return (
+        <div className={cn("relative bg-background", className)}>
+            <div className="md:hidden">
+                <MobileStack content={content} />
+            </div>
+            <div className="hidden md:block">
+                <DesktopStack content={content} />
+            </div>
+        </div>
+    );
+};
+
+const DesktopStack = ({ content }: { content: FeatureScrollStackItem[] }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -32,7 +45,7 @@ export const FeatureScrollStack = ({ content, className }: FeatureScrollStackPro
     });
 
     return (
-        <div ref={containerRef} className={cn("relative min-h-[300vh] bg-background", className)}>
+        <div ref={containerRef} className="relative min-h-[300vh] bg-background">
             <div className="absolute inset-x-0 top-0 h-[600px] pointer-events-none select-none opacity-[0.8] mask-fade-sides z-0 flex justify-center">
                 <TheInfiniteGrid className="!static w-full h-full text-foreground/10" />
             </div>
@@ -56,6 +69,49 @@ export const FeatureScrollStack = ({ content, className }: FeatureScrollStackPro
                         );
                     })}
                 </div>
+            </div>
+        </div>
+    );
+};
+
+const MobileStack = ({ content }: { content: FeatureScrollStackItem[] }) => {
+    return (
+        <div className="relative overflow-hidden">
+            <div className="absolute inset-x-0 top-0 h-[360px] pointer-events-none select-none opacity-[0.6] mask-fade-sides z-0 flex justify-center">
+                <TheInfiniteGrid className="!static w-full h-full text-foreground/10" />
+            </div>
+
+            <div className="relative z-10 px-6 py-16 space-y-10">
+                {content.map((item, index) => (
+                    <div
+                        key={`${item.title}-${index}`}
+                        className="rounded-[28px] bg-white border border-border-subtle shadow-xl overflow-hidden"
+                    >
+                        <div className="p-6 bg-background-secondary/30">
+                            <div className="flex items-center gap-2 text-xs font-semibold text-brand uppercase tracking-wider mb-3">
+                                <span className="w-5 h-5 rounded-full bg-brand/10 text-brand flex items-center justify-center text-[10px]">
+                                    {index + 1}
+                                </span>
+                                Step {index + 1}
+                            </div>
+                            <h3 className="text-2xl font-bold mb-4 text-foreground tracking-tight">
+                                {item.title}
+                            </h3>
+                            <p className="text-base text-foreground-secondary leading-relaxed">
+                                {item.description}
+                            </p>
+                        </div>
+
+                        <div className="relative bg-background-tertiary">
+                            <div className="absolute inset-0 opacity-50 pointer-events-none">
+                                <TheInfiniteGrid className="!static w-full h-full text-foreground/10" />
+                            </div>
+                            <div className="relative z-10 p-6 flex items-center justify-center">
+                                {item.content}
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
@@ -111,4 +167,3 @@ const Card = ({ item, index, total, scrollYProgress, range }: CardProps) => {
         </motion.div>
     );
 };
-

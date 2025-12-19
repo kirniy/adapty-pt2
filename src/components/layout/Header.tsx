@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/CustomButton";
 import { Menu, X, ChevronDown, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -14,6 +14,7 @@ import { CasesMenu } from "./menus/CasesMenu";
 import { ResourcesMenu } from "./menus/ResourcesMenu";
 import { DocsMenu } from "./menus/DocsMenu";
 import { AnimatePresence, motion } from "framer-motion";
+import { createPortal } from "react-dom";
 
 // Mobile menu data mirrors mega menu content for full coverage on small screens.
 type MobileMenuItem = {
@@ -231,7 +232,18 @@ export function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [hoveredNav, setHoveredNav] = useState<string | null>(null);
     const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
+    const [portalReady, setPortalReady] = useState(false);
+    const [isIOS, setIsIOS] = useState(false);
+    const bodyScrollYRef = useRef(0);
+    const didLockScrollRef = useRef(false);
     const pathname = usePathname();
+
+    useEffect(() => {
+        setPortalReady(true);
+        const ua = navigator.userAgent;
+        const isiOSDevice = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        setIsIOS(isiOSDevice);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -242,21 +254,47 @@ export function Header() {
     }, []);
 
     useEffect(() => {
-        if (!mobileMenuOpen) {
+        const resetBodyStyles = () => {
             document.body.style.overflow = "";
             document.body.style.paddingRight = "";
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.width = "";
+        };
+
+        if (!mobileMenuOpen) {
+            if (didLockScrollRef.current && isIOS) {
+                resetBodyStyles();
+                window.scrollTo(0, bodyScrollYRef.current);
+            } else {
+                resetBodyStyles();
+            }
+            didLockScrollRef.current = false;
             return;
         }
 
         const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-        document.body.style.overflow = "hidden";
         document.body.style.paddingRight = scrollBarWidth ? `${scrollBarWidth}px` : "";
 
+        if (isIOS) {
+            bodyScrollYRef.current = window.scrollY;
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${bodyScrollYRef.current}px`;
+            document.body.style.width = "100%";
+        } else {
+            document.body.style.overflow = "hidden";
+        }
+
+        didLockScrollRef.current = true;
+
         return () => {
-            document.body.style.overflow = "";
-            document.body.style.paddingRight = "";
+            resetBodyStyles();
+            if (isIOS) {
+                window.scrollTo(0, bodyScrollYRef.current);
+            }
+            didLockScrollRef.current = false;
         };
-    }, [mobileMenuOpen]);
+    }, [mobileMenuOpen, isIOS]);
 
     useEffect(() => {
         setMobileMenuOpen(false);
@@ -268,7 +306,7 @@ export function Header() {
             className={cn(
                 "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-smooth h-[80px] flex items-center",
                 (isScrolled || hoveredNav) && !mobileMenuOpen
-                    ? "bg-white/95 backdrop-blur-md border-b border-border-subtle"
+                    ? "bg-white/95 md:backdrop-blur-md border-b border-border-subtle"
                     : "bg-transparent",
                 mobileMenuOpen && "bg-transparent"
             )}
@@ -365,191 +403,193 @@ export function Header() {
                     {mobileMenuOpen ? <X /> : <Menu />}
                 </button>
 
-                {/* Mobile Menu Slide-in Drawer */}
-                <AnimatePresence>
-                    {mobileMenuOpen && (
-                        <>
-                            {/* Backdrop overlay */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.2 }}
-                                className="fixed inset-0 bg-black/20 z-40 md:hidden"
-                                onClick={() => {
-                                    setMobileMenuOpen(false);
-                                    setExpandedMobileMenu(null);
-                                }}
-                            />
-                            {/* Slide-in panel */}
-                            <motion.div
-                                initial={{ x: "100%" }}
-                                animate={{ x: 0 }}
-                                exit={{ x: "100%" }}
-                                transition={{ duration: 0.3, ease: "easeOut" }}
-                                id="mobile-menu"
-                                className="fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-white z-50 flex flex-col md:hidden shadow-2xl"
-                            >
-                                {/* Header with close button */}
-                                <div className="flex items-center justify-between px-6 py-4 border-b border-border-subtle">
-                                    <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
-                                        <Image
-                                            src="/logos/adapty-logo-black.svg"
-                                            alt="Adapty"
-                                            width={90}
-                                            height={20}
-                                            className="h-5 w-auto"
-                                            style={{ width: "auto" }}
-                                        />
-                                    </Link>
-                                    <div className="flex items-center gap-3">
-                                        <LanguageSwitcher />
-                                        <button
-                                            onClick={() => {
-                                                setMobileMenuOpen(false);
-                                                setExpandedMobileMenu(null);
-                                            }}
-                                            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                                            aria-label="Close menu"
-                                        >
-                                            <X className="w-5 h-5" />
-                                        </button>
-                                    </div>
-                                </div>
-
-                                {/* Menu content - scrollable */}
-                                <div className="flex-1 overflow-y-auto px-6 py-4">
-                                    {!expandedMobileMenu ? (
-                                        // Main menu view
-                                        <div>
-                                            {MOBILE_MAIN_MENU.map((item) => (
-                                                item.hasSubmenu ? (
-                                                    <button
-                                                        key={item.label}
-                                                        onClick={() => setExpandedMobileMenu(item.dataKey || item.label)}
-                                                        className="w-full flex items-center justify-between py-4 text-[17px] font-semibold text-foreground border-b border-border-subtle/50 last:border-b-0"
-                                                    >
-                                                        {item.label}
-                                                        <ChevronRight className="w-5 h-5 text-foreground-muted" />
-                                                    </button>
-                                                ) : (
-                                                    <Link
-                                                        key={item.label}
-                                                        href={item.href || "#"}
-                                                        target={item.href?.startsWith("http") ? "_blank" : undefined}
-                                                        rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
-                                                        onClick={() => setMobileMenuOpen(false)}
-                                                        className={cn(
-                                                            "block py-4 text-[17px] font-semibold border-b border-border-subtle/50 last:border-b-0",
-                                                            item.highlight
-                                                                ? "text-[#FF8A00]"
-                                                                : "text-foreground"
-                                                        )}
-                                                    >
-                                                        {item.label}
-                                                    </Link>
-                                                )
-                                            ))}
-                                        </div>
-                                    ) : (
-                                        // Submenu view
-                                        <div>
-                                            {/* Back button and title */}
+                {portalReady && createPortal(
+                    <AnimatePresence>
+                        {mobileMenuOpen && (
+                            <>
+                                {/* Backdrop overlay */}
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className="fixed inset-0 bg-black/20 z-[60] md:hidden"
+                                    onClick={() => {
+                                        setMobileMenuOpen(false);
+                                        setExpandedMobileMenu(null);
+                                    }}
+                                />
+                                {/* Slide-in panel */}
+                                <motion.div
+                                    initial={{ x: "100%" }}
+                                    animate={{ x: 0 }}
+                                    exit={{ x: "100%" }}
+                                    transition={{ duration: 0.3, ease: "easeOut" }}
+                                    id="mobile-menu"
+                                    className="mobile-menu-panel fixed top-0 right-0 bottom-0 w-[85%] max-w-[400px] bg-white z-[70] flex flex-col md:hidden shadow-2xl"
+                                >
+                                    {/* Header with close button */}
+                                    <div className="flex items-center justify-between px-6 py-4 border-b border-border-subtle">
+                                        <Link href="/" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+                                            <Image
+                                                src="/logos/adapty-logo-black.svg"
+                                                alt="Adapty"
+                                                width={90}
+                                                height={20}
+                                                className="h-5 w-auto"
+                                                style={{ width: "auto" }}
+                                            />
+                                        </Link>
+                                        <div className="flex items-center gap-3">
+                                            <LanguageSwitcher />
                                             <button
-                                                onClick={() => setExpandedMobileMenu(null)}
-                                                className="flex items-center gap-2 text-brand font-semibold mb-4 pb-4 border-b border-border-subtle w-full"
+                                                onClick={() => {
+                                                    setMobileMenuOpen(false);
+                                                    setExpandedMobileMenu(null);
+                                                }}
+                                                className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                                                aria-label="Close menu"
                                             >
-                                                <svg className="w-4 h-4 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                    <path d="M9 18l6-6-6-6" />
-                                                </svg>
-                                                {expandedMobileMenu}
+                                                <X className="w-5 h-5" />
                                             </button>
-
-                                            {/* Top links (if any) */}
-                                            {MOBILE_MENU_DATA[expandedMobileMenu]?.topLinks && (
-                                                <div className="mb-6">
-                                                    {MOBILE_MENU_DATA[expandedMobileMenu].topLinks!.map((link) => (
-                                                        <Link
-                                                            key={link.title}
-                                                            href={link.href}
-                                                            target={link.href.startsWith("http") ? "_blank" : undefined}
-                                                            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                                            onClick={() => {
-                                                                setMobileMenuOpen(false);
-                                                                setExpandedMobileMenu(null);
-                                                            }}
-                                                            className="block py-2.5 text-[15px] font-semibold text-foreground hover:text-brand transition-colors"
-                                                        >
-                                                            <span className="flex items-center gap-2">
-                                                                {link.title}
-                                                                {link.badge && (
-                                                                    <span className="bg-[#EBE5FF] text-[#6720FF] text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-[4px] leading-none">
-                                                                        {link.badge}
-                                                                    </span>
-                                                                )}
-                                                            </span>
-                                                        </Link>
-                                                    ))}
-                                                </div>
-                                            )}
-
-                                            {/* Sections */}
-                                            {MOBILE_MENU_DATA[expandedMobileMenu]?.sections?.map((section) => (
-                                                <div key={section.title} className="mb-6">
-                                                    <h3 className="text-xs font-semibold text-foreground-muted tracking-wider mb-3">
-                                                        {section.title}
-                                                    </h3>
-                                                    {section.items.map((item) => (
-                                                        <Link
-                                                            key={item.title}
-                                                            href={item.href}
-                                                            target={item.href.startsWith("http") ? "_blank" : undefined}
-                                                            rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                                            onClick={() => {
-                                                                setMobileMenuOpen(false);
-                                                                setExpandedMobileMenu(null);
-                                                            }}
-                                                            className="block py-2.5 text-[15px] text-foreground hover:text-brand transition-colors"
-                                                        >
-                                                            <span className="flex items-center gap-2">
-                                                                {item.title}
-                                                                {item.badge && (
-                                                                    <span className="bg-[#EBE5FF] text-[#6720FF] text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-[4px] leading-none">
-                                                                        {item.badge}
-                                                                    </span>
-                                                                )}
-                                                            </span>
-                                                        </Link>
-                                                    ))}
-                                                </div>
-                                            ))}
                                         </div>
-                                    )}
-                                </div>
+                                    </div>
 
-                                {/* Fixed CTA buttons at bottom */}
-                                <div className="px-6 py-4 border-t border-border-subtle bg-white flex gap-3">
-                                    <a
-                                        href="https://app.adapty.io"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex-1 text-center py-3 text-sm font-semibold text-brand border border-brand rounded-lg hover:bg-brand/5 transition-colors"
-                                    >
-                                        Sign up
-                                    </a>
-                                    <a
-                                        href="https://adapty.io/schedule-demo/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex-1 text-center py-3 text-sm font-semibold text-white bg-[#5900FF] rounded-lg hover:bg-[#4500C6] transition-colors"
-                                    >
-                                        Contact sales
-                                    </a>
-                                </div>
-                            </motion.div>
-                        </>
-                    )}
-                </AnimatePresence>
+                                    {/* Menu content - scrollable */}
+                                    <div className="flex-1 overflow-y-auto px-6 py-4" style={{ WebkitOverflowScrolling: "touch" }}>
+                                        {!expandedMobileMenu ? (
+                                            // Main menu view
+                                            <div>
+                                                {MOBILE_MAIN_MENU.map((item) => (
+                                                    item.hasSubmenu ? (
+                                                        <button
+                                                            key={item.label}
+                                                            onClick={() => setExpandedMobileMenu(item.dataKey || item.label)}
+                                                            className="w-full flex items-center justify-between py-4 text-[17px] font-semibold text-foreground border-b border-border-subtle/50 last:border-b-0"
+                                                        >
+                                                            {item.label}
+                                                            <ChevronRight className="w-5 h-5 text-foreground-muted" />
+                                                        </button>
+                                                    ) : (
+                                                        <Link
+                                                            key={item.label}
+                                                            href={item.href || "#"}
+                                                            target={item.href?.startsWith("http") ? "_blank" : undefined}
+                                                            rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
+                                                            onClick={() => setMobileMenuOpen(false)}
+                                                            className={cn(
+                                                                "block py-4 text-[17px] font-semibold border-b border-border-subtle/50 last:border-b-0",
+                                                                item.highlight
+                                                                    ? "text-[#FF8A00]"
+                                                                    : "text-foreground"
+                                                            )}
+                                                        >
+                                                            {item.label}
+                                                        </Link>
+                                                    )
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            // Submenu view
+                                            <div>
+                                                {/* Back button and title */}
+                                                <button
+                                                    onClick={() => setExpandedMobileMenu(null)}
+                                                    className="flex items-center gap-2 text-brand font-semibold mb-4 pb-4 border-b border-border-subtle w-full"
+                                                >
+                                                    <svg className="w-4 h-4 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                        <path d="M9 18l6-6-6-6" />
+                                                    </svg>
+                                                    {expandedMobileMenu}
+                                                </button>
+
+                                                {/* Top links (if any) */}
+                                                {MOBILE_MENU_DATA[expandedMobileMenu]?.topLinks && (
+                                                    <div className="mb-6">
+                                                        {MOBILE_MENU_DATA[expandedMobileMenu].topLinks!.map((link) => (
+                                                            <Link
+                                                                key={link.title}
+                                                                href={link.href}
+                                                                target={link.href.startsWith("http") ? "_blank" : undefined}
+                                                                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                                                onClick={() => {
+                                                                    setMobileMenuOpen(false);
+                                                                    setExpandedMobileMenu(null);
+                                                                }}
+                                                                className="block py-2.5 text-[15px] font-semibold text-foreground hover:text-brand transition-colors"
+                                                            >
+                                                                <span className="flex items-center gap-2">
+                                                                    {link.title}
+                                                                    {link.badge && (
+                                                                        <span className="bg-[#EBE5FF] text-[#6720FF] text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-[4px] leading-none">
+                                                                            {link.badge}
+                                                                        </span>
+                                                                    )}
+                                                                </span>
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                )}
+
+                                                {/* Sections */}
+                                                {MOBILE_MENU_DATA[expandedMobileMenu]?.sections?.map((section) => (
+                                                    <div key={section.title} className="mb-6">
+                                                        <h3 className="text-xs font-semibold text-foreground-muted tracking-wider mb-3">
+                                                            {section.title}
+                                                        </h3>
+                                                        {section.items.map((item) => (
+                                                            <Link
+                                                                key={item.title}
+                                                                href={item.href}
+                                                                target={item.href.startsWith("http") ? "_blank" : undefined}
+                                                                rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                                                onClick={() => {
+                                                                    setMobileMenuOpen(false);
+                                                                    setExpandedMobileMenu(null);
+                                                                }}
+                                                                className="block py-2.5 text-[15px] text-foreground hover:text-brand transition-colors"
+                                                            >
+                                                                <span className="flex items-center gap-2">
+                                                                    {item.title}
+                                                                    {item.badge && (
+                                                                        <span className="bg-[#EBE5FF] text-[#6720FF] text-[10px] uppercase font-bold px-1.5 py-0.5 rounded-[4px] leading-none">
+                                                                            {item.badge}
+                                                                        </span>
+                                                                    )}
+                                                                </span>
+                                                            </Link>
+                                                        ))}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Fixed CTA buttons at bottom */}
+                                    <div className="px-6 py-4 border-t border-border-subtle bg-white flex gap-3">
+                                        <a
+                                            href="https://app.adapty.io"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex-1 text-center py-3 text-sm font-semibold text-brand border border-brand rounded-lg hover:bg-brand/5 transition-colors"
+                                        >
+                                            Sign up
+                                        </a>
+                                        <a
+                                            href="https://adapty.io/schedule-demo/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex-1 text-center py-3 text-sm font-semibold text-white bg-[#5900FF] rounded-lg hover:bg-[#4500C6] transition-colors"
+                                        >
+                                            Contact sales
+                                        </a>
+                                    </div>
+                                </motion.div>
+                            </>
+                        )}
+                    </AnimatePresence>,
+                    document.body
+                )}
                 {/* Centered Mega Menu Dropdown */}
                 <AnimatePresence>
                     {hoveredNav && (

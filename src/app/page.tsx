@@ -43,7 +43,7 @@ export default function Home() {
     <>
       <div className="min-h-screen bg-background relative overflow-visible">
         {/* Stable Background Layer */}
-        <div className="fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-multiply">
+        <div className="hero-grid-layer fixed inset-0 z-0 pointer-events-none opacity-40 mix-blend-multiply">
           <TheInfiniteGrid className="h-full w-full" />
         </div>
 
@@ -94,7 +94,7 @@ export default function Home() {
               </div>
               <div className="absolute -right-4 md:-right-16 -bottom-10 md:-bottom-20 z-20 w-[200px] md:w-[280px] pointer-events-none">
                 <Image
-                  src="/images/hero-phone.webp"
+                  src="/images/hero/adapty-paywall-demo-preview@2x.webp"
                   alt="Adapty Mobile App"
                   width={300}
                   height={600}

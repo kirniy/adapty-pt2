@@ -157,7 +157,6 @@ export default function Home() {
 
         <TestimonialsCarousel />
 
-        <IntegrationsMarquee />
         <G2Badges />
         <CaseStudies />
         <Enterprise />

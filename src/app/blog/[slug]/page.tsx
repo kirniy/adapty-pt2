@@ -9,20 +9,85 @@ import { PortableText, PortableTextComponents } from "next-sanity";
 import { ArrowLeft } from "lucide-react";
 import type { ReactNode } from "react";
 
-const CodeBlock = ({ code, language }: { code: ReactNode; language?: string }) => (
-    <div className="my-6">
-        {language && language !== "text" && (
-            <div className="text-xs font-semibold text-foreground-secondary uppercase tracking-wider mb-2">
-                {language}
-            </div>
-        )}
-        <pre className="bg-zinc-900 text-zinc-100 rounded-lg p-4 overflow-x-auto text-sm leading-relaxed font-mono">
-            <code className={`language-${language || 'text'} whitespace-pre`}>
-                {code}
-            </code>
-        </pre>
-    </div>
-);
+const LANGUAGE_ALIASES: Record<string, string> = {
+    "objective c": "Objective-C",
+    "objective-c": "Objective-C",
+    "react native": "React Native",
+    "c#": "C#",
+    "csharp": "C#",
+    "js": "JavaScript",
+    "ts": "TypeScript",
+};
+
+const KNOWN_LANGUAGES = new Set([
+    "Swift",
+    "Kotlin",
+    "Objective-C",
+    "Java",
+    "JavaScript",
+    "TypeScript",
+    "React Native",
+    "Flutter",
+    "Dart",
+    "C#",
+    "Python",
+    "Ruby",
+    "PHP",
+    "Go",
+    "Rust",
+    "SQL",
+    "Bash",
+    "Shell",
+    "JSON",
+    "HTML",
+    "CSS",
+]);
+
+const normalizeCodeBlock = (code: string, language?: string) => {
+    let label = language && language !== "text" ? language : "";
+    let normalized = code;
+
+    if (!label) {
+        const lines = code.split("\n");
+        const firstLineIndex = lines.findIndex((line) => line.trim() !== "");
+        if (firstLineIndex >= 0) {
+            const raw = lines[firstLineIndex].trim();
+            const lower = raw.toLowerCase();
+            const mapped = LANGUAGE_ALIASES[lower] || raw;
+            if (KNOWN_LANGUAGES.has(mapped)) {
+                label = mapped;
+                lines.splice(0, firstLineIndex + 1);
+                if (lines[0] === "") {
+                    lines.shift();
+                }
+                normalized = lines.join("\n");
+            }
+        }
+    }
+
+    return { code: normalized, label };
+};
+
+const CodeBlock = ({ code, language }: { code: ReactNode; language?: string }) => {
+    const normalized = typeof code === "string" ? normalizeCodeBlock(code, language) : { code, label: "" };
+    const label = normalized.label;
+    const classLanguage = label || (language && language !== "text" ? language : "text");
+
+    return (
+        <div className="my-6">
+            {label && (
+                <div className="text-xs font-semibold text-foreground-secondary uppercase tracking-wider mb-2">
+                    {label}
+                </div>
+            )}
+            <pre className="bg-zinc-900 text-zinc-100 rounded-lg p-4 overflow-x-auto text-sm leading-relaxed font-mono">
+                <code className={`language-${classLanguage} whitespace-pre`}>
+                    {normalized.code}
+                </code>
+            </pre>
+        </div>
+    );
+};
 
 // Custom components for PortableText rendering
 const portableTextComponents: PortableTextComponents = {

@@ -1,68 +1,97 @@
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const LOGOS = [
-    { name: "Airbridge", file: "airbridge.svg" },
-    { name: "Adjust", file: "adjust.svg" },
-    { name: "Amazon S3", file: "amazon-s3.svg" },
-    { name: "Amplitude", file: "amplitude.svg" },
-    { name: "Apple Search Ads", file: "apple-ads.svg" },
-    { name: "AppsFlyer", file: "appsflyer.svg" },
-    { name: "AppMetrica", file: "appmetrica.svg" },
-    { name: "Asapty", file: "asapty.svg" },
-    { name: "Branch", file: "branch.svg" },
-    { name: "Braze", file: "braze.svg" },
-    { name: "Facebook", file: "facebook.svg" },
-    { name: "Firebase", file: "firebase-ga.svg" },
-    { name: "Google Cloud", file: "google-cloud-storage.svg" },
-    { name: "Mixpanel", file: "mixpanel.svg" },
-    { name: "OneSignal", file: "onesignal.svg" },
-    { name: "PostHog", file: "posthog.svg" },
-    { name: "Pushwoosh", file: "pushwoosh.svg" },
-    { name: "SplitMetrics", file: "splitmetrics.svg" },
-    { name: "Singular", file: "singular.svg" },
-    { name: "Stripe", file: "stripe.svg" },
-    { name: "Tenjin", file: "tenjin.svg" },
-    { name: "Webhooks", file: "webhook.svg" },
+    { name: "Airbridge", file: "logo-airbridge.svg", aspect: "video" },
+    { name: "Adjust", file: "logo-adjust.svg", aspect: "video" },
+    { name: "Amazon S3", file: "logo-amazon-s3.svg", aspect: "video" },
+    { name: "Amplitude", file: "logo-amplitude.svg", aspect: "video" },
+    { name: "Apple Search Ads", file: "icon-apple-ads-text.svg", aspect: "video" },
+    { name: "AppsFlyer", file: "logo-appsflyer.svg", aspect: "video" },
+    { name: "AppMetrica", file: "logo-appmetrica.svg", aspect: "video" },
+    { name: "Asapty", file: "logo-asapty.svg", aspect: "video" },
+    { name: "Branch", file: "logo-branch.svg", aspect: "video" },
+    { name: "Braze", file: "logo-braze.svg", aspect: "video" },
+    { name: "Facebook", file: "logo-facebook-blue-text.svg", aspect: "video" },
+    { name: "Firebase", file: "logo-firebase-and-ga.svg", aspect: "video" },
+    { name: "Google Cloud", file: "logo-google-cloud-storage.svg", aspect: "video" },
+    { name: "Mixpanel", file: "logo-mixpanel.svg", aspect: "video" },
+    { name: "OneSignal", file: "logo-onesignal.svg", aspect: "video" },
+    { name: "PostHog", file: "posthog-logo-colorfull.svg", aspect: "video" },
+    { name: "Pushwoosh", file: "logo-pushwoosh.svg", aspect: "video" },
+    { name: "SplitMetrics", file: "logo-split-metrics.svg", aspect: "video" },
+    { name: "Singular", file: "singular-logo-block.svg", aspect: "video" },
+    { name: "Stripe", file: "icon-stripe-logo.svg", aspect: "video" },
+    { name: "Tenjin", file: "tenjin_logo_color.svg", aspect: "video" },
+    { name: "Webhooks", file: "logo-webhook.svg", aspect: "video" },
 ];
 
 export const RevenueSync = () => {
+    const [litIndex, setLitIndex] = useState<number | null>(null);
+
+    // Mosaic twinkle effect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const randomIndex = Math.floor(Math.random() * LOGOS.length);
+            setLitIndex(randomIndex);
+
+            // Turn off after a short duration
+            setTimeout(() => {
+                setLitIndex(null);
+            }, 1500);
+        }, 3000);
+
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <Section className="py-24 bg-white border-b border-border-subtle">
+        <Section className="py-24 bg-white border-b border-border-subtle overflow-hidden">
             <Container>
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <div className="relative rounded-3xl bg-[#0B0B0C] text-white p-8 md:p-10 overflow-hidden border border-white/10 shadow-2xl">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#7c3aed22,transparent_60%)]" />
-                        <div className="relative z-10">
-                            <div className="text-xs uppercase tracking-widest text-white/60">
-                                In-app-purchase events
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    {/* Visual Side (Mosaic) */}
+                    <div className="relative rounded-[32px] bg-[#4FA6B0] p-8 md:p-10 shadow-2xl overflow-hidden order-last lg:order-first">
+                        {/* Subtle gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+
+                        <div className="relative z-10 flex flex-col items-center w-full">
+                            {/* Top Flow */}
+                            <div className="bg-white rounded-lg px-6 py-3 shadow-md mb-6">
+                                <span className="text-sm font-bold text-foreground tracking-wide">In-app-purchase events</span>
                             </div>
-                            <div className="mt-6 flex items-center justify-center text-white/50 text-2xl">↓</div>
-                            <div className="mt-4 flex items-center justify-center">
-                                <Image
-                                    src="/integrations/adapty-logo-white.svg"
-                                    alt="Adapty"
-                                    width={140}
-                                    height={32}
-                                    className="h-8 w-auto"
-                                />
+
+                            <div className="flex flex-col items-center gap-2 mb-6">
+                                <div className="text-white/80 animate-bounce">↓</div>
+                                <div className="text-white font-bold text-2xl flex items-center gap-2">
+                                    <Image src="/images/logo-white.svg" alt="Adapty" width={32} height={32} className="opacity-90" />
+                                    adapty
+                                </div>
+                                <div className="text-white/80 animate-bounce delay-75">↓</div>
                             </div>
-                            <div className="mt-4 flex items-center justify-center text-white/50 text-2xl">↓</div>
-                            <div className="mt-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
-                                {LOGOS.map((logo) => (
+
+                            {/* Mosaic Grid */}
+                            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-3 w-full max-w-md mx-auto">
+                                {LOGOS.slice(0, 15).map((logo, index) => (
                                     <div
                                         key={logo.name}
-                                        className="rounded-xl bg-white/95 p-3 flex items-center justify-center"
+                                        className={cn(
+                                            "aspect-[2/1] rounded-xl bg-white border border-white/20 shadow-sm flex items-center justify-center p-3 transition-all duration-500 transform",
+                                            "hover:scale-105 hover:shadow-lg hover:grayscale-0",
+                                            litIndex === index ? "grayscale-0 scale-105 shadow-md ring-2 ring-white/50" : "grayscale opacity-90"
+                                        )}
                                     >
                                         <Image
-                                            src={`/integrations/${logo.file}`}
+                                            src={`/images/integrations/${logo.file}`}
                                             alt={logo.name}
-                                            width={80}
-                                            height={32}
-                                            className="h-6 w-auto object-contain"
+                                            width={100}
+                                            height={40}
+                                            className="w-full h-full object-contain"
                                         />
                                     </div>
                                 ))}
@@ -70,49 +99,53 @@ export const RevenueSync = () => {
                         </div>
                     </div>
 
+                    {/* Content Side */}
                     <div>
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-                            Sync purchase data with other services
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-foreground">
+                            Sync purchase data <br />
+                            <span className="text-foreground-secondary">with other services</span>
                         </h2>
-                        <p className="text-lg text-foreground-secondary mb-8 leading-relaxed">
+                        <p className="text-xl text-foreground-secondary mb-10 leading-relaxed max-w-lg">
                             Forward subscription events to analytics and attribution services without coding.
-                            Keep marketing, product, and data teams aligned.
                         </p>
-                        <Link
-                            href="https://adapty.io/integrations/"
-                            className="text-brand font-medium inline-flex items-center gap-2 hover:gap-3 transition-all"
-                        >
-                            Explore integrations
-                            <ArrowRight className="w-4 h-4" />
-                        </Link>
 
-                        <div className="mt-10 rounded-2xl border border-border-subtle bg-background-secondary p-6">
-                            <div className="flex items-center gap-4">
+                        <div className="mb-12">
+                            <Link
+                                href="https://adapty.io/integrations/"
+                                className="inline-flex items-center gap-2 text-lg font-semibold text-brand hover:gap-3 transition-all group"
+                            >
+                                Explore integrations
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </div>
+
+                        <div className="rounded-[24px] border border-border-subtle bg-white p-8 shadow-sm">
+                            <div className="flex items-center gap-3 mb-6">
                                 <Image
                                     src="/images/testimonials/logos/logo-bickster.png"
                                     alt="Bickster"
-                                    width={120}
-                                    height={40}
-                                    className="h-6 w-auto object-contain"
+                                    width={100}
+                                    height={30}
+                                    className="h-7 w-auto object-contain"
                                 />
                             </div>
-                            <p className="mt-4 text-foreground-secondary italic">
+                            <p className="text-lg text-foreground font-medium italic mb-6 leading-relaxed">
                                 &ldquo;They have a great external API that makes it easy to pass related events to other
                                 analytics tools such as Amplitude and Mixpanel.&rdquo;
                             </p>
-                            <div className="mt-4 flex items-center gap-3">
-                                <div className="h-10 w-10 rounded-full overflow-hidden bg-white border border-border-subtle">
+                            <div className="flex items-center gap-4">
+                                <div className="h-12 w-12 rounded-full overflow-hidden border border-border-subtle">
                                     <Image
                                         src="/images/testimonials/chris.webp"
                                         alt="Chris Bick"
-                                        width={40}
-                                        height={40}
+                                        width={48}
+                                        height={48}
                                         className="h-full w-full object-cover"
                                     />
                                 </div>
                                 <div>
-                                    <div className="text-sm font-medium">Chris Bick</div>
-                                    <div className="text-xs text-foreground-secondary">Founder and CEO</div>
+                                    <div className="font-bold text-foreground">Chris Bick</div>
+                                    <div className="text-sm text-foreground-secondary">Founder and CEO</div>
                                 </div>
                             </div>
                         </div>

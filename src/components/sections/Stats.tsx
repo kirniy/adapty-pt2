@@ -19,7 +19,8 @@ export const Stats = () => {
             <Container>
                 <div className="text-center mb-10">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                        Adapty processes subscription revenue with the industry's highest SLA Rate
+                        Adapty processes subscription revenue <br className="hidden md:block" />
+                        with the industry's highest SLA Rate
                     </h2>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">

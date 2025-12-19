@@ -170,18 +170,18 @@ export const TestimonialsCarousel = () => {
                             <button
                                 type="button"
                                 onClick={handlePrev}
-                                className="h-10 w-10 rounded-full border border-border-subtle bg-white text-foreground hover:bg-brand hover:text-white hover:border-brand transition-all duration-200 shadow-sm"
+                                className="h-10 w-10 rounded-full border border-border-subtle bg-white text-foreground hover:bg-[#6720FF] hover:text-white hover:border-[#6720FF] transition-all duration-200 shadow-sm flex items-center justify-center group"
                                 aria-label="Previous testimonial"
                             >
-                                <ArrowLeft className="w-4 h-4 mx-auto" />
+                                <ArrowLeft className="w-4 h-4 mx-auto group-hover:text-white transition-colors" />
                             </button>
                             <button
                                 type="button"
                                 onClick={handleNext}
-                                className="h-10 w-10 rounded-full border border-border-subtle bg-white text-foreground hover:bg-brand hover:text-white hover:border-brand transition-all duration-200 shadow-sm"
+                                className="h-10 w-10 rounded-full border border-border-subtle bg-white text-foreground hover:bg-[#6720FF] hover:text-white hover:border-[#6720FF] transition-all duration-200 shadow-sm flex items-center justify-center group"
                                 aria-label="Next testimonial"
                             >
-                                <ArrowRight className="w-4 h-4 mx-auto" />
+                                <ArrowRight className="w-4 h-4 mx-auto group-hover:text-white transition-colors" />
                             </button>
                         </div>
                         <div className="flex items-center gap-2">

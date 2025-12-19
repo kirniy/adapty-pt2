@@ -37,7 +37,7 @@ export const Stats = () => {
                                     suffix={stat.suffix}
                                     decimalPlaces={stat.decimalPlaces || 0}
                                     delay={0.2 + i * 0.1}
-                                    className="!text-black"
+                                    className="text-foreground tracking-tight"
                                 />
                             </div>
                             <div className="text-foreground-secondary mt-2 font-medium">{stat.label}</div>

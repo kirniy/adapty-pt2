@@ -32,7 +32,7 @@ export function RoleCards() {
                 <Link
                     key={role.title}
                     href={role.link}
-                    className="flex flex-col bg-background-secondary hover:shadow-lg transition-all duration-300 rounded-[32px] overflow-hidden group border border-border-subtle h-full"
+                    className="flex flex-col bg-background-secondary hover:shadow-xl hover:shadow-brand/5 hover:border-brand/40 transition-all duration-300 rounded-[32px] overflow-hidden group border border-border-subtle h-full"
                 >
                     {/* Image Area */}
                     <div className="relative h-[240px] w-full bg-[#F3F4F6] p-4 flex items-center justify-center overflow-hidden">

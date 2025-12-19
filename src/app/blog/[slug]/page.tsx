@@ -10,6 +10,9 @@ import type { PortableTextBlock } from "@portabletext/types";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { BlogCodeBlock } from "@/components/blog/BlogCodeBlock";
 
+// Revalidate every 60 seconds - CMS changes appear within 1 minute
+export const revalidate = 60;
+
 type PostMetadata = {
     title: string;
     excerpt?: string;

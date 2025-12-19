@@ -7,6 +7,9 @@ import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { formatDate } from "@/lib/utils";
 
+// Revalidate every 60 seconds - CMS changes appear within 1 minute
+export const revalidate = 60;
+
 export const metadata: Metadata = {
     title: "Blog",
     description: "Insights on in-app subscriptions, mobile monetization, paywall optimization, and A/B testing. Learn from industry experts and successful app developers.",

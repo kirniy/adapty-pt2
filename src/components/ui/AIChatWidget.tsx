@@ -286,11 +286,12 @@ export function AIChatWidget() {
                     <Button
                         type="submit"
                         size="icon"
-                        className="h-11 w-11 bg-brand hover:bg-brand-hover text-white rounded-full shrink-0 mb-1 shadow-lg hover:shadow-brand/25 transition-all"
+                        className="h-11 w-11 !bg-brand hover:!bg-brand-hover rounded-full shrink-0 mb-1 shadow-lg hover:shadow-brand/25 transition-all"
+                        style={{ backgroundColor: '#6720FF', color: '#ffffff' }}
                         disabled={isLoading || !input.trim()}
                         aria-label="Send message"
                     >
-                        <Send className="w-5 h-5 ml-0.5" />
+                        <Send className="w-5 h-5 ml-0.5 text-white" />
                     </Button>
                 </form>
             </ExpandableChatFooter>

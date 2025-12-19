@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { PortableText, PortableTextComponents } from "next-sanity";
+import type { PortableTextBlock } from "@portabletext/types";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { BlogCodeBlock } from "@/components/blog/BlogCodeBlock";
 
@@ -48,7 +49,7 @@ const extractTableCode = (block: { _type?: string; style?: string; listItem?: st
     return code || null;
 };
 
-const normalizeBody = (body: Array<{ _type?: string; code?: string; language?: string; _key?: string }>) => {
+const normalizeBody = (body: Array<{ _type?: string; code?: string; language?: string; _key?: string }>): PortableTextBlock[] => {
     const converted = body.map((block, index) => {
         const code = extractTableCode(block as { _type?: string; style?: string; listItem?: string; children?: Array<{ text?: string }> });
         if (!code) {
@@ -86,7 +87,7 @@ const portableTextComponents: PortableTextComponents = {
         code: ({ value }: { value: { code?: string; language?: string } }) => (
             <BlogCodeBlock code={value.code || ""} language={value.language} />
         ),
-        faqGroup: ({ value }: { value: { title?: string; items?: { question: string; answer: Array<unknown> }[] } }) => (
+        faqGroup: ({ value }: { value: { title?: string; items?: { question: string; answer: PortableTextBlock[] }[] } }) => (
             <FaqGroup value={value} />
         ),
         image: ({ value }: { value: { asset: { _ref: string }; alt?: string } }) => (
@@ -162,18 +163,18 @@ function extractFaqGroups(
     const isSectionBoundary = (block: { _type?: string; style?: string }) =>
         block._type === "block" && (block.style === "h1" || block.style === "h2");
 
-    const transformed: Array<unknown> = [];
+    const transformed: Array<PortableTextBlock | { _type: string; _key?: string; title: string; items: { question: string; answer: PortableTextBlock[] }[] }> = [];
 
     for (let i = 0; i < body.length; i += 1) {
         const block = body[i];
         if (!isFaqHeading(block)) {
-            transformed.push(block);
+            transformed.push(block as PortableTextBlock);
             continue;
         }
 
-        const items: { question: string; answer: Array<unknown> }[] = [];
+        const items: { question: string; answer: PortableTextBlock[] }[] = [];
         let currentQuestion = "";
-        let currentAnswer: Array<unknown> = [];
+        let currentAnswer: PortableTextBlock[] = [];
         let j = i + 1;
 
         for (; j < body.length; j += 1) {
@@ -190,7 +191,7 @@ function extractFaqGroups(
                 continue;
             }
             if (currentQuestion) {
-                currentAnswer.push(next);
+                currentAnswer.push(next as PortableTextBlock);
             }
         }
 
@@ -206,16 +207,16 @@ function extractFaqGroups(
                 items,
             });
         } else {
-            transformed.push(block);
+            transformed.push(block as PortableTextBlock);
         }
 
         i = j - 1;
     }
 
-    return transformed as Array<{ _type?: string; code?: string; language?: string; _key?: string }>;
+    return transformed as PortableTextBlock[];
 }
 
-function FaqGroup({ value }: { value: { title?: string; items?: { question: string; answer: Array<unknown> }[] } }) {
+function FaqGroup({ value }: { value: { title?: string; items?: { question: string; answer: PortableTextBlock[] }[] } }) {
     const items = Array.isArray(value?.items) ? value.items : [];
     if (!items.length) return null;
 
@@ -236,7 +237,7 @@ function FaqGroup({ value }: { value: { title?: string; items?: { question: stri
                         key={`${item.question}-${index}`}
                         className="group rounded-2xl border border-border-subtle bg-white shadow-sm overflow-hidden"
                     >
-                        <summary className="faq-summary flex items-center justify-between gap-6 px-6 py-5 cursor-pointer text-lg font-semibold text-foreground">
+                        <summary className="faq-summary flex items-start justify-between gap-4 px-6 py-5 cursor-pointer text-lg font-semibold text-foreground">
                             {item.question}
                             <ChevronDown className="h-5 w-5 text-foreground-secondary transition-transform duration-200 group-open:rotate-180" />
                         </summary>
@@ -309,7 +310,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                             {post.title}
                         </h1>
 
-                        <div className="flex items-center justify-between border-b border-border-subtle pb-8 mb-12">
+                        <div className="flex flex-col gap-6 border-b border-border-subtle pb-8 mb-12 sm:flex-row sm:items-center sm:justify-between">
                             <div className="flex items-center gap-4">
                                 {post.author?.image ? (
                                     <Image
@@ -329,7 +330,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                                     <div className="text-sm text-foreground-secondary">{post.author?.role || 'Team'}</div>
                                 </div>
                             </div>
-                            <div className="text-right text-sm text-foreground-secondary">
+                            <div className="text-left text-sm text-foreground-secondary sm:text-right">
                                 {post.publishedAt && (
                                     <div className="mb-1">
                                         {new Date(post.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}

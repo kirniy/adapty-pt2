@@ -496,3 +496,74 @@ body {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+.blog-code-block code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  white-space: pre;
+}
+
+.blog-code-block .token.comment,
+.blog-code-block .token.prolog,
+.blog-code-block .token.doctype,
+.blog-code-block .token.cdata {
+  color: #565F89;
+}
+
+.blog-code-block .token.punctuation {
+  color: #A9B1D6;
+}
+
+.blog-code-block .token.property,
+.blog-code-block .token.tag,
+.blog-code-block .token.boolean,
+.blog-code-block .token.number,
+.blog-code-block .token.constant,
+.blog-code-block .token.symbol,
+.blog-code-block .token.deleted {
+  color: #FF9E64;
+}
+
+.blog-code-block .token.selector,
+.blog-code-block .token.attr-name,
+.blog-code-block .token.string,
+.blog-code-block .token.char,
+.blog-code-block .token.builtin,
+.blog-code-block .token.inserted {
+  color: #9ECE6A;
+}
+
+.blog-code-block .token.operator,
+.blog-code-block .token.entity,
+.blog-code-block .token.url,
+.blog-code-block .token.variable {
+  color: #89DDFF;
+}
+
+.blog-code-block .token.atrule,
+.blog-code-block .token.attr-value,
+.blog-code-block .token.function,
+.blog-code-block .token.class-name {
+  color: #7AA2F7;
+}
+
+.blog-code-block .token.keyword {
+  color: #BB9AF7;
+}
+
+.blog-code-block .token.regex,
+.blog-code-block .token.important {
+  color: #E0AF68;
+}
+
+.blog-code-block .token.important,
+.blog-code-block .token.bold {
+  font-weight: 700;
+}
+
+.blog-code-block .token.italic {
+  font-style: italic;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}

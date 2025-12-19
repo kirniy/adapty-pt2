@@ -27,6 +27,15 @@ import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-tsx";
 
+const escapeHtml = (text: string): string => {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+};
+
 const LANGUAGE_ALIASES: Record<string, string> = {
     "objective c": "Objective-C",
     "objective-c": "Objective-C",
@@ -63,6 +72,9 @@ const KNOWN_LANGUAGES = new Set([
 ]);
 
 const PRISM_LANGUAGE_ALIASES: Record<string, string> = {
+    "c#": "csharp",
+    "csharp": "csharp",
+    "flutter": "dart",
     "objective-c": "objectivec",
     "objective c": "objectivec",
     "react native": "jsx",
@@ -121,8 +133,17 @@ export function BlogCodeBlock({ code, language, className }: BlogCodeBlockProps)
     const prismLanguage = getPrismLanguage(label || language);
 
     const highlighted = useMemo(() => {
-        const grammar = Prism.languages[prismLanguage] || Prism.languages.markup;
-        return Prism.highlight(normalized.code || "", grammar, prismLanguage);
+        try {
+            const grammar = Prism.languages[prismLanguage] || Prism.languages.markup;
+            if (!grammar) {
+                // Fallback to plain text if grammar is not available
+                return escapeHtml(normalized.code || "");
+            }
+            return Prism.highlight(normalized.code || "", grammar, prismLanguage);
+        } catch {
+            // If highlighting fails, return escaped plain text
+            return escapeHtml(normalized.code || "");
+        }
     }, [normalized.code, prismLanguage]);
 
     const handleCopy = async () => {
@@ -137,8 +158,10 @@ export function BlogCodeBlock({ code, language, className }: BlogCodeBlockProps)
 
     return (
         <div className={cn("my-6", className)}>
-            <div className="flex items-center justify-between rounded-t-2xl border border-border-subtle bg-[#171725] px-4 py-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/70">{label}</span>
+            <div className="flex items-center justify-between gap-4 rounded-t-2xl border border-border-subtle bg-[#171725] px-4 py-2">
+                <span className="text-xs font-semibold uppercase tracking-wider text-white/70 truncate" title={label}>
+                    {label}
+                </span>
                 <button
                     type="button"
                     onClick={handleCopy}

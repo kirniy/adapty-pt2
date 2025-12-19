@@ -98,7 +98,7 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-border-subtle flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-foreground-secondary/60">
                     <p>© {new Date().getFullYear()} Adapty Tech Inc. All rights reserved.</p>
-                    <div className="flex gap-8">
+                    <div className="flex flex-wrap justify-center gap-6">
                         <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
                         <Link href="/terms" className="hover:text-foreground">Terms</Link>
                         <Link href="/sitemap" className="hover:text-foreground">Sitemap</Link>

@@ -171,13 +171,13 @@ export function AIChatWidget() {
                                         variant={isUser ? "sent" : "received"}
                                         className={
                                             isUser
-                                                ? "bg-brand shadow-md"
+                                                ? "shadow-md !bg-[#6720FF]"
                                                 : "bg-white/80 backdrop-blur-sm shadow-sm border border-black/5"
                                         }
-                                        style={isUser ? { color: "#ffffff" } : undefined}
+                                        style={isUser ? { backgroundColor: "#6720FF", color: "#ffffff" } : undefined}
                                     >
                                         {isUser ? (
-                                            <span className="text-white">{message.content}</span>
+                                            <span style={{ color: "#ffffff" }}>{message.content}</span>
                                         ) : (
                                             <div className="prose prose-sm prose-zinc max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
                                                 <ReactMarkdown

@@ -12,7 +12,13 @@
 
 [Live Demo](https://adapty-pt2.vercel.app) | [Sanity Studio](https://adapty-pt2.vercel.app/studio) | [Original Site](https://adapty.io)
 
+[![Extended Documentation](https://img.shields.io/badge/Extended_Documentation-Read_on_Google_Docs-4285F4?style=for-the-badge&logo=google-docs&logoColor=white)](https://docs.google.com/document/d/136gnLrV7its3GqEbAjuNwpdIV2ks_afqGm56BF51Q80/edit?usp=sharing)
+
 </div>
+
+## System Architecture
+
+![System Diagram](docs/diagram.jpg)
 
 ---
 
@@ -47,8 +53,8 @@ This project is a complete content copy of [adapty.io](https://adapty.io) homepa
 |------|-----------|
 | Dec 18, 2025 20:26 | Initial setup: documentation, assets, visual references |
 | Dec 18, 2025 21:09 | Design system extracted from reference sites |
-| Dec 19, 2025 00:00-12:00 | Core homepage sections implemented |
-| Dec 19, 2025 12:00-18:00 | Blog integration, Sanity CMS, 48 posts imported |
+| Dec 19, 2025 00:00-05:00 | Core homepage sections implemented |
+| Dec 19, 2025 14:00-18:00 | Blog integration, Sanity CMS, 48 posts imported |
 | Dec 19, 2025 18:00-20:00 | Polish, mobile fixes, hover effects |
 | Dec 19, 2025 20:30 | Final UI polish and documentation |
 

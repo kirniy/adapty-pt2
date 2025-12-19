@@ -23,7 +23,7 @@ export const Stats = () => {
                             className="opacity-0 animate-slide-up fill-mode-forwards"
                             style={{ animationDelay: `${0.1 + i * 0.1}s` }}
                         >
-                            <div className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-foreground to-foreground-secondary">
+                            <div className="text-4xl md:text-5xl font-bold text-foreground">
                                 <NumberTicker
                                     value={stat.value}
                                     prefix={stat.prefix}

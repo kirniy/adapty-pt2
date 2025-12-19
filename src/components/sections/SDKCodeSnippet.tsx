@@ -3,8 +3,8 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import Image from "next/image";
-import React, { useState } from "react";
-import { Check, Copy, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+import { Copy, CheckCircle2, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 import Link from "next/link";
@@ -92,39 +92,48 @@ export const SDKCodeSnippet = () => {
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div className="order-2 lg:order-1">
                             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-                                10 lines of code <br /> to get started
+                                Integrate in-app purchases <br /> with a few lines of code
                             </h2>
                             <p className="text-xl text-foreground-secondary mb-8 leading-relaxed">
-                                Our SDK is open-source, lightweight, and designed for developers.
-                                It handles everything from subscription state to receipt validation.
+                                Integrate IAPs within a few hours without server coding. Adapty handles the correct
+                                subscription state, taking everything under the hood, from free trials to refunds, in a
+                                simple, developer-friendly SDK.
                             </p>
-                            <ul className="space-y-4 mb-8">
-                                {[
-                                    'Automatic receipt validation',
-                                    'Real-time subscription status',
-                                    'Paywall A/B testing built-in',
-                                    'Offline mode support'
-                                ].map((item) => (
-                                    <li key={item} className="flex items-center gap-3">
-                                        <div className="w-6 h-6 rounded-full bg-brand-light flex items-center justify-center text-brand flex-shrink-0">
-                                            <Check className="w-3.5 h-3.5" />
-                                        </div>
-                                        <span className="text-foreground font-medium">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            <div className="flex gap-4">
-                                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
-                                    <Image src="/sdks/swift.svg" alt="Swift" width={24} height={24} />
-                                    <span className="font-semibold">iOS</span>
+                            <Link
+                                href="https://adapty.io/sdk/"
+                                className="text-brand font-medium inline-flex items-center gap-2 hover:gap-3 transition-all"
+                            >
+                                Make subscriptions easy
+                                <ArrowRight className="w-4 h-4" />
+                            </Link>
+
+                            <div className="mt-10 p-6 bg-background-secondary rounded-2xl border border-border-subtle">
+                                <div className="flex items-center gap-3">
+                                    <Image
+                                        src="/images/testimonials/logos/logo-smitten.webp"
+                                        alt="Smitten"
+                                        width={140}
+                                        height={40}
+                                        className="h-6 w-auto object-contain"
+                                    />
                                 </div>
-                                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
-                                    <Image src="/sdks/kotlin.svg" alt="Kotlin" width={24} height={24} />
-                                    <span className="font-semibold">Android</span>
-                                </div>
-                                <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg border border-border-subtle shadow-sm">
-                                    <Image src="/sdks/flutter.svg" alt="Flutter" width={24} height={24} />
-                                    <span className="font-semibold">Flutter</span>
+                                <p className="mt-4 text-foreground-secondary italic leading-relaxed">
+                                    &ldquo;Adapty SDK made integrating in-app purchases a walk in the park. With just a few
+                                    lines of code, I was able to implement subscriptions seamlessly for both iOS and
+                                    Android.&rdquo;
+                                </p>
+                                <div className="mt-4 flex items-center gap-3">
+                                    <Image
+                                        src="/images/testimonial-magnus.webp"
+                                        alt="Magnus Olafsson"
+                                        width={40}
+                                        height={40}
+                                        className="rounded-full"
+                                    />
+                                    <div>
+                                        <div className="text-sm font-medium">Magnus Olafsson</div>
+                                        <div className="text-xs text-foreground-secondary">Chief Technology Officer at Smitten</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

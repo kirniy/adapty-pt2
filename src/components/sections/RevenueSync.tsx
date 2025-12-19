@@ -72,7 +72,7 @@ export const RevenueSync = () => {
 
                     <div>
                         <h2 className="text-3xl md:text-4xl font-bold mb-6 tracking-tight">
-                            Sync revenue data across the team
+                            Sync purchase data with other services
                         </h2>
                         <p className="text-lg text-foreground-secondary mb-8 leading-relaxed">
                             Forward subscription events to analytics and attribution services without coding.

@@ -86,7 +86,7 @@ export const CaseStudies = () => {
             <Container>
                 <div className="flex justify-between items-end mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight max-w-xl">
-                        Trusted by thousands of <br /> scaling apps
+                        Read the real cases <br /> of our customers
                     </h2>
                     <div className="hidden md:block">
                         <a href="#" className="flex items-center gap-2 font-medium text-brand hover:text-brand-hover transition-colors">

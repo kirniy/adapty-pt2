@@ -26,10 +26,10 @@ export const Enterprise = () => {
                             <span>Enterprise Grade</span>
                         </div>
                         <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-tight leading-[1.1] text-foreground">
-                            Secure, reliable, <br /> and compliant
+                            Enterprise-grade platform
                         </h2>
                         <p className="text-xl text-foreground-secondary mb-12 leading-relaxed max-w-lg">
-                            Adapty is built for scale. We process billions of requests with 99.9% uptime SLA, SOC2 compliance, and enterprise-grade security.
+                            Adapty is built for scale with secure infrastructure, reliable SLAs, and responsive support for high-growth teams.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4">
@@ -45,8 +45,12 @@ export const Enterprise = () => {
                                     <Shield className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold mb-3 text-foreground">SOC 2 Type II Certified</h3>
-                                    <p className="text-foreground-secondary leading-relaxed text-[15px]">Regularly audited security controls and processes to ensure your data is safe.</p>
+                                    <h3 className="text-xl font-bold mb-3 text-foreground">Secure</h3>
+                                    <ul className="space-y-2 text-foreground-secondary leading-relaxed text-[15px]">
+                                        <li>SOC2 verified</li>
+                                        <li>Encrypted</li>
+                                        <li>24/7 global fraud monitoring</li>
+                                    </ul>
                                 </div>
                             </div>
                         </SpotlightCard>
@@ -57,8 +61,11 @@ export const Enterprise = () => {
                                     <Lock className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold mb-3 text-foreground">GDPR & CCPA Compliant</h3>
-                                    <p className="text-foreground-secondary leading-relaxed text-[15px]">Full tools for data privacy management, user deletion, and consent tracking.</p>
+                                    <h3 className="text-xl font-bold mb-3 text-foreground">Reliable</h3>
+                                    <ul className="space-y-2 text-foreground-secondary leading-relaxed text-[15px]">
+                                        <li>99.99% SLA</li>
+                                        <li>Over $500M/year of in-app purchases processed</li>
+                                    </ul>
                                 </div>
                             </div>
                         </SpotlightCard>
@@ -69,8 +76,13 @@ export const Enterprise = () => {
                                     <Server className="w-6 h-6" />
                                 </div>
                                 <div>
-                                    <h3 className="text-xl font-bold mb-3 text-foreground">99.9% Uptime SLA</h3>
-                                    <p className="text-foreground-secondary leading-relaxed text-[15px]">Enterprise infrastructure designed for high availability and low latency globally.</p>
+                                    <h3 className="text-xl font-bold mb-3 text-foreground">Responsive</h3>
+                                    <ul className="space-y-2 text-foreground-secondary leading-relaxed text-[15px]">
+                                        <li>Dedicated customer success manager</li>
+                                        <li>Direct communication via Slack</li>
+                                        <li>Live chat on the website</li>
+                                        <li>Four ways to reach us</li>
+                                    </ul>
                                 </div>
                             </div>
                         </SpotlightCard>

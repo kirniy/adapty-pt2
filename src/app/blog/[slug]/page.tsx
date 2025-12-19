@@ -7,16 +7,31 @@ import Image from "next/image";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { PortableText, PortableTextComponents } from "next-sanity";
 import { ArrowLeft } from "lucide-react";
+import type { ReactNode } from "react";
+
+const CodeBlock = ({ code, language }: { code: ReactNode; language?: string }) => (
+    <div className="my-6">
+        {language && language !== "text" && (
+            <div className="text-xs font-semibold text-foreground-secondary uppercase tracking-wider mb-2">
+                {language}
+            </div>
+        )}
+        <pre className="bg-zinc-900 text-zinc-100 rounded-lg p-4 overflow-x-auto text-sm leading-relaxed font-mono">
+            <code className={`language-${language || 'text'} whitespace-pre`}>
+                {code}
+            </code>
+        </pre>
+    </div>
+);
 
 // Custom components for PortableText rendering
 const portableTextComponents: PortableTextComponents = {
     types: {
-        codeBlock: ({ value }: { value: { code: string; language?: string } }) => (
-            <pre className="bg-zinc-900 text-zinc-100 rounded-lg p-4 overflow-x-auto my-6 text-sm">
-                <code className={`language-${value.language || 'text'}`}>
-                    {value.code}
-                </code>
-            </pre>
+        codeBlock: ({ value }: { value: { code?: string; language?: string } }) => (
+            <CodeBlock code={value.code || ''} language={value.language} />
+        ),
+        code: ({ value }: { value: { code?: string; language?: string } }) => (
+            <CodeBlock code={value.code || ''} language={value.language} />
         ),
         image: ({ value }: { value: { asset: { _ref: string }; alt?: string } }) => (
             <div className="my-8">
@@ -47,6 +62,7 @@ const portableTextComponents: PortableTextComponents = {
         h2: ({ children }) => <h2 className="text-3xl font-bold mt-10 mb-4">{children}</h2>,
         h3: ({ children }) => <h3 className="text-2xl font-bold mt-8 mb-3">{children}</h3>,
         h4: ({ children }) => <h4 className="text-xl font-bold mt-6 mb-2">{children}</h4>,
+        code: ({ children }) => <CodeBlock code={children} />,
         blockquote: ({ children }) => (
             <blockquote className="border-l-4 border-brand pl-4 italic my-6 text-foreground-secondary">
                 {children}
@@ -77,6 +93,12 @@ async function getPost(slug: string) {
       "category": category->{title}
     }
   `, { slug });
+}
+
+// Generate static params for all blog posts at build time (SSG)
+export async function generateStaticParams() {
+    const posts = await client.fetch(`*[_type == "blogPost"] { "slug": slug.current }`);
+    return posts.map((post: { slug: string }) => ({ slug: post.slug }));
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {

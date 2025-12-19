@@ -15,6 +15,11 @@ export const G2Badges = () => {
     return (
         <Section className="py-12 border-b border-border-subtle bg-background-secondary/50">
             <Container>
+                <div className="text-center mb-10">
+                    <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
+                        Trusted for usability and customer service
+                    </h2>
+                </div>
                 <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
                     {badges.map((badge, index) => (
                         <div

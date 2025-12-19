@@ -57,6 +57,46 @@ const KNOWN_LANGUAGES = new Set([
   "CSS",
 ]);
 
+const TABLE_DIVIDER_RE = /\|\s*-{3,}\s*\|/;
+
+function unescapeMarkdown(value) {
+  return value.replace(/\\([_[\](){}/])/g, "$1");
+}
+
+function extractTableCode(block) {
+  if (!block || block._type !== "block" || block.style !== "normal" || block.listItem) {
+    return null;
+  }
+
+  const rawText = Array.isArray(block.children)
+    ? block.children.map((child) => child.text || "").join("")
+    : "";
+
+  if (!rawText || !rawText.includes("|") || !TABLE_DIVIDER_RE.test(rawText)) {
+    return null;
+  }
+
+  const normalized = rawText
+    .replace(/<br\\s*\\/?>/gi, "\n")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/\\u00a0/g, " ")
+    .replace(/\\r\\n/g, "\n")
+    .replace(/\\r/g, "\n");
+
+  const segments = normalized
+    .split("|")
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+
+  const contentSegments = segments.filter((segment) => !/^[-–—]+$/.test(segment));
+  if (contentSegments.length !== 1) {
+    return null;
+  }
+
+  const code = unescapeMarkdown(contentSegments[0]).trim();
+  return code || null;
+}
+
 function normalizeCodeBlock(code, language) {
   let label = language && language !== "text" ? language : "";
   let normalized = code || "";
@@ -87,6 +127,18 @@ function cleanBody(body) {
   let changed = false;
 
   for (const block of body) {
+    const tableCode = extractTableCode(block);
+    if (tableCode) {
+      cleaned.push({
+        _key: block._key,
+        _type: "codeBlock",
+        code: tableCode,
+        language: "text",
+      });
+      changed = true;
+      continue;
+    }
+
     const prev = cleaned[cleaned.length - 1];
     if (block?._type === "codeBlock" && prev?._type === "codeBlock" && prev.code === block.code) {
       changed = true;
@@ -108,9 +160,7 @@ function cleanBody(body) {
   return { cleaned, changed };
 }
 
-const posts = await client.fetch(
-  `*[_type == "blogPost" && count(body[_type == "codeBlock"]) > 0]{_id, slug, body}`
-);
+const posts = await client.fetch(`*[_type == "blogPost"]{_id, slug, body}`);
 
 let updated = 0;
 

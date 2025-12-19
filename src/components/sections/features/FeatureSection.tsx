@@ -40,6 +40,7 @@ export interface FeatureSectionProps {
         };
         logo?: string; // Alternative simple large logo if not card header
     };
+    badge?: string;
     className?: string; // Added className to interface
 }
 
@@ -51,6 +52,7 @@ export function FeatureSection({
     description,
     cta,
     testimonial,
+    badge,
     className,
 }: FeatureSectionProps) {
     return (
@@ -58,9 +60,6 @@ export function FeatureSection({
             <Container>
                 <div className={cn(
                     "grid lg:grid-cols-2 gap-12 lg:gap-24 items-center",
-                    // If flipped, image is right (default grid order handles left-right fine, we just swap content order)
-                    // Wait, standard design: Text Left, Image Right.
-                    // Flipped: Image Left, Text Right.
                 )}>
                     {/* Text Column */}
                     <motion.div
@@ -74,6 +73,11 @@ export function FeatureSection({
                         )}
                     >
                         <div>
+                            {badge && (
+                                <div className="inline-flex items-center rounded-md border border-border-subtle bg-background-secondary px-2.5 py-0.5 text-xs font-semibold text-foreground-secondary uppercase tracking-widest mb-6">
+                                    {badge}
+                                </div>
+                            )}
                             <h2 className="text-4xl md:text-[56px] leading-[1.1] font-bold tracking-tight mb-6">
                                 {title}
                             </h2>
